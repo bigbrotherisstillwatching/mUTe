@@ -1,0 +1,46 @@
+name: Build Artifacts
+
+on:
+  push:
+    branches: [ main ]
+#  create: 
+#    tags: releases/[1-9]+.[0-9]+.[0-9]+
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  ubuntu-touch:
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [arm64]
+        build: [Release]
+    runs-on: ubuntu-latest
+    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v4.1.4
+#        with:
+#          submodules: recursive
+      - name: Install Dependencies
+        run: |
+          python3 -m pip install clickable-ut
+#        env:
+#          BUILD_TYPE: ${{ (matrix.build == 'Debug') && '--debug' || '' }}
+#          CLICKABLE_FRAMEWORK: ubuntu-sdk-20.04
+#      - name: Create folder and change to it
+#        run: mkdir ~/uminimizer
+      - name: Build
+#        run: |
+#         CLICKABLE_FRAMEWORK=ubuntu-sdk-20.04 clickable build --verbose  --arch ${{ matrix.arch }}
+        run:
+         mkdir ~/mute && cd ~/mute && clickable create --non-interactive --template cmake --title mUTe --description "Audioplayer for Ubuntu Touch Focal" --name mute --namespace bigbrotherisstillwatching --maintainer "bbisw" --mail 140657673+bigbrotherisstillwatching@users.noreply.github.com --license gpl3 --copyright-year 2024 --arch arm64
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4.3.3
+        if: always()
+        with:
+#          name: "mute-${{ matrix.arch }}--${{ matrix.build }}--click"
+          name: "mute--click"
+          path: "~/mute"
+          if-no-files-found: ignore
+#          retention-days: 20
