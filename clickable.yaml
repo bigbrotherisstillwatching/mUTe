@@ -1,3 +1,6 @@
 clickable_minimum_required: 8.0.0
 builder: cmake
 kill: mute
+framework: ubuntu-sdk-20.04
+ignore_review_warnings: true
+ignore_review_errors: true
