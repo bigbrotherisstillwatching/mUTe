@@ -1,0 +1,15 @@
+{
+    "name": "mute.bigbrotherisstillwatching",
+    "description": "Audioplayer for Ubuntu Touch Focal",
+    "architecture": "@CLICK_ARCH@",
+    "title": "mUTe",
+    "hooks": {
+        "mute": {
+            "apparmor": "mute.apparmor",
+            "desktop":  "mute.desktop"
+        }
+    },
+    "version": "1.0.0",
+    "maintainer": "bbisw <140657673+bigbrotherisstillwatching@users.noreply.github.com>",
+    "framework" : "@CLICK_FRAMEWORK@"
+}
