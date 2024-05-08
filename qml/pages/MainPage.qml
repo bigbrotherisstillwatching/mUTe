@@ -73,10 +73,10 @@ Rectangle {
         MediaPlayer {
             id: audioPlayer
             audioRole: MediaPlayer.MusicRole
-            playlist: Playlist {
-                id: playlist
-                PlaylistItem { source: folderModel; }
-            }
+//            playlist: Playlist {
+//                id: playlist
+//                PlaylistItem { source: folderModel; }
+//            }
         }
 
         Row {
@@ -91,7 +91,18 @@ Rectangle {
                 width: units.gu(5)
                 height: units.gu(5)
 //                anchors.right: playpause.left
-                onClicked: list.currentIndex -= 1
+                onClicked: {
+                    list.currentIndex -= 1
+                    if(playing == true) {
+                        audioPlayer.stop()
+                        playing = false
+                        audioPlayer.play()
+                        playing = true
+                    } else {
+                        audioPlayer.stop()
+                        playing = false
+                    }
+                }
             }
         
             Button {
@@ -116,7 +127,18 @@ Rectangle {
                 width: units.gu(5)
                 height: units.gu(5)
 //                anchors.right: parent.right
-                onClicked: list.currentIndex += 1
+                onClicked: {
+                    list.currentIndex += 1
+                    if(playing == true) {
+                        audioPlayer.stop()
+                        playing = false
+                        audioPlayer.play()
+                        playing = true
+                    } else {
+                        audioPlayer.stop()
+                        playing = false
+                    }
+                }
             }
         }
 
