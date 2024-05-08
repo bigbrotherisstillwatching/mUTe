@@ -73,7 +73,10 @@ Rectangle {
         MediaPlayer {
             id: audioPlayer
             audioRole: MediaPlayer.MusicRole
-            playlist: folderModel
+            playlist: Playlist {
+                id: playlist
+                PlaylistItem { source: folderModel; }
+            }
         }
 
         Row {
