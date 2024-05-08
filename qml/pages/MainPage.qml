@@ -87,7 +87,7 @@ Rectangle {
                 width: units.gu(5)
                 height: units.gu(5)
 //                anchors.right: playpause.left
-                onClicked: list.currentIndex += -1
+                onClicked: list.currentIndex -= 1
             }
         
             Button {
@@ -118,7 +118,9 @@ Rectangle {
 
         ListView {
             id: list
-            width: parent.width/2
+            anchors.top: row1.bottom
+            anchors.topMargin: units.gu(3)
+            width: parent.width
             height: parent.height
             model: folderModel
             onCurrentIndexChanged: {
