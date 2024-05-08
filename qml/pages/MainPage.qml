@@ -73,6 +73,7 @@ Rectangle {
         MediaPlayer {
             id: audioPlayer
             audioRole: MediaPlayer.MusicRole
+            playlist: folderModel
         }
 
         Row {
