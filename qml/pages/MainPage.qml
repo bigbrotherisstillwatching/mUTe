@@ -88,6 +88,17 @@ Rectangle {
 //                id: playlist
 //                PlaylistItem { source: folderModel; }
 //            }
+            onPlaybackStateChanged: {
+                if(playing == true && list.currentIndex < list.count-1) {
+                    list.currentIndex += 1
+                    audioPlayer.play()
+                } else if(playing == true && list.currentIndex == list.count-1) {
+                    list.currentIndex = 0
+                    audioPlayer.play()
+                } else if(playing == false) {
+                    audioPlayer.stop()
+                }
+            }
         }
 
         Row {
