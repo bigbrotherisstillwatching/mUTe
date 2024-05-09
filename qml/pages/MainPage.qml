@@ -248,5 +248,6 @@ Rectangle {
             id: txt2
             text: audioPlayer.playbackState
             anchors.top: txt1.bottom
+        }
     }
 }
