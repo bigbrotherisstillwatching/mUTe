@@ -27,6 +27,17 @@ Rectangle {
 
     property bool playing: false
 
+    Timer {
+        id: timer
+    }
+
+    function delay(delayTime,cb) {
+        timer.interval = delayTime;
+        timer.repeat = false;
+        timer.triggered.connect(cb);
+        timer.start();
+    }
+
     PageHeader {
         id: header
         title: "mUTe"
@@ -87,27 +98,43 @@ Rectangle {
 
             Button {
                 id: previous
-                text: "previous"
+//                text: "previous"
+                iconName: "media-seek-backward"
                 width: units.gu(5)
                 height: units.gu(5)
 //                anchors.right: playpause.left
                 onClicked: {
-                    list.currentIndex -= 1
+                    if(list.currentIndex == 0) {
+                        list.currentIndex = list.count-1
+                    } else {
+                        list.currentIndex -= 1
+                    }
                     if(playing == true) {
-                        audioPlayer.stop()
-                        playing = false
+                        delay(100, function() {
+                            audioPlayer.stop()
+                            playing = false
+                        })
+                        delay(200, function() {
+                            audioPlayer.play()
+                            playing = true
+                        })
+                    } else if(playing == false) {
                         audioPlayer.play()
                         playing = true
-                    } else {
-                        audioPlayer.stop()
-                        playing = false
                     }
                 }
             }
         
             Button {
                 id: playpause
-                text: "play/pause"
+//                text: "play/pause"
+                iconName: {
+                    if(playing == true) {
+                        "media-playback-stop"
+                    } else if(playing == false) {
+                        "media-playback-start"
+                    }
+                }
                 width: units.gu(5)
                 height: units.gu(5)
 //                anchors.right: next.left
@@ -123,20 +150,29 @@ Rectangle {
             }
             Button {
                 id: next
-                text: "next"
+//                text: "next"
+                iconName: "media-seek-forward"
                 width: units.gu(5)
                 height: units.gu(5)
 //                anchors.right: parent.right
                 onClicked: {
-                    list.currentIndex += 1
+                    if(list.currentIndex == list.count-1) {
+                        list.currentIndex = 0
+                    } else {
+                        list.currentIndex += 1
+                    }
                     if(playing == true) {
-                        audioPlayer.stop()
-                        playing = false
+                        delay(100, function() {
+                            audioPlayer.stop()
+                            playing = false
+                        })
+                        delay(200, function() {
+                            audioPlayer.play()
+                            playing = true
+                        })
+                    } else if(playing == false) {
                         audioPlayer.play()
                         playing = true
-                    } else {
-                        audioPlayer.stop()
-                        playing = false
                     }
                 }
             }
