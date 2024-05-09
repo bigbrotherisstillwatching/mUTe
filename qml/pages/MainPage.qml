@@ -91,8 +91,10 @@ Rectangle {
             onPlaybackStateChanged: {
                 if(audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
                     list.currentIndex += 1
+                    audioPlayer.play()
                 } else if(audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
                     list.currentIndex = 0
+                    audioPlayer.play()
                 }
             }
 /*            onPlaybackStateChanged: {
