@@ -94,6 +94,7 @@ Rectangle {
                 } else if(playing === true && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
                     list.currentIndex = 0
                 }
+            }
 /*            onPlaybackStateChanged: {
                 if(audioPlayer.status === 7 && list.currentIndex < list.count-1) {
                     audioPlayer.stop()
