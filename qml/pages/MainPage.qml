@@ -88,8 +88,14 @@ Rectangle {
 //                id: playlist
 //                PlaylistItem { source: folderModel; }
 //            }
-/*            onPlaying: {
-                if(audioPlayer.playbackState === MediaPlayer.PlayingState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
+            onPlaybackStateChanged: {
+                if(playing === true && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
+                    list.currentIndex += 1
+                } else if(playing === true && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
+                    list.currentIndex = 0
+                }
+/*            onPlaybackStateChanged: {
+                if(audioPlayer.status === 7 && list.currentIndex < list.count-1) {
                     audioPlayer.stop()
                     playing == false
                     delay(100, function() {
@@ -97,16 +103,16 @@ Rectangle {
                         audioPlayer.play()
                         playing = true
                     })
-                } else if(status == "7" && list.currentIndex == list.count-1) {
-                    stop()
+                } else if(audioPlayer.status === 7 && list.currentIndex === list.count-1) {
+                    audioPlayer.stop()
                     playing == false
                     delay(100, function() {
                         list.currentIndex = 0
-                        play()
+                        audioPlayer.play()
                         playing = true
                     })
                 } else if(playing == false) {
-                    stop()
+                    audioPlayer.stop()
                 }
             }*/
         }
@@ -204,8 +210,8 @@ Rectangle {
             anchors.top: row1.bottom
             anchors.topMargin: units.gu(3)
             width: parent.width
-//            height: parent.height
-            height: flick1.contentHeight/2
+            height: parent.height
+//            height: flick1.contentHeight/2
             model: folderModel
             onCurrentIndexChanged: {
                 // This will handle changing playlist with all possible selection methods
@@ -241,7 +247,6 @@ Rectangle {
         Text {
             id: txt1
             text: audioPlayer.status
-            anchors.top: list.bottom
         }
 
         Text {
