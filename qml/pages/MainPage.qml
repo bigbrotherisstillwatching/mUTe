@@ -89,9 +89,9 @@ Rectangle {
 //                PlaylistItem { source: folderModel; }
 //            }
             onPlaybackStateChanged: {
-                if(playing === true && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
+                if(audioPlayer.playbackState === 0 && playing === true && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
                     list.currentIndex += 1
-                } else if(playing === true && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
+                } else if(audioPlayer.playbackState === 0 && playing === true && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
                     list.currentIndex = 0
                 }
             }
