@@ -88,8 +88,8 @@ Rectangle {
 //                id: playlist
 //                PlaylistItem { source: folderModel; }
 //            }
-            onPlaying: {
-                if(status == 7 && list.currentIndex < list.count-1) {
+/*            onPlaying: {
+                if(audioPlayer.playbackState === MediaPlayer.PlayingState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
                     audioPlayer.stop()
                     playing == false
                     delay(100, function() {
@@ -97,18 +97,18 @@ Rectangle {
                         audioPlayer.play()
                         playing = true
                     })
-                } else if(status == 7 && list.currentIndex == list.count-1) {
-                    audioPlayer.stop()
+                } else if(status == "7" && list.currentIndex == list.count-1) {
+                    stop()
                     playing == false
                     delay(100, function() {
                         list.currentIndex = 0
-                        audioPlayer.play()
+                        play()
                         playing = true
                     })
                 } else if(playing == false) {
-                    audioPlayer.stop()
+                    stop()
                 }
-            }
+            }*/
         }
 
         Row {
@@ -241,6 +241,12 @@ Rectangle {
         Text {
             id: txt1
             text: audioPlayer.status
+            anchors.top: list.bottom
         }
+
+        Text {
+            id: txt2
+            text: audioPlayer.playbackState
+            anchors.top: txt1.bottom
     }
 }
