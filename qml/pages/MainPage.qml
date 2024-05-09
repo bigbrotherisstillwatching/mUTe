@@ -88,7 +88,7 @@ Rectangle {
 //                id: playlist
 //                PlaylistItem { source: folderModel; }
 //            }
-            onPlaying: {
+/*            onPlaying: {
                 if(status == EndOfMedia && list.currentIndex < list.count-1) {
                     audioPlayer.stop()
                     playing == false
@@ -108,7 +108,7 @@ Rectangle {
                 } else if(playing == false) {
                     audioPlayer.stop()
                 }
-            }
+            }*/
         }
 
         Row {
@@ -204,7 +204,8 @@ Rectangle {
             anchors.top: row1.bottom
             anchors.topMargin: units.gu(3)
             width: parent.width
-            height: parent.height
+//            height: parent.height
+            height: flick1.contentHeight/2
             model: folderModel
             onCurrentIndexChanged: {
                 // This will handle changing playlist with all possible selection methods
@@ -237,5 +238,9 @@ Rectangle {
             focus: true
         }
 
+        Text {
+            id: txt1
+            text: audioPlayer.status
+        }
     }
 }
