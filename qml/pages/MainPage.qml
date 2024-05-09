@@ -88,8 +88,8 @@ Rectangle {
 //                id: playlist
 //                PlaylistItem { source: folderModel; }
 //            }
-/*            onPlaying: {
-                if(status == EndOfMedia && list.currentIndex < list.count-1) {
+            onPlaying: {
+                if(status == 7 && list.currentIndex < list.count-1) {
                     audioPlayer.stop()
                     playing == false
                     delay(100, function() {
@@ -97,7 +97,7 @@ Rectangle {
                         audioPlayer.play()
                         playing = true
                     })
-                } else if(status == EndOfMedia && list.currentIndex == list.count-1) {
+                } else if(status == 7 && list.currentIndex == list.count-1) {
                     audioPlayer.stop()
                     playing == false
                     delay(100, function() {
@@ -108,7 +108,7 @@ Rectangle {
                 } else if(playing == false) {
                     audioPlayer.stop()
                 }
-            }*/
+            }
         }
 
         Row {
