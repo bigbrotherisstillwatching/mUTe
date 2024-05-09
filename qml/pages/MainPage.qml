@@ -100,7 +100,7 @@ Rectangle {
                 } else if(playing === true && shuffle === false && repeatcurrent === false && repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
                     list.currentIndex = 0
                     audioPlayer.play()
-                } else if(playing === true && shuffle === false && repeatcurrent === true && repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
+                } else if(playing === true && shuffle === false && repeatcurrent === true && repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
                     audioPlayer.play()
                 }
             }
@@ -229,7 +229,10 @@ Rectangle {
                 width: units.gu(5)
                 height: units.gu(5)
                 color: repeatcurrent ? "green" : "white"
-                onClicked: repeatcurrent = !repeatcurrent
+                onClicked: {
+                    repeatcurrent = !repeatcurrent
+                    repeatall = false
+                }
             }
 
             Button {
@@ -238,7 +241,10 @@ Rectangle {
                 width: units.gu(5)
                 height: units.gu(5)
                 color: repeatall ? "green" : "white"
-                onClicked: repeatall = !repeatall
+                onClicked: {
+                    repeatall = !repeatall
+                    repeatcurrent = false
+                }
             }
 
         }
