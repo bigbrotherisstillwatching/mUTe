@@ -129,7 +129,7 @@ Rectangle {
 
         Row {
             id: row1
-            spacing: units.gu(5)
+            spacing: units.gu(3)
             anchors.horizontalCenter: parent.horizontalCenter
             topPadding: units.gu(3)
 
@@ -213,6 +213,34 @@ Rectangle {
                     }
                 }
             }
+
+            Button {
+                id: shufflebttn
+                iconName: "media-playlist-shuffle"
+                width: units.gu(5)
+                height: units.gu(5)
+                color: shuffle ? "green" : "white"
+                onClicked: shuffle = !shuffle
+            }
+
+            Button {
+                id: repeatcurrentbttn
+                iconName: "media-playlist-repeat-one"
+                width: units.gu(5)
+                height: units.gu(5)
+                color: repeatcurrent ? "green" : "white"
+                onClicked: repeatcurrent = !repeatcurrent
+            }
+
+            Button {
+                id: repeatallbttn
+                iconName: "media-playlist-repeat"
+                width: units.gu(5)
+                height: units.gu(5)
+                color: repeatall ? "green" : "white"
+                onClicked: repeatall = !repeatall
+            }
+
         }
 
         ListView {
