@@ -26,6 +26,9 @@ Rectangle {
     anchors.fill: parent
 
     property bool playing: false
+    property bool shuffle: false
+    property bool repeatcurrent: false
+    property bool repeatall: false
 
     Timer {
         id: timer
@@ -89,11 +92,15 @@ Rectangle {
 //                PlaylistItem { source: folderModel; }
 //            }
             onPlaybackStateChanged: {
-                if(audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
+                if(playing === true && shuffle === false && repeatcurrent === false && repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
                     list.currentIndex += 1
                     audioPlayer.play()
-                } else if(audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
+                } else if(playing === true && shuffle === false && repeatcurrent === false && repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
+                    audioPlayer.stop()
+                } else if(playing === true && shuffle === false && repeatcurrent === false && repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
                     list.currentIndex = 0
+                    audioPlayer.play()
+                } else if(playing === true && shuffle === false && repeatcurrent === true && repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
                     audioPlayer.play()
                 }
             }
