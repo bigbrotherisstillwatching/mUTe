@@ -88,13 +88,23 @@ Rectangle {
 //                id: playlist
 //                PlaylistItem { source: folderModel; }
 //            }
-            onPlaybackStateChanged: {
-                if(playing == true && list.currentIndex < list.count-1) {
-                    list.currentIndex += 1
-                    audioPlayer.play()
-                } else if(playing == true && list.currentIndex == list.count-1) {
-                    list.currentIndex = 0
-                    audioPlayer.play()
+            onPlaying: {
+                if(status == EndOfMedia && list.currentIndex < list.count-1) {
+                    audioPlayer.stop()
+                    playing == false
+                    delay(100, function() {
+                        list.currentIndex += 1
+                        audioPlayer.play()
+                        playing = true
+                    })
+                } else if(status == EndOfMedia && list.currentIndex == list.count-1) {
+                    audioPlayer.stop()
+                    playing == false
+                    delay(100, function() {
+                        list.currentIndex = 0
+                        audioPlayer.play()
+                        playing = true
+                    })
                 } else if(playing == false) {
                     audioPlayer.stop()
                 }
