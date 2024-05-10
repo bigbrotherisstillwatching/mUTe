@@ -123,7 +123,7 @@ Rectangle {
 
             Text {
                 id: txt3
-                text: list.currentIndex.fileName
+                text: "Hello World!"
                 NumberAnimation on x { running: true; from: 0; to: -itm1.width; duration: 3000; loops: Animation.Infinite }
 
                 Text {
@@ -135,7 +135,7 @@ Rectangle {
 
         Row {
             id: row1
-            spacing: units.gu(10)
+            spacing: units.gu(3)
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: itm1.bottom
             topPadding: units.gu(3)
