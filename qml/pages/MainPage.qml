@@ -116,14 +116,15 @@ Rectangle {
             anchors.top: parent.top
             anchors.topMargin: units.gu(3)
 //            property alias text: txt3.text
-            property int spacing: 30
-            width: txt3.width + spacing
+            property int itm1spacing: 30
+            width: txt3.width + itm1spacing
             height: txt3.height
             clip: true
 
             Text {
                 id: txt3
-                text: "Hello World!"
+//                text: "Hello World!"
+                text: list.model.fileName
                 NumberAnimation on x { running: true; from: 0; to: -itm1.width; duration: 3000; loops: Animation.Infinite }
 
                 Text {
