@@ -29,6 +29,11 @@ Rectangle {
     property bool shuffle: false
     property bool repeatcurrent: false
     property bool repeatall: false
+    property string text: list.model.get(list.currentIndex, "fileName")
+    property string spacing: "      "
+    property string combined: mainPage.text + mainPage.spacing
+    property string display: mainPage.combined.substring(mainPage.step) + mainPage.combined.substring(0, mainPage.step)
+    property int step: 0
 
     Timer {
         id: timer
@@ -110,15 +115,41 @@ Rectangle {
             }
         }
 
-        Item {
+        Rectangle {
+            anchors.top: parent.top
+            id: rec1
+            height: units.gu(9)
+            width: mainPage.width
+            color: "transparent"
+            border.color: "red"
+            border.width: units.gu(3)
+            z: 1
+        }
+
+        Timer {
+            id: timer2
+            interval: 200
+            running: true
+            repeat: true
+            onTriggered: mainPage.step = (mainPage.step + 1) % mainPage.combined.length
+        }
+
+        Text {
+            text: mainPage.display
+            anchors.horizontalCenter: mainPage.horizontalCenter
+            anchors.verticalCenter: rec1.verticalCenter
+//            y: 90
+        }
+
+/*        Item {
             id: itm1
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
             anchors.topMargin: units.gu(3)
 //            property alias text: txt3.text
-            property int itm1spacing: 50
-            width: txt3.width + itm1spacing
-//            width: parent.width * 0.5
+//            property int itm1spacing: 50
+//            width: txt3.width + itm1spacing
+            width: parent.width * 0.75
             height: txt3.height
             clip: true
 
@@ -126,14 +157,14 @@ Rectangle {
                 id: txt3
 //                text: "Hello World!"
                 text: list.model.get(list.currentIndex, "fileName")
-                NumberAnimation on x { running: true; from: 0; to: -itm1.width; duration: 4000; loops: Animation.Infinite }
+                NumberAnimation on x { running: true; from: 0; to: -itm1.width; duration: 5000; loops: Animation.Infinite }
 
                 Text {
                     x: itm1.width
                     text: txt3.text
                 }
             }
-        }
+        }*/
 
 /*        Item {
             id: itm1
@@ -163,7 +194,7 @@ Rectangle {
             id: row1
             spacing: units.gu(3)
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: itm1.bottom
+            anchors.top: rec1.bottom
             topPadding: units.gu(3)
 
             Button {
