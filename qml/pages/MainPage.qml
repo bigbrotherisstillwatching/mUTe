@@ -116,9 +116,9 @@ Rectangle {
             anchors.top: parent.top
             anchors.topMargin: units.gu(3)
 //            property alias text: txt3.text
-            property int itm1spacing: 30
-//            width: txt3.width + itm1spacing
-            width: parent.width * 0.5
+            property int itm1spacing: 50
+            width: txt3.width + itm1spacing
+//            width: parent.width * 0.5
             height: txt3.height
             clip: true
 
@@ -126,7 +126,7 @@ Rectangle {
                 id: txt3
 //                text: "Hello World!"
                 text: list.model.get(list.currentIndex, "fileName")
-                NumberAnimation on x { running: true; from: 0; to: -itm1.width; duration: 3000; loops: Animation.Infinite }
+                NumberAnimation on x { running: true; from: 0; to: -itm1.width; duration: 4000; loops: Animation.Infinite }
 
                 Text {
                     x: itm1.width
