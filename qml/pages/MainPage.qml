@@ -124,7 +124,7 @@ Rectangle {
             Text {
                 id: txt3
 //                text: "Hello World!"
-                text: list.model.get.(currentIndex, "fileName")
+                text: list.model.get(currentIndex, "fileName")
                 NumberAnimation on x { running: true; from: 0; to: -itm1.width; duration: 3000; loops: Animation.Infinite }
 
                 Text {
