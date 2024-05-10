@@ -112,6 +112,8 @@ Rectangle {
 
         Item {
             id: itm1
+            anchors.horizontalCenter: parent.horizontalCenter
+            topPadding: units.gu(3)
             property alias text: txt3.text
             property int spacing: 30
             width: txt3.width + spacing
