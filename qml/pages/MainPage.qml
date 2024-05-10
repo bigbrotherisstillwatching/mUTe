@@ -115,7 +115,7 @@ Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
             anchors.topMargin: units.gu(3)
-            property alias text: txt3.text
+//            property alias text: txt3.text
             property int spacing: 30
             width: txt3.width + spacing
             height: txt3.height
