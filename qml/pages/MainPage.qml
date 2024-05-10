@@ -110,7 +110,7 @@ Rectangle {
             }
         }
 
-/*        Item {
+        Item {
             id: itm1
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
@@ -118,7 +118,7 @@ Rectangle {
 //            property alias text: txt3.text
             property int itm1spacing: 30
 //            width: txt3.width + itm1spacing
-            width: parent.width * 0.75
+            width: parent.width * 0.5
             height: txt3.height
             clip: true
 
@@ -133,9 +133,9 @@ Rectangle {
                     text: txt3.text
                 }
             }
-        }*/
+        }
 
-        Item {
+/*        Item {
             id: itm1
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
@@ -157,7 +157,7 @@ Rectangle {
             Text {
                 text: parent.display
             }
-        }
+        }*/
 
         Row {
             id: row1
