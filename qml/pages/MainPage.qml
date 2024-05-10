@@ -134,7 +134,7 @@ Rectangle {
 
         Row {
             id: row1
-            spacing: units.gu(3)
+            spacing: units.gu(10)
             anchors.horizontalCenter: parent.horizontalCenter
             topPadding: units.gu(3)
 
