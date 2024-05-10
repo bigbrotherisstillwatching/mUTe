@@ -136,6 +136,7 @@ Rectangle {
         }*/
 
         Item {
+            id: itm1
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
             anchors.topMargin: units.gu(3)
