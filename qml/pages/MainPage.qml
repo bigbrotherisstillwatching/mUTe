@@ -137,6 +137,7 @@ Rectangle {
             id: row1
             spacing: units.gu(10)
             anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: itm1.bottom
             topPadding: units.gu(3)
 
             Button {
