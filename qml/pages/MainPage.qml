@@ -29,11 +29,6 @@ Rectangle {
     property bool shuffle: false
     property bool repeatcurrent: false
     property bool repeatall: false
-    property string text: list.model.get(list.currentIndex, "fileName")
-    property string spacing: "      "
-    property string combined: mainPage.text + mainPage.spacing
-    property string display: mainPage.combined.substring(mainPage.step) + mainPage.combined.substring(0, mainPage.step)
-    property int step: 0
 
     Timer {
         id: timer
@@ -115,30 +110,39 @@ Rectangle {
             }
         }
 
-        Rectangle {
-            anchors.top: parent.top
-            id: rec1
+        Item {
+            id: itm1
+            property string text: list.model.get(list.currentIndex, "fileName")
+            property string spacing: "     "
+            property string combined: text + spacing
+            property string display: combined.substring(step) + combined.substring(0, step)
+            property int step: 0
+            width: parent.width
             height: units.gu(9)
-            width: mainPage.width
-            color: "transparent"
-            border.color: "red"
-            border.width: units.gu(3)
-            z: 1
-        }
 
-        Timer {
-            id: timer2
-            interval: 200
-            running: true
-            repeat: true
-            onTriggered: mainPage.step = (mainPage.step + 1) % mainPage.combined.length
-        }
+            Rectangle {
+                id: rec1
+                height: itm1.height
+                width: itm1.width
+                color: "transparent"
+                border.color: "red"
+                border.width: 70
+                z: 1
+            }
 
-        Text {
-            text: mainPage.display
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: rec1.verticalCenter
-//            y: 90
+            Timer {
+                id: timer2
+                interval: 200
+                running: true
+                repeat: true
+                onTriggered: itm1.step = (itm1.step + 1) % itm1.combined.length
+            }
+
+            Text {
+                text: itm1.display
+                anchors.horizontalCenter: rec1.horizontalCenter
+                anchors.verticalCenter: rec1.verticalCenter
+            }
         }
 
 /*        Item {
@@ -194,7 +198,7 @@ Rectangle {
             id: row1
             spacing: units.gu(3)
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: rec1.bottom
+            anchors.top: itm11.bottom
             topPadding: units.gu(3)
 
             Button {
