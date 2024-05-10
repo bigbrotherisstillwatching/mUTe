@@ -97,6 +97,7 @@ Rectangle {
                     audioPlayer.play()
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
                     audioPlayer.stop()
+                    mainPage.playing = false
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
                     list.currentIndex = 0
                     audioPlayer.play()
@@ -107,27 +108,26 @@ Rectangle {
                     audioPlayer.play()
                 }
             }
-/*            onPlaybackStateChanged: {
-                if(audioPlayer.status === 7 && list.currentIndex < list.count-1) {
-                    audioPlayer.stop()
-                    playing == false
-                    delay(100, function() {
-                        list.currentIndex += 1
-                        audioPlayer.play()
-                        playing = true
-                    })
-                } else if(audioPlayer.status === 7 && list.currentIndex === list.count-1) {
-                    audioPlayer.stop()
-                    playing == false
-                    delay(100, function() {
-                        list.currentIndex = 0
-                        audioPlayer.play()
-                        playing = true
-                    })
-                } else if(playing == false) {
-                    audioPlayer.stop()
+        }
+
+        Item {
+            id: itm1
+            property alias text: txt3.text
+            property int spacing: 30
+            width: txt3.width + spacing
+            height: txt3.height
+            clip: true
+
+            Text {
+                id: txt3
+                text: list.currentIndex.fileName
+                NumberAnimation on x { running: true; from: 0; to: -itm1.width; duration: 3000; loops: Animation.Infinite }
+
+                Text {
+                    x: itm1.width
+                    text: txt3.text
                 }
-            }*/
+            }
         }
 
         Row {
@@ -271,11 +271,17 @@ Rectangle {
                 nameFilters: ["*.mp3"]
             }
             delegate: Component {
+                id: cmpnnt1
                 Item {
+                    id: itm2
                     width: parent.width
                     height: 40
                     Column {
-                        Text { text: fileName }
+                        id: clmn1
+                        Text {
+                            id: txt4
+                            text: fileName
+                        }
                     }
                     MouseArea {
                         anchors.fill: parent
