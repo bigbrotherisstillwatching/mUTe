@@ -110,7 +110,7 @@ Rectangle {
             }
         }
 
-        Item {
+/*        Item {
             id: itm1
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
@@ -132,6 +132,29 @@ Rectangle {
                     x: itm1.width
                     text: txt3.text
                 }
+            }
+        }*/
+
+        Item {
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+            anchors.topMargin: units.gu(3)
+            property string text: list.model.get(list.currentIndex, "fileName")
+            property string spacing: "      "
+            property string combined: text + spacing
+            property string display: combined.substring(step) + combined.substring(0, step)
+            property int step: 0
+
+            Timer {
+                id: timer2
+                interval: 200
+                running: true
+                repeat: true
+                onTriggered: parent.step = (parent.step + 1) % parent.combined.length
+            }
+
+            Text {
+                text: parent.display
             }
         }
 
