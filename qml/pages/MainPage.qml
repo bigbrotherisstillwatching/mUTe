@@ -136,7 +136,7 @@ Rectangle {
 
         Text {
             text: mainPage.display
-            anchors.horizontalCenter: mainPage.horizontalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: rec1.verticalCenter
 //            y: 90
         }
