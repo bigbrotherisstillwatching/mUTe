@@ -91,7 +91,6 @@ Rectangle {
 //                id: playlist
 //                PlaylistItem { source: folderModel; }
 //            }
-            seekable: true
             onPlaybackStateChanged: {
                 if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
                     list.currentIndex += 1
@@ -160,7 +159,8 @@ Rectangle {
 //            enabled: true
 //            enabled: audioPlayer.seekable
             value: audioPlayer.position / audioPlayer.duration
-            onMoved: audioPlayer.setPosition(value * audioPlayer.duration)
+//            onMoved: audioPlayer.setPosition(value * audioPlayer.duration)
+            onMoved: audioPlayer.seek(value * audioPlayer.duration)
 
 /*            MouseArea {
                 anchors.fill: parent
