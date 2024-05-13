@@ -155,9 +155,9 @@ Rectangle {
 //            stepSize: 0.01
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: itm1.bottom
-            anchors.topMargin: units.gu(1)
+//            anchors.topMargin: units.gu(1)
 //            enabled: true
-            enabled: audioPlayer.seekable
+//            enabled: audioPlayer.seekable
             value: audioPlayer.position / audioPlayer.duration
             onMoved: audioPlayer.setPosition(value * audioPlayer.duration)
 
