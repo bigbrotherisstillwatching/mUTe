@@ -125,8 +125,9 @@ Rectangle {
                 height: itm1.height
                 width: itm1.width
                 color: "transparent"
-                border.color: "red"
-                border.width: 70
+                border.color: "white"
+//                border.width: 70
+                border.width: 50
                 z: 1
             }
 
@@ -142,6 +143,67 @@ Rectangle {
                 text: itm1.display
                 anchors.horizontalCenter: rec1.horizontalCenter
                 anchors.verticalCenter: rec1.verticalCenter
+            }
+        }
+
+        Qqc.Slider {
+            id: prgrssbr
+//            from: 0.00
+//            to: 1.00
+            to: 1.0
+            live: true
+//            stepSize: 0.01
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: itm1.bottom
+            anchors.topMargin: units.gu(1)
+//            enabled: true
+            enabled: audioPlayer.seekable
+            value: audioPlayer.position / audioPlayer.duration
+            onMoved: audioPlayer.setPosition(value * audioPlayer.duration)
+
+/*            MouseArea {
+                anchors.fill: parent
+                enabled: true
+            }*/
+
+            background: Rectangle {
+                x: (prgrssbr.width  - width) / 2
+                y: (prgrssbr.height - height) / 2
+                implicitWidth: 200
+                width: prgrssbr.availableWidth
+                height: 10
+                radius: 5
+//                color: settings.darkMode ? "#808080" : "#f1f1f1"
+                color: "#f1f1f1"
+
+                Rectangle {
+                    width: prgrssbr.visualPosition * parent.width
+                    height: parent.height
+                    color: "#32517F"
+                    radius: 2
+                }
+            }
+
+            handle: Rectangle {
+                visible: true
+                x: prgrssbr.leftPadding + (prgrssbr.horizontal ? prgrssbr.visualPosition * (prgrssbr.availableWidth - width) : (prgrssbr.availableWidth - width) / 2)
+                y: prgrssbr.topPadding + (prgrssbr.vertical ? prgrssbr.visualPosition * (prgrssbr.availableHeight - height) : (prgrssbr.availableHeight - height) / 2)
+                implicitWidth: 26
+                implicitHeight: 26
+                radius: 13
+                color: prgrssbr.pressed ? "#32517F" : "white"
+            }
+        }
+
+        Text {
+            id: mediaTime
+            anchors.top: prgrssbr.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            horizontalAlignment: Text.AlignHCenter
+            text: {
+                var m = Math.floor(audioPlayer.position / 60000)
+                var ms = (audioPlayer.position / 1000 - m * 60).toFixed(1)
+                return `${m}:${ms.padStart(4, 0)}`
             }
         }
 
@@ -198,7 +260,7 @@ Rectangle {
             id: row1
             spacing: units.gu(3)
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: itm1.bottom
+            anchors.top: mediaTime.bottom
             topPadding: units.gu(3)
 
             Button {
