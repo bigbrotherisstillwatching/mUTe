@@ -295,6 +295,7 @@ Rectangle {
                 width: units.gu(5)
                 height: units.gu(5)
 //                anchors.right: playpause.left
+                color: "white"
                 onClicked: {
                     if(list.currentIndex == 0) {
                         list.currentIndex = list.count-1
@@ -318,7 +319,7 @@ Rectangle {
             }
         
             Button {
-                id: playpause
+                id: playstop
 //                text: "play/pause"
                 iconName: {
                     if(playing == true) {
@@ -330,6 +331,7 @@ Rectangle {
                 width: units.gu(5)
                 height: units.gu(5)
 //                anchors.right: next.left
+                color: "white"
                 onClicked: {
                     if(playing == true) {
                         audioPlayer.stop()
@@ -340,6 +342,19 @@ Rectangle {
                     }
                 }
             }
+
+            Button {
+                id: pause
+                iconName: "media-playback-pause"
+                width: units.gu(5)
+                height: units.gu(5)
+                color: "white"
+                onClicked: {
+                    audioPlayer.pause()
+                    playing = false
+                }
+            }
+
             Button {
                 id: next
 //                text: "next"
@@ -347,6 +362,7 @@ Rectangle {
                 width: units.gu(5)
                 height: units.gu(5)
 //                anchors.right: parent.right
+                color: "white"
                 onClicked: {
                     if(list.currentIndex == list.count-1) {
                         list.currentIndex = 0
@@ -368,6 +384,48 @@ Rectangle {
                     }
                 }
             }
+
+/*            Button {
+                id: shufflebttn
+                iconName: "media-playlist-shuffle"
+                width: units.gu(5)
+                height: units.gu(5)
+                color: shuffle ? "green" : "white"
+                onClicked: shuffle = !shuffle
+            }
+
+            Button {
+                id: repeatcurrentbttn
+                iconName: "media-playlist-repeat-one"
+                width: units.gu(5)
+                height: units.gu(5)
+                color: repeatcurrent ? "green" : "white"
+                onClicked: {
+                    repeatcurrent = !repeatcurrent
+                    repeatall = false
+                }
+            }
+
+            Button {
+                id: repeatallbttn
+                iconName: "media-playlist-repeat"
+                width: units.gu(5)
+                height: units.gu(5)
+                color: repeatall ? "green" : "white"
+                onClicked: {
+                    repeatall = !repeatall
+                    repeatcurrent = false
+                }
+            }*/
+
+        }
+
+        Row {
+            id: row2
+            spacing: units.gu(3)
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: prgrssbr.bottom
+            topPadding: units.gu(3)
 
             Button {
                 id: shufflebttn
@@ -406,7 +464,7 @@ Rectangle {
 
         ListView {
             id: list
-            anchors.top: row1.bottom
+            anchors.top: row2.bottom
             anchors.topMargin: units.gu(3)
             width: parent.width
             height: parent.height
