@@ -424,7 +424,7 @@ Rectangle {
             id: row2
             spacing: units.gu(3)
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: prgrssbr.bottom
+            anchors.top: row1.bottom
             topPadding: units.gu(3)
 
             Button {
