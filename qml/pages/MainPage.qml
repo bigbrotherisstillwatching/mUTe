@@ -179,7 +179,7 @@ Rectangle {
 //            stepSize: 0.01
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: mediaTime.bottom
-//            anchors.topMargin: units.gu(1)
+            anchors.topMargin: units.gu(1)
 //            enabled: true
 //            enabled: audioPlayer.seekable
             value: audioPlayer.position / audioPlayer.duration
@@ -286,7 +286,7 @@ Rectangle {
             spacing: units.gu(3)
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: prgrssbr.bottom
-            topPadding: units.gu(3)
+            topPadding: units.gu(1)
 
             Button {
                 id: previous
