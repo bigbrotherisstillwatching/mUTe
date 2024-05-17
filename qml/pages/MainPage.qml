@@ -146,6 +146,30 @@ Rectangle {
             }
         }
 
+        Text {
+            id: mediaTime
+            anchors.top: itm1.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            horizontalAlignment: Text.AlignHCenter
+/*            text: {
+                var m = Math.floor(audioPlayer.position / 60000)
+                var ms = (audioPlayer.position / 1000 - m * 60).toFixed(1)
+                return `${m}:${ms.padStart(4, 0)}`
+            }*/
+            text: {
+                let h,m,s;
+                h = Math.floor(audioPlayer.position/1000/60/60);
+                m = Math.floor((audioPlayer.position/1000/60/60 - h)*60);
+                s = Math.floor(((audioPlayer.position/1000/60/60 - h)*60 - m)*60);
+
+                s < 10 ? s = `0${s}`: s = `${s}`
+                m < 10 ? m = `0${m}`: m = `${m}`
+                h < 10 ? h = `${h}`: h = `${h}`
+
+                return `${h}:${m}:${s}`
+            }
+        }
+
         Qqc.Slider {
             id: prgrssbr
 //            from: 0.00
@@ -154,7 +178,7 @@ Rectangle {
             live: true
 //            stepSize: 0.01
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: itm1.bottom
+            anchors.top: mediaTime.bottom
 //            anchors.topMargin: units.gu(1)
 //            enabled: true
 //            enabled: audioPlayer.seekable
@@ -196,7 +220,7 @@ Rectangle {
             }
         }
 
-        Text {
+/*        Text {
             id: mediaTime
             anchors.top: prgrssbr.bottom
             anchors.horizontalCenter: parent.horizontalCenter
@@ -206,7 +230,7 @@ Rectangle {
                 var ms = (audioPlayer.position / 1000 - m * 60).toFixed(1)
                 return `${m}:${ms.padStart(4, 0)}`
             }
-        }
+        }*/
 
 /*        Item {
             id: itm1
@@ -261,7 +285,7 @@ Rectangle {
             id: row1
             spacing: units.gu(3)
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: mediaTime.bottom
+            anchors.top: prgrssbr.bottom
             topPadding: units.gu(3)
 
             Button {
