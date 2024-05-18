@@ -126,7 +126,7 @@ Rectangle {
                 flNm = list.model.get(list.currentIndex, "fileName");
                 nmLngth = flNm.length;
                 dtLstIndx = flNm.lastIndexOf('.');
-                fnlNm = flNm.substring(0, dotLastIndex);
+                fnlNm = flNm.substring(0, dtLstIndx);
 
                 return fnlNm;
             }
