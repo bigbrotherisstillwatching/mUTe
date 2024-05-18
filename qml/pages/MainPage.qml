@@ -114,10 +114,10 @@ Rectangle {
             id: itm1
 //            property string text: list.model.get(list.currentIndex, "fileName")
             property string text: {
-                flNm = list.model.get(list.currentIndex, "fileName")
-                let nameLength = flNm.length;
-                let dotLastIndex = flNm.lastIndexOf('.');
-                let finalName = flNm.substring(0, dotLastIndex);
+                var flNm = list.model.get(list.currentIndex, "fileName")
+                var nameLength = flNm.length;
+                var dotLastIndex = flNm.lastIndexOf('.');
+                var finalName = flNm.substring(0, dotLastIndex);
 
                 return `finalName`
             }
