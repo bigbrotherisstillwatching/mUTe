@@ -121,7 +121,7 @@ Rectangle {
 
                 return finalName
             }
-            property string spacing: "     "
+            property string spacing: "          "
             property string combined: text + spacing
             property string display: combined.substring(step) + combined.substring(0, step)
             property int step: 0
