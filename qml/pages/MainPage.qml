@@ -113,27 +113,14 @@ Rectangle {
         Item {
             id: itm1
 //            property string text: list.model.get(list.currentIndex, "fileName")
-
-            function rmvExt(flNm) {
-                var dotLastIndex = flNm.lastIndexOf('.');
-                var finalName = flNm.substring(0, dotLastIndex);
-
-                return finalName;
-            }
-
             property string text: {
-                rmvExt(list.model.get(list.currentIndex, "fileName"));
-            }
-
-/*            property string text: {
                 var flNm = list.model.get(list.currentIndex, "fileName");
 //                var nameLength = flNm.length;
                 var dotLastIndex = flNm.lastIndexOf('.');
                 var finalName = flNm.substring(0, dotLastIndex);
 
                 return finalName;
-            }*/
-
+            }
             property string spacing: "          "
             property string combined: text + spacing
             property string display: combined.substring(step) + combined.substring(0, step)
