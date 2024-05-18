@@ -113,13 +113,22 @@ Rectangle {
         Item {
             id: itm1
 //            property string text: list.model.get(list.currentIndex, "fileName")
-            property string text: {
+/*            property string text: {
                 var flNm = list.model.get(list.currentIndex, "fileName");
                 var nameLength = flNm.length;
                 var dotLastIndex = flNm.lastIndexOf('.');
                 var finalName = flNm.substring(0, dotLastIndex);
 
                 return finalName;
+            }*/
+            property string text: {
+                let flNm,nmLngth,dtLstIndx,fnlNm;
+                flNm = list.model.get(list.currentIndex, "fileName");
+                nmLngth = flNm.length;
+                dtLstIndx = flNm.lastIndexOf('.');
+                fnlNm = flNm.substring(0, dotLastIndex);
+
+                return fnlNm;
             }
             property string spacing: "          "
             property string combined: text + spacing
