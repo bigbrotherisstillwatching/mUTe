@@ -5,7 +5,7 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; version 3.
  *
- * utequalizer is distributed in the hope that it will be useful,
+ * mute is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -112,15 +112,15 @@ Rectangle {
 
         Item {
             id: itm1
-//            property string text: list.model.get(list.currentIndex, "fileName")
-            property string text: {
+            property string text: list.model.get(list.currentIndex, "fileName")
+/*            property string text: {
                 var flNm = list.model.get(list.currentIndex, "fileName")
                 var nameLength = flNm.length;
                 var dotLastIndex = flNm.lastIndexOf('.');
                 var finalName = flNm.substring(0, dotLastIndex);
 
                 return finalName
-            }
+            }*/
             property string spacing: "          "
             property string combined: text + spacing
             property string display: combined.substring(step) + combined.substring(0, step)
@@ -148,7 +148,15 @@ Rectangle {
             }
 
             Text {
-                text: itm1.display
+//                text: itm1.display
+                text: {
+                    var flNm = itm1.display;
+                    var nameLength = flNm.length;
+                    var dotLastIndex = flNm.lastIndexOf('.');
+                    var finalName = flNm.substring(0, dotLastIndex);
+
+                    return finalName;
+                }
                 anchors.horizontalCenter: rec1.horizontalCenter
                 anchors.verticalCenter: rec1.verticalCenter
             }
