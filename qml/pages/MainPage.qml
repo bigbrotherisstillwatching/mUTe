@@ -112,7 +112,15 @@ Rectangle {
 
         Item {
             id: itm1
-            property string text: list.model.get(list.currentIndex, "fileName")
+//            property string text: list.model.get(list.currentIndex, "fileName")
+            property string text: {
+                flNm = list.model.get(list.currentIndex, "fileName")
+                let nameLength = flNm.length;
+                let dotLastIndex = flNm.lastIndexOf('.');
+                let finalName = flNm.substring(0, dotLastIndex);
+
+                return `finalName`
+            }
             property string spacing: "     "
             property string combined: text + spacing
             property string display: combined.substring(step) + combined.substring(0, step)
