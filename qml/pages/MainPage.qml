@@ -116,7 +116,7 @@ Rectangle {
             property string flNm: list.model.get(list.currentIndex, "fileName")
             property var nameLength: flNm.length
             property var dotLastIndex: flNm.lastIndexOf('.')
-            property string finalName = flNm.substring(0, dotLastIndex)
+            property string finalName: flNm.substring(0, dotLastIndex)
             property string text: {
                 return itm1.finalName;
             }
