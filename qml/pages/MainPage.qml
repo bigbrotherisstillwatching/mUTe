@@ -119,7 +119,7 @@ Rectangle {
                 var dotLastIndex = flNm.lastIndexOf('.');
                 var finalName = flNm.substring(0, dotLastIndex);
 
-                return `finalName`
+                return finalName
             }
             property string spacing: "     "
             property string combined: text + spacing
