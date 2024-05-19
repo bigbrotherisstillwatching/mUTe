@@ -508,7 +508,7 @@ Rectangle {
                             width: parent.width
                             leftPadding: units.gu(2)
                             rightPadding: units.gu(2)
-                            lineCount: 2
+                            maximumLineCount: 2
                         }
                     }
                     MouseArea {
