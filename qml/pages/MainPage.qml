@@ -478,10 +478,14 @@ Rectangle {
             anchors.top: row2.bottom
 //            anchors.topMargin: units.gu(3)
             anchors.topMargin: units.gu(2)
-            width: parent.width
-            height: parent.height
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: patent.bottom
+//            width: parent.width
+//            height: parent.height
 //            height: flick1.contentHeight/2
             model: folderModel
+            clip: true
             onCurrentIndexChanged: {
                 // This will handle changing playlist with all possible selection methods
                 audioPlayer.source = folderModel.get(currentIndex, "fileURL")
@@ -494,8 +498,6 @@ Rectangle {
             }
             delegate: Component {
                 id: cmpnnt1
-                anchors.left: parent.left
-                anchors.right: parent.right
                 Item {
                     id: itm2
                     width: list.width
