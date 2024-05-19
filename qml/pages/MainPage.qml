@@ -496,7 +496,7 @@ Rectangle {
                 id: cmpnnt1
                 Item {
                     id: itm2
-                    width: parent.width
+                    width: list.width
 //                    height: 40
                     height: units.gu(5)
                     Column {
@@ -505,10 +505,12 @@ Rectangle {
                             id: txt4
                             text: fileName
                             height: parent.height
-                            width: parent.width
+                            width: list.width
                             leftPadding: units.gu(2)
                             rightPadding: units.gu(2)
                             maximumLineCount: 2
+                            anchors.left: itm2.left
+                            anchors.right: itm2.right
                         }
                     }
                     MouseArea {
