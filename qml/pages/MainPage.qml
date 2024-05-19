@@ -494,23 +494,29 @@ Rectangle {
             }
             delegate: Component {
                 id: cmpnnt1
+                anchors.left: parent.left
+                anchors.right: parent.right
                 Item {
                     id: itm2
                     width: list.width
 //                    height: 40
                     height: units.gu(5)
+                    anchors.left: parent.left
+                    anchors.right: parent.right
                     Column {
                         id: clmn1
+                        anchors.left: parent.left
+                        anchors.right: parent.right
                         Text {
                             id: txt4
                             text: fileName
                             height: parent.height
-                            width: list.width
+                            width: parent.width
                             leftPadding: units.gu(2)
                             rightPadding: units.gu(2)
                             maximumLineCount: 2
-                            anchors.left: itm2.left
-                            anchors.right: itm2.right
+                            anchors.left: parent.left
+                            anchors.right: parent.right
                         }
                     }
                     MouseArea {
