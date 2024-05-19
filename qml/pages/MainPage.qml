@@ -126,7 +126,8 @@ Rectangle {
             property string display: combined.substring(step) + combined.substring(0, step)
             property int step: 0
             width: parent.width
-            height: units.gu(9)
+//            height: units.gu(9)
+            height: units.gu(6)
 
             Rectangle {
                 id: rec1
@@ -135,7 +136,8 @@ Rectangle {
                 color: "transparent"
                 border.color: "white"
 //                border.width: 70
-                border.width: 50
+//                border.width: 50
+                border.width: units.gu(2)
                 z: 1
             }
 
@@ -187,7 +189,7 @@ Rectangle {
 //            stepSize: 0.01
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: mediaTime.bottom
-            anchors.topMargin: units.gu(1)
+//            anchors.topMargin: units.gu(1)
 //            enabled: true
 //            enabled: audioPlayer.seekable
             value: audioPlayer.position / audioPlayer.duration
@@ -294,7 +296,7 @@ Rectangle {
             spacing: units.gu(3)
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: prgrssbr.bottom
-            topPadding: units.gu(1)
+//            topPadding: units.gu(1)
 
             Button {
                 id: previous
@@ -433,7 +435,8 @@ Rectangle {
             spacing: units.gu(3)
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: row1.bottom
-            topPadding: units.gu(3)
+//            topPadding: units.gu(3)
+            topPadding: units.gu(2)
 
             Button {
                 id: shufflebttn
@@ -473,7 +476,8 @@ Rectangle {
         ListView {
             id: list
             anchors.top: row2.bottom
-            anchors.topMargin: units.gu(3)
+//            anchors.topMargin: units.gu(3)
+            anchors.topMargin: units.gu(2)
             width: parent.width
             height: parent.height
 //            height: flick1.contentHeight/2
@@ -493,12 +497,18 @@ Rectangle {
                 Item {
                     id: itm2
                     width: parent.width
-                    height: 40
+//                    height: 40
+                    height: units.gu(5)
                     Column {
                         id: clmn1
                         Text {
                             id: txt4
                             text: fileName
+                            height: parent.height
+                            width: parent.width
+                            leftPadding: units.gu(2)
+                            rightPadding: units.gu(2)
+                            lineCount: 2
                         }
                     }
                     MouseArea {
@@ -515,7 +525,7 @@ Rectangle {
             focus: true
         }
 
-        Text {
+/*        Text {
             id: txt1
             text: audioPlayer.status
         }
@@ -524,6 +534,6 @@ Rectangle {
             id: txt2
             text: audioPlayer.playbackState
             anchors.top: txt1.bottom
-        }
+        }*/
     }
 }
