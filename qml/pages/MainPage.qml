@@ -106,7 +106,7 @@ Rectangle {
                     audioPlayer.play()
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === true && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
                     audioPlayer.play()
-                } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
+                } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
                     list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
                     audioPlayer.play()
                 }
@@ -412,6 +412,7 @@ Rectangle {
                 onClicked: {
                     shuffle = !shuffle
                     repeatcurrent = false
+                    repeatall = false
                 }
             }
 
