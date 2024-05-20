@@ -518,6 +518,7 @@ Rectangle {
                         color: "transparent"
                         border.color: "black"
                         border.width: 2
+                        z: 1
                     }
 
                     Column {
