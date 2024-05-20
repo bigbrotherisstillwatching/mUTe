@@ -486,6 +486,7 @@ Rectangle {
                 onClicked: {
                     repeatall = !repeatall
                     repeatcurrent = false
+                    shuffle = false
                 }
             }
 
