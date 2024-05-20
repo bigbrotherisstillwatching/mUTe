@@ -519,7 +519,7 @@ Rectangle {
                             maximumLineCount: 2
                             anchors.left: parent.left
                             anchors.right: parent.right
-                            wrapMode: Text.WordWrap
+                            wrapMode: Text.Wrap
                         }
                     }
                     MouseArea {
