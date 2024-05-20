@@ -106,6 +106,9 @@ Rectangle {
                     audioPlayer.play()
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === true && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
                     audioPlayer.play()
+                } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
+                    list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
+                    audioPlayer.play()
                 }
             }
         }
@@ -349,7 +352,6 @@ Rectangle {
                     if(playing == true) {
                         audioPlayer.stop()
                         playing = false
-                        prgrssbr.value = 0
                     } else {
                         audioPlayer.play()
                         playing = true
@@ -407,7 +409,10 @@ Rectangle {
                 width: units.gu(5)
                 height: units.gu(5)
                 color: shuffle ? "green" : "white"
-                onClicked: shuffle = !shuffle
+                onClicked: {
+                    shuffle = !shuffle
+                    repeatcurrent = false
+                }
             }
 
             Button {
@@ -419,6 +424,7 @@ Rectangle {
                 onClicked: {
                     repeatcurrent = !repeatcurrent
                     repeatall = false
+                    shuffle = false
                 }
             }
 
