@@ -29,7 +29,6 @@ Rectangle {
     property bool shuffle: false
     property bool repeatcurrent: false
     property bool repeatall: false
-    property alias mdTmtxt: mediaTime.text
 
     Timer {
         id: timer
@@ -305,7 +304,7 @@ Rectangle {
             Button {
                 id: previous
 //                text: "previous"
-                iconName: "media-seek-backward"
+                iconName: "media-skip-backward"
                 width: units.gu(5)
                 height: units.gu(5)
 //                anchors.right: playpause.left
@@ -350,11 +349,10 @@ Rectangle {
                     if(playing == true) {
                         audioPlayer.stop()
                         playing = false
-                        mediaTime.text = "0:00:00"
+                        prgrssbr.value = 0
                     } else {
                         audioPlayer.play()
                         playing = true
-                        mediaTime.text = mdTmtxt
                     }
                 }
             }
@@ -376,7 +374,7 @@ Rectangle {
             Button {
                 id: next
 //                text: "next"
-                iconName: "media-seek-forward"
+                iconName: "media-skip-forward"
                 width: units.gu(5)
                 height: units.gu(5)
 //                anchors.right: parent.right
