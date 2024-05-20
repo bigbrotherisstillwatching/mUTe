@@ -502,7 +502,7 @@ Rectangle {
                     id: itm2
                     width: list.width
 //                    height: 40
-                    height: units.gu(4.5)
+                    height: units.gu(6.5)
                     anchors.left: parent.left
                     anchors.right: parent.right
                     Column {
@@ -516,7 +516,7 @@ Rectangle {
                             width: parent.width
                             leftPadding: units.gu(2)
                             rightPadding: units.gu(2)
-                            maximumLineCount: 2
+                            maximumLineCount: 3
                             anchors.left: parent.left
                             anchors.right: parent.right
                             wrapMode: Text.Wrap
