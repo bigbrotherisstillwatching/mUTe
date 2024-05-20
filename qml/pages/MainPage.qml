@@ -515,9 +515,22 @@ Rectangle {
                         width: parent.width
                         anchors.left: parent.left
                         anchors.right: parent.right
-                        color: "transparent"
-                        border.color: "black"
-                        border.width: 2
+                        color: "white"
+//                        border.color: "black"
+//                        border.width: 2
+//                        z: 1
+                    }
+
+                    Rectangle {
+                        id: rec6
+                        height: 1
+                        width: parent.width
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.bottom: parent.bottom
+                        color: "black"
+//                        border.color: "black"
+//                        border.width: 2
                         z: 1
                     }
 
@@ -525,6 +538,7 @@ Rectangle {
                         id: clmn1
                         anchors.left: parent.left
                         anchors.right: parent.right
+                        z: 1
                         Text {
                             id: txt4
                             text: fileName
