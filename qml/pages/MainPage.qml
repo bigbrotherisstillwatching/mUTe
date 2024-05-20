@@ -480,7 +480,7 @@ Rectangle {
             anchors.topMargin: units.gu(2)
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.bottom: patent.bottom
+            anchors.bottom: parent.bottom
 //            width: parent.width
 //            height: parent.height
 //            height: flick1.contentHeight/2
