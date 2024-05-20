@@ -29,6 +29,7 @@ Rectangle {
     property bool shuffle: false
     property bool repeatcurrent: false
     property bool repeatall: false
+    property alias mdTmtxt: mediaTime.text
 
     Timer {
         id: timer
@@ -353,6 +354,7 @@ Rectangle {
                     } else {
                         audioPlayer.play()
                         playing = true
+                        mediaTime.text = mdTmtxt
                     }
                 }
             }
