@@ -349,6 +349,7 @@ Rectangle {
                     if(playing == true) {
                         audioPlayer.stop()
                         playing = false
+                        audioPlayer.position = 0
                     } else {
                         audioPlayer.play()
                         playing = true
@@ -363,8 +364,10 @@ Rectangle {
                 height: units.gu(5)
                 color: "white"
                 onClicked: {
-                    audioPlayer.pause()
-                    playing = false
+                    if(playing == true) {
+                        audioPlayer.pause()
+                        playing = false
+                    }
                 }
             }
 
