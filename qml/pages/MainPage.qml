@@ -460,6 +460,7 @@ Rectangle {
                 onClicked: {
                     shuffle = !shuffle
                     repeatcurrent = false
+                    repeatall = false
                 }
             }
 
