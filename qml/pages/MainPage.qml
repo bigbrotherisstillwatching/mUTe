@@ -202,6 +202,7 @@ Rectangle {
             }*/
 
             background: Rectangle {
+                id: rec2
                 x: (prgrssbr.width  - width) / 2
                 y: (prgrssbr.height - height) / 2
                 implicitWidth: 200
@@ -212,6 +213,7 @@ Rectangle {
                 color: "#f1f1f1"
 
                 Rectangle {
+                    id: rec3
                     width: prgrssbr.visualPosition * parent.width
                     height: parent.height
                     color: "#32517F"
@@ -220,6 +222,7 @@ Rectangle {
             }
 
             handle: Rectangle {
+                id: rec4
                 visible: true
                 x: prgrssbr.leftPadding + (prgrssbr.horizontal ? prgrssbr.visualPosition * (prgrssbr.availableWidth - width) : (prgrssbr.availableWidth - width) / 2)
                 y: prgrssbr.topPadding + (prgrssbr.vertical ? prgrssbr.visualPosition * (prgrssbr.availableHeight - height) : (prgrssbr.availableHeight - height) / 2)
@@ -505,6 +508,18 @@ Rectangle {
                     height: units.gu(6.5)
                     anchors.left: parent.left
                     anchors.right: parent.right
+
+                    Rectangle {
+                        id: rec5
+                        height: parent.height
+                        width: parent.width
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        color: "transparent"
+                        border.color: "black"
+                        border.width: 2
+                    }
+
                     Column {
                         id: clmn1
                         anchors.left: parent.left
