@@ -518,7 +518,7 @@ Rectangle {
                         color: "white"
 //                        border.color: "black"
 //                        border.width: 2
-//                        z: 1
+                        z: 0
                     }
 
                     Rectangle {
@@ -531,14 +531,14 @@ Rectangle {
                         color: "black"
 //                        border.color: "black"
 //                        border.width: 2
-                        z: 1
+                        z: 2
                     }
 
                     Column {
                         id: clmn1
                         anchors.left: parent.left
                         anchors.right: parent.right
-                        z: 1
+                        z: 2
                         Text {
                             id: txt4
                             text: fileName
@@ -562,6 +562,7 @@ Rectangle {
             }
             highlight: Rectangle {
                 color: 'grey'
+                z: 1
             }
             focus: true
         }
