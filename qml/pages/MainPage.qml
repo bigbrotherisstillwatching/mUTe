@@ -456,7 +456,10 @@ Rectangle {
                 width: units.gu(5)
                 height: units.gu(5)
                 color: shuffle ? "green" : "white"
-                onClicked: shuffle = !shuffle
+                onClicked: {
+                    shuffle = !shuffle
+                    repeatcurrent = false
+                }
             }
 
             Button {
@@ -468,6 +471,7 @@ Rectangle {
                 onClicked: {
                     repeatcurrent = !repeatcurrent
                     repeatall = false
+                    shuffle = false
                 }
             }
 
