@@ -502,7 +502,7 @@ Rectangle {
                     id: itm2
                     width: list.width
 //                    height: 40
-                    height: units.gu(5)
+                    height: units.gu(4)
                     anchors.left: parent.left
                     anchors.right: parent.right
                     Column {
