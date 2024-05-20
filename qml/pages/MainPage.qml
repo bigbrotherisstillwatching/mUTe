@@ -509,7 +509,7 @@ Rectangle {
                     anchors.left: parent.left
                     anchors.right: parent.right
 
-                    Rectangle {
+/*                    Rectangle {
                         id: rec5
                         height: parent.height
                         width: parent.width
@@ -519,10 +519,10 @@ Rectangle {
 //                        border.color: "black"
 //                        border.width: 2
                         z: 0
-                    }
+                    }*/
 
                     Rectangle {
-                        id: rec6
+                        id: rec5
                         height: 1
                         width: parent.width
                         anchors.left: parent.left
@@ -531,14 +531,14 @@ Rectangle {
                         color: "black"
 //                        border.color: "black"
 //                        border.width: 2
-                        z: 2
+                        z: 1
                     }
 
                     Column {
                         id: clmn1
                         anchors.left: parent.left
                         anchors.right: parent.right
-                        z: 2
+                        z: 1
                         Text {
                             id: txt4
                             text: fileName
@@ -561,8 +561,9 @@ Rectangle {
                 }
             }
             highlight: Rectangle {
+                id: rec6
                 color: 'grey'
-                z: 1
+//                z: 1
             }
             focus: true
         }
