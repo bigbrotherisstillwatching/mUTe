@@ -349,7 +349,7 @@ Rectangle {
                     if(playing == true) {
                         audioPlayer.stop()
                         playing = false
-                        audioPlayer.position = 0
+                        mediaTime.text = "0:00:00"
                     } else {
                         audioPlayer.play()
                         playing = true
