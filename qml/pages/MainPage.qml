@@ -30,6 +30,7 @@ Rectangle {
     property bool shuffle: false
     property bool repeatcurrent: false
     property bool repeatall: false
+    property alias lstcnt: list.count
 
     Timer {
         id: timer
@@ -50,7 +51,7 @@ Rectangle {
     function createArray(listcount) {
 //        let arr = Array.apply(null, Array(listcount))
 //            .map(function (y, i) { return i; });
-        let arr = Array.from({ length: listcount }, (x, i) => i);
+        var arr = Array.from({ length: listcount }, (x, i) => i);
 
 /*        var s = arr
 
@@ -65,7 +66,7 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        createArray(list.count)
+        createArray(lstcnt)
     }
 
     PageHeader {
