@@ -66,10 +66,13 @@ Rectangle {
         settings.setValue("shuffle", JSON.stringify(arr))
     }
 
-/*    Component.onCompleted: {
-        settings.listcount = lstcnt
-        createArray()
-    }*/
+    Component.onCompleted: {
+        delay(2000, function() {
+            settings.listcount = lstcnt
+        })
+//        settings.listcount = lstcnt
+//        createArray()
+    }
 
     PageHeader {
         id: header
@@ -544,12 +547,6 @@ Rectangle {
                 folder: "file:///home/phablet/.cache/mute.bigbrotherisstillwatching/"
                 showDirs: false
                 nameFilters: ["*.mp3"]
-
-                Component.onCompleted: {
-                    settings.listcount = lstcnt
-//                    createArray(list.count)
-                }
-
             }
             delegate: Component {
                 id: cmpnnt1
