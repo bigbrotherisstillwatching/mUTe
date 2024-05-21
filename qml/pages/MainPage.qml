@@ -51,15 +51,16 @@ Rectangle {
         let arr = Array.apply(null, Array(listcount))
             .map(function (y, i) { return i; });
 
-        var s = arr
+/*        var s = arr
 
         try {
             s = JSON.parse(settings.value("shuffle"))
         } catch (e) {
             s = {}
-        }
+        }*/
 
-        settings.setValue("shuffle", JSON.stringify(s))
+//        settings.setValue("shuffle", JSON.stringify(s))
+        settings.setValue("shuffle", JSON.stringify(arr))
     }
 
     Component.onCompleted: {
