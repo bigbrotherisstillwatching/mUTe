@@ -30,7 +30,7 @@ Rectangle {
     property bool shuffle: false
     property bool repeatcurrent: false
     property bool repeatall: false
-    property alias lstcnt: list.count
+//    property alias lstcnt: list.count
 
     Timer {
         id: timer
@@ -46,7 +46,7 @@ Rectangle {
     Settings {
         id: settings
         property string shuffle: "{}"
-        property string listcount: ""
+//        property string listcount: ""
     }
 
     function createArray(listcount) {
@@ -67,8 +67,8 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        delay(2000, function() {
-            settings.listcount = lstcnt
+        delay(1000, function() {
+            createArray(list.count)
         })
 //        settings.listcount = lstcnt
 //        createArray()
