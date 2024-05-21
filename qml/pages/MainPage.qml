@@ -48,10 +48,9 @@ Rectangle {
         property string shuffle: "{}"
     }
 
-    function createArray() {
+    function createArray(listcount) {
 //        let arr = Array.apply(null, Array(listcount))
 //            .map(function (y, i) { return i; });
-        let listcount = lstcnt
         let arr = Array.from({ length: listcount }, (x, i) => i);
 
 /*        var s = arr
@@ -67,7 +66,8 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        createArray()
+        let lc = list.count
+        createArray(lc)
     }
 
     PageHeader {
