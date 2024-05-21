@@ -51,7 +51,7 @@ Rectangle {
     function createArray() {
 //        let arr = Array.apply(null, Array(listcount))
 //            .map(function (y, i) { return i; });
-        let listcount = mainPage.lstcnt
+        let listcount = lstcnt
         let arr = Array.from({ length: listcount }, (x, i) => i);
 
 /*        var s = arr
