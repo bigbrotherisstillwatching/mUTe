@@ -49,10 +49,22 @@ Rectangle {
 //        property string listcount: ""
     }
 
-    function createArray(listcount) {
+    function createShuffleArray(listcount) {
 //        let arr = Array.apply(null, Array(listcount))
 //            .map(function (y, i) { return i; });
         let arr = Array.from({ length: listcount }, (x, i) => i);
+        let currentIndex = arr.length;
+
+        // While there remain elements to shuffle...
+        while (currentIndex != 0) {
+
+            // Pick a remaining element...
+            let randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element.
+            [arr[currentIndex], arr[randomIndex]] = [arr[randomIndex], arr[currentIndex]];
+        }
 
 /*        var s = arr
 
@@ -68,7 +80,7 @@ Rectangle {
 
     Component.onCompleted: {
         delay(1000, function() {
-            createArray(list.count)
+            createShuffleArray(list.count)
         })
 //        settings.listcount = lstcnt
 //        createArray()
