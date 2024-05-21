@@ -48,8 +48,9 @@ Rectangle {
     }
 
     function createArray(listcount) {
-        let arr = Array.apply(null, Array(listcount))
-            .map(function (y, i) { return i; });
+//        let arr = Array.apply(null, Array(listcount))
+//            .map(function (y, i) { return i; });
+        let arr = Array.from({ length: listcount }, (x, i) => i);
 
 /*        var s = arr
 
