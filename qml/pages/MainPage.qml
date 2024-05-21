@@ -46,13 +46,13 @@ Rectangle {
     Settings {
         id: settings
         property string shuffle: "{}"
-        property string listcount: ""
+//        property string listcount: ""
     }
 
-    function createArray() {
+    function createArray(listcount) {
 //        let arr = Array.apply(null, Array(listcount))
 //            .map(function (y, i) { return i; });
-        let arr = Array.from({ length: settings.value("listcount") }, (x, i) => i);
+        let arr = Array.from({ length: listcount }, (x, i) => i);
 
 /*        var s = arr
 
@@ -66,10 +66,10 @@ Rectangle {
         settings.setValue("shuffle", JSON.stringify(arr))
     }
 
-    Component.onCompleted: {
+/*    Component.onCompleted: {
         settings.listcount = lstcnt
         createArray()
-    }
+    }*/
 
     PageHeader {
         id: header
@@ -612,6 +612,11 @@ Rectangle {
 //                z: 1
             }
             focus: true
+
+            Component.onCompleted: {
+                createArray(list.count)
+            }
+
         }
 
         Text {
