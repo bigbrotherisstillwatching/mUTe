@@ -45,7 +45,7 @@ Rectangle {
 
     Settings {
         id: settings
-        property string shuffle: ""
+        property string shuffle: "{}"
     }
 
     function createArray(listcount) {
@@ -66,7 +66,7 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        createArray(5)
+        createArray(lstcnt)
     }
 
     PageHeader {
