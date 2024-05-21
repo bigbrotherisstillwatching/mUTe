@@ -41,6 +41,21 @@ Rectangle {
         timer.start();
     }
 
+    Settings {
+        id: settings
+        property string shuffle: ""
+    }
+
+    function createArray(listcount) {
+        let arr = Array.apply(null, Array(listcount))
+            .map(function (y, i) { return i; });
+        settings.shuffle = arr
+    }
+
+    Component.onCompleted: {
+        createArray(list.count)
+    }
+
     PageHeader {
         id: header
         title: "mUTe"
