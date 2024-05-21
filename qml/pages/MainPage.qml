@@ -63,8 +63,7 @@ Rectangle {
         }*/
 
 //        settings.setValue("shuffle", JSON.stringify(s))
-//        settings.setValue("shuffle", JSON.stringify(arr))
-        settings.setValue("shuffle", arr)
+        settings.setValue("shuffle", JSON.stringify(arr))
     }
 
     Component.onCompleted: {
