@@ -46,12 +46,13 @@ Rectangle {
     Settings {
         id: settings
         property string shuffle: "{}"
+        property string listcount: ""
     }
 
-    function createArray(listcount) {
+    function createArray() {
 //        let arr = Array.apply(null, Array(listcount))
 //            .map(function (y, i) { return i; });
-        let arr = Array.from({ length: listcount }, (x, i) => i);
+        let arr = Array.from({ length: settings.value("listcount") }, (x, i) => i);
 
 /*        var s = arr
 
@@ -66,8 +67,8 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        let lc = list.count
-        createArray(lc)
+        settings.listcount = lstcnt
+        createArray()
     }
 
     PageHeader {
