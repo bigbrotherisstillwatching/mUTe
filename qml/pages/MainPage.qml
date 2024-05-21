@@ -47,14 +47,14 @@ Rectangle {
         property string shuffle: ""
     }
 
-    function createArray(listcount) {
+    function createArray(listcount, settingsvalue) {
         let arr = Array.apply(null, Array(listcount))
             .map(function (y, i) { return i; });
-        settings.shuffle = arr
+        settingsvalue = arr
     }
 
     Component.onCompleted: {
-        createArray(list.count)
+        createArray(list.count, settings.shuffle)
     }
 
     PageHeader {
