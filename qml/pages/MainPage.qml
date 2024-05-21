@@ -46,7 +46,7 @@ Rectangle {
     Settings {
         id: settings
         property string shuffle: "{}"
-//        property string listcount: ""
+        property string listcount: ""
     }
 
     function createArray(listcount) {
@@ -614,7 +614,8 @@ Rectangle {
             focus: true
 
             Component.onCompleted: {
-                createArray(list.count)
+                settings.listcount = lstcnt
+//                createArray(list.count)
             }
 
         }
