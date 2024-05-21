@@ -20,6 +20,7 @@ import QtQuick.Layouts 1.3
 import QtMultimedia 5.12
 import Qt.labs.folderlistmodel 2.12
 import Lomiri.Components 1.3
+import Qt.labs.settings 1.0
 
 Rectangle {
     id: mainPage
