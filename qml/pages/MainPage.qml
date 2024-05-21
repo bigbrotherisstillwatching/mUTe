@@ -544,6 +544,12 @@ Rectangle {
                 folder: "file:///home/phablet/.cache/mute.bigbrotherisstillwatching/"
                 showDirs: false
                 nameFilters: ["*.mp3"]
+
+                Component.onCompleted: {
+                    settings.listcount = lstcnt
+//                    createArray(list.count)
+                }
+
             }
             delegate: Component {
                 id: cmpnnt1
@@ -612,12 +618,6 @@ Rectangle {
 //                z: 1
             }
             focus: true
-
-            Component.onCompleted: {
-                settings.listcount = lstcnt
-//                createArray(list.count)
-            }
-
         }
 
         Text {
