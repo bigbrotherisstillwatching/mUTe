@@ -612,12 +612,12 @@ Rectangle {
             focus: true
         }
 
-/*        Text {
+        Text {
             id: txt1
-            text: audioPlayer.status
+            text: mainPage.lstcnt
         }
 
-        Text {
+/*        Text {
             id: txt2
             text: audioPlayer.playbackState
             anchors.top: txt1.bottom
