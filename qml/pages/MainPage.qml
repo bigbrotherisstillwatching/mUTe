@@ -614,7 +614,7 @@ Rectangle {
 
         Text {
             id: txt1
-            text: mainPage.lstcnt
+            text: lstcnt
         }
 
 /*        Text {
