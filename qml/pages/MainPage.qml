@@ -78,13 +78,43 @@ Rectangle {
         settings.setValue("shuffle", JSON.stringify(arr))
     }
 
-    Component.onCompleted: {
+    function firstShuffleArrayItem() {
+
+        var s
+
+        try {
+            s = JSON.parse(settings.value("shuffle"))
+        } catch (e) {
+            s = {}
+        }
+
+        let f = s[0];
+        return f;
+    }
+
+    function removeFirstShuffleArrayItem() {
+
+        var s
+
+        try {
+            s = JSON.parse(settings.value("shuffle"))
+        } catch (e) {
+            s = {}
+        }
+
+        s.shift();
+
+        settings.setValue("shuffle", JSON.stringify(s))
+
+    }
+
+/*    Component.onCompleted: {
         delay(1000, function() {
             createShuffleArray(list.count)
         })
 //        settings.listcount = lstcnt
 //        createArray()
-    }
+    }*/
 
     PageHeader {
         id: header
@@ -150,6 +180,9 @@ Rectangle {
                     list.currentIndex += 1
                     audioPlayer.play()
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === true && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
+                    audioPlayer.play()
+                } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
+                    list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
                     audioPlayer.play()
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
                     list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
@@ -505,7 +538,10 @@ Rectangle {
                 onClicked: {
                     shuffle = !shuffle
                     repeatcurrent = false
-                    repeatall = false
+//                    repeatall = false
+                    delay(1000, function() {
+                        createShuffleArray(list.count)
+                    })
                 }
             }
 
@@ -531,7 +567,7 @@ Rectangle {
                 onClicked: {
                     repeatall = !repeatall
                     repeatcurrent = false
-                    shuffle = false
+//                    shuffle = false
                 }
             }
 
