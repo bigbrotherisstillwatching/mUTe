@@ -45,7 +45,7 @@ Rectangle {
 
     Settings {
         id: settings
-        property string shuffle: "{}"
+        property string shuffle: ""
 //        property string listcount: ""
     }
 
@@ -63,7 +63,8 @@ Rectangle {
         }*/
 
 //        settings.setValue("shuffle", JSON.stringify(s))
-        settings.setValue("shuffle", JSON.stringify(arr))
+//        settings.setValue("shuffle", JSON.stringify(arr))
+        settings.setValue("shuffle", arr)
     }
 
     Component.onCompleted: {
