@@ -66,7 +66,7 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        createArray(mainPage.lstcnt)
+        createArray("lstcnt")
     }
 
     PageHeader {
