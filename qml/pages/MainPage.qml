@@ -546,9 +546,7 @@ Rectangle {
                     shuffle = !shuffle
                     repeatcurrent = false
 //                    repeatall = false
-                    delay(1000, function() {
-                        createShuffleArray(list.count)
-                    })
+                    createShuffleArray(list.count)
                 }
             }
 
