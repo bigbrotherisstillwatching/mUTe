@@ -102,9 +102,19 @@ Rectangle {
             s = {}
         }
 
-        return s.shift();
+//        s.shift();
 
-        settings.setValue("shuffle", JSON.stringify(s))
+        const array1 = s;
+
+        const firstElement = array1.shift();
+
+//        console.log(array1);
+//        // Expected output: Array [2, 3]
+        settings.setValue("shuffle", JSON.stringify(array1))
+
+        return firstElement;
+
+//        settings.setValue("shuffle", JSON.stringify(s))
 
     }
 
