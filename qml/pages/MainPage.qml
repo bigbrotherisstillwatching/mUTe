@@ -418,11 +418,11 @@ Rectangle {
                         list.currentIndex -= 1
                     }
                     if(playing == true) {
-                        delay(100, function() {
-                            audioPlayer.stop()
-                            playing = false
-                        })
-                        delay(200, function() {
+//                        delay(100, function() {
+                        audioPlayer.stop()
+                        playing = false
+//                        })
+                        delay(500, function() {
                             audioPlayer.play()
                             playing = true
                         })
@@ -487,11 +487,11 @@ Rectangle {
                         list.currentIndex += 1
                     }
                     if(playing == true) {
-                        delay(100, function() {
-                            audioPlayer.stop()
-                            playing = false
-                        })
-                        delay(200, function() {
+//                        delay(100, function() {
+                        audioPlayer.stop()
+                        playing = false
+//                        })
+                        delay(500, function() {
                             audioPlayer.play()
                             playing = true
                         })
