@@ -672,7 +672,7 @@ Rectangle {
 
         Text {
             id: txt1
-            text: lstcnt
+            text: firstShuffleArrayItem()
         }
 
 /*        Text {
