@@ -102,7 +102,7 @@ Rectangle {
             s = {}
         }
 
-        s.shift();
+        return s.shift();
 
         settings.setValue("shuffle", JSON.stringify(s))
 
