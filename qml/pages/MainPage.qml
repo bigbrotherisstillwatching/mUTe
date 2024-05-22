@@ -190,7 +190,7 @@ Rectangle {
                     } else {
                         list.currentIndex = firstShuffleArrayItem()
                         audioPlayer.play()
-                        delay(1000, function() {
+                        delay(500, function() {
                             removeFirstShuffleArrayItem()
                         })
                     }
