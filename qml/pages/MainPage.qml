@@ -78,7 +78,7 @@ Rectangle {
         settings.setValue("shuffle", JSON.stringify(arr))
     }
 
-    function firstShuffleArrayItem() {
+/*    function firstShuffleArrayItem() {
 
         var s
 
@@ -90,7 +90,7 @@ Rectangle {
 
         let f = s[0];
         return f;
-    }
+    }*/
 
     function removeFirstShuffleArrayItem() {
 
@@ -179,31 +179,48 @@ Rectangle {
             onPlaybackStateChanged: {
                 if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
                     list.currentIndex += 1
-                    audioPlayer.play()
+                    delay(250, function() {
+                        audioPlayer.play()
+                        playing = true
+                    })
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
                     audioPlayer.stop()
-                    mainPage.playing = false
+                    playing = false
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
                     list.currentIndex = 0
-                    audioPlayer.play()
+                    delay(250, function() {
+                        audioPlayer.play()
+                        playing = true
+                    })
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
                     list.currentIndex += 1
-                    audioPlayer.play()
+                    delay(250, function() {
+                        audioPlayer.play()
+                        playing = true
+                    })
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === true && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
-                    audioPlayer.play()
+                    delay(250, function() {
+                        audioPlayer.play()
+                        playing = true
+                    })
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
                     list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
-//                    delay(500, function() {
-                    audioPlayer.play()
-//                    })
+                    delay(250, function() {
+                        audioPlayer.play()
+                        playing = true
+                    })
 //                    audioPlayer.play()
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
                     if(firstShuffleArrayItem() === undefined) {
                         audioPlayer.stop()
+                        playing = false
                     } else {
 //                        list.currentIndex = firstShuffleArrayItem()
                         list.currentIndex = removeFirstShuffleArrayItem()
-                        audioPlayer.play()
+                        delay(250, function() {
+                            audioPlayer.play()
+                            playing = true
+                        })
 //                        delay(500, function() {
 //                            removeFirstShuffleArrayItem()
 //                        })
@@ -422,13 +439,16 @@ Rectangle {
                         audioPlayer.stop()
                         playing = false
 //                        })
-                        delay(500, function() {
+                        delay(250, function() {
                             audioPlayer.play()
                             playing = true
                         })
                     } else if(playing == false) {
-                        audioPlayer.play()
-                        playing = true
+                        delay(250, function() {
+                            audioPlayer.play()
+                            playing = true
+                        })
+//                        playing = true
                     }
                 }
             }
@@ -452,8 +472,10 @@ Rectangle {
                         audioPlayer.stop()
                         playing = false
                     } else {
-                        audioPlayer.play()
-                        playing = true
+                        delay(250, function() {
+                            audioPlayer.play()
+                            playing = true
+                        })
                     }
                 }
             }
@@ -491,13 +513,15 @@ Rectangle {
                         audioPlayer.stop()
                         playing = false
 //                        })
-                        delay(500, function() {
+                        delay(250, function() {
                             audioPlayer.play()
                             playing = true
                         })
                     } else if(playing == false) {
-                        audioPlayer.play()
-                        playing = true
+                        delay(250, function() {
+                            audioPlayer.play()
+                            playing = true
+                        })
                     }
                 }
             }
@@ -684,10 +708,10 @@ Rectangle {
             focus: true
         }
 
-        Text {
+/*        Text {
             id: txt1
             text: firstShuffleArrayItem()
-        }
+        }*/
 
 /*        Text {
             id: txt2
