@@ -185,7 +185,7 @@ Rectangle {
                     })
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
                     audioPlayer.stop()
-                    playing = false
+                    mainPage.playing = false
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
                     list.currentIndex = 0
                     delay(250, function() {
@@ -213,7 +213,7 @@ Rectangle {
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
                     if(firstShuffleArrayItem() === undefined) {
                         audioPlayer.stop()
-                        playing = false
+                        mainPage.playing = false
                     } else {
 //                        list.currentIndex = firstShuffleArrayItem()
                         list.currentIndex = removeFirstShuffleArrayItem()
@@ -457,9 +457,9 @@ Rectangle {
                 id: playstop
 //                text: "play/pause"
                 iconName: {
-                    if(playing == true) {
+                    if(playing === true) {
                         "media-playback-stop"
-                    } else if(playing == false) {
+                    } else if(playing === false) {
                         "media-playback-start"
                     }
                 }
@@ -468,7 +468,7 @@ Rectangle {
 //                anchors.right: next.left
                 color: "white"
                 onClicked: {
-                    if(playing == true) {
+                    if(playing === true) {
                         audioPlayer.stop()
                         playing = false
                     } else {
