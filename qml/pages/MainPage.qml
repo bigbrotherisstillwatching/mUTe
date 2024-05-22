@@ -193,9 +193,9 @@ Rectangle {
                     audioPlayer.play()
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
                     list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
-                    delay(500, function() {
-                        audioPlayer.play()
-                    })
+//                    delay(500, function() {
+                    audioPlayer.play()
+//                    })
 //                    audioPlayer.play()
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
                     if(firstShuffleArrayItem() === undefined) {
