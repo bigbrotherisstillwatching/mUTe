@@ -191,11 +191,12 @@ Rectangle {
                     if(firstShuffleArrayItem() === undefined) {
                         audioPlayer.stop()
                     } else {
-                        list.currentIndex = firstShuffleArrayItem()
+//                        list.currentIndex = firstShuffleArrayItem()
+                        list.currentIndex = removeFirstShuffleArrayItem()
                         audioPlayer.play()
-                        delay(500, function() {
-                            removeFirstShuffleArrayItem()
-                        })
+//                        delay(500, function() {
+//                            removeFirstShuffleArrayItem()
+//                        })
                     }
                 }
             }
