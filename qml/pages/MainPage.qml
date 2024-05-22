@@ -78,7 +78,7 @@ Rectangle {
         settings.setValue("shuffle", JSON.stringify(arr))
     }
 
-/*    function firstShuffleArrayItem() {
+    function firstShuffleArrayItem() {
 
         var s
 
@@ -90,7 +90,7 @@ Rectangle {
 
         let f = s[0];
         return f;
-    }*/
+    }
 
     function removeFirstShuffleArrayItem() {
 
@@ -217,10 +217,10 @@ Rectangle {
                     } else {
 //                        list.currentIndex = firstShuffleArrayItem()
                         list.currentIndex = removeFirstShuffleArrayItem()
-//                        delay(250, function() {
-                        audioPlayer.play()
-                        playing = true
-//                        })
+                        delay(250, function() {
+                            audioPlayer.play()
+                            playing = true
+                        })
 //                        delay(500, function() {
 //                            removeFirstShuffleArrayItem()
 //                        })
