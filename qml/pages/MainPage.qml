@@ -219,7 +219,7 @@ Rectangle {
                         list.currentIndex = removeFirstShuffleArrayItem()
                         delay(250, function() {
                             audioPlayer.play()
-//                            playing = true
+                            playing = true
                         })
 //                        delay(500, function() {
 //                            removeFirstShuffleArrayItem()
