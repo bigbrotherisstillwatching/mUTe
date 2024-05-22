@@ -189,14 +189,17 @@ Rectangle {
 //                    audioPlayer.play()
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
                     if(firstShuffleArrayItem() === undefined) {
+                        txt1.text = firstShuffleArrayItem()
                         audioPlayer.stop()
                     } else {
+                        txt1.text = firstShuffleArrayItem()
                         list.currentIndex = firstShuffleArrayItem()
+                        audioPlayer.play()
                         delay(500, function() {
-                            audioPlayer.play()
-                        })
-                        delay(1000, function() {
                             removeFirstShuffleArrayItem()
+                        })
+                        delay(600, function() {
+                            txt1.text = firstShuffleArrayItem()
                         })
                     }
                 }
