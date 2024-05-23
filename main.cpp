@@ -20,7 +20,7 @@
 #include <QString>
 #include <QQuickView>
 #include <QStandardPaths>
-#include <utfilemgr.h>
+#include "utfilemgr.h"
 
 int main(int argc, char *argv[])
 {
