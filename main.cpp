@@ -34,11 +34,11 @@ int main(int argc, char *argv[])
 
     QQuickView *view = new QQuickView();
 
-    view.rootContext()->setContextProperty("dataDir", dataDir);
+    view->rootContext()->setContextProperty("dataDir", dataDir);
 
     UTFileMgr fileManager(dataDir);
-    view.rootContext()->setContextProperty("UBUNTU_TOUCH", true);
-    view.rootContext()->setContextProperty("utFileManager", &fileManager);
+    view->rootContext()->setContextProperty("UBUNTU_TOUCH", true);
+    view->rootContext()->setContextProperty("utFileManager", &fileManager);
 
     view->setSource(QUrl("qrc:/Main.qml"));
     view->setResizeMode(QQuickView::SizeRootObjectToView);
