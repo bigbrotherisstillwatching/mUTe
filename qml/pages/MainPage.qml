@@ -214,6 +214,7 @@ Rectangle {
                     if(firstShuffleArrayItem() === undefined) {
                         audioPlayer.stop()
                         mainPage.playing = false
+                        mainPage.shuffle = false
                     } else {
 //                        list.currentIndex = firstShuffleArrayItem()
                         list.currentIndex = removeFirstShuffleArrayItem()
@@ -429,8 +430,13 @@ Rectangle {
 //                anchors.right: playpause.left
                 color: "white"
                 onClicked: {
-                    if(list.currentIndex == 0) {
+                    if(shuffle === true && repeatall === false) {
+                        list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
+                    } else if(list.currentIndex === 0) {
                         list.currentIndex = list.count-1
+                    } else if(shuffle === true && repeatall === true)
+                        createShuffleArray(list.count)
+                        list.currentIndex = removeFirstShuffleArrayItem()
                     } else {
                         list.currentIndex -= 1
                     }
@@ -503,8 +509,13 @@ Rectangle {
 //                anchors.right: parent.right
                 color: "white"
                 onClicked: {
-                    if(list.currentIndex == list.count-1) {
+                    if(shuffle === true && repeatall === false) {
+                        list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
+                    } else if(list.currentIndex == list.count-1) {
                         list.currentIndex = 0
+                    } else if(shuffle === true && repeatall === true)
+                        createShuffleArray(list.count)
+                        list.currentIndex = removeFirstShuffleArrayItem()
                     } else {
                         list.currentIndex += 1
                     }
