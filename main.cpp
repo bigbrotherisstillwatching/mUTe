@@ -19,15 +19,27 @@
 #include <QUrl>
 #include <QString>
 #include <QQuickView>
+#include <QStandardPaths>
+#include <utfilemgr.h>
 
 int main(int argc, char *argv[])
 {
     QGuiApplication *app = new QGuiApplication(argc, (char**)argv);
     app->setApplicationName("mute.bigbrotherisstillwatching");
 
+    QString dataDir;
+    dataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+
     qDebug() << "Starting app from main.cpp";
 
     QQuickView *view = new QQuickView();
+
+    view->setContextProperty("dataDir", dataDir);
+
+    UTFileMgr fileManager(dataDir);
+    view->setContextProperty("UBUNTU_TOUCH", true);
+    view->setContextProperty("utFileManager", &fileManager);
+
     view->setSource(QUrl("qrc:/Main.qml"));
     view->setResizeMode(QQuickView::SizeRootObjectToView);
     view->show();
