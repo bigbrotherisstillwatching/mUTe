@@ -432,12 +432,12 @@ Rectangle {
                 onClicked: {
                     if(shuffle === true && repeatall === false) {
                         list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
-                    } else if(list.currentIndex === 0) {
+                    } else if(shuffle === false && repeatall === false && list.currentIndex === 0) {
                         list.currentIndex = list.count-1
                     } else if(shuffle === true && repeatall === true)
                         createShuffleArray(list.count)
                         list.currentIndex = removeFirstShuffleArrayItem()
-                    } else {
+                    } else if(shuffle === false && repeatall === false && list.currentIndex != 0) {
                         list.currentIndex -= 1
                     }
                     if(playing == true) {
@@ -511,12 +511,12 @@ Rectangle {
                 onClicked: {
                     if(shuffle === true && repeatall === false) {
                         list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
-                    } else if(list.currentIndex == list.count-1) {
+                    } else if(shuffle === false && repeatall === false && list.currentIndex === list.count-1) {
                         list.currentIndex = 0
                     } else if(shuffle === true && repeatall === true)
                         createShuffleArray(list.count)
                         list.currentIndex = removeFirstShuffleArrayItem()
-                    } else {
+                    } else if(shuffle === false && repeatall === false && list.currentIndex != list.count-1) {
                         list.currentIndex += 1
                     }
                     if(playing == true) {
