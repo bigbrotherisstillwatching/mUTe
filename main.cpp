@@ -21,6 +21,7 @@
 #include <QQuickView>
 #include <QStandardPaths>
 #include "utfilemgr.h"
+#include <QQmlContext>
 
 int main(int argc, char *argv[])
 {
