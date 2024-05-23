@@ -434,7 +434,7 @@ Rectangle {
                         list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
                     } else if(shuffle === false && repeatall === false && list.currentIndex === 0) {
                         list.currentIndex = list.count-1
-                    } else if(shuffle === true && repeatall === true)
+                    } else if(shuffle === true && repeatall === true) {
                         createShuffleArray(list.count)
                         list.currentIndex = removeFirstShuffleArrayItem()
                     } else if(shuffle === false && repeatall === false && list.currentIndex != 0) {
@@ -513,7 +513,7 @@ Rectangle {
                         list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
                     } else if(shuffle === false && repeatall === false && list.currentIndex === list.count-1) {
                         list.currentIndex = 0
-                    } else if(shuffle === true && repeatall === true)
+                    } else if(shuffle === true && repeatall === true) {
                         createShuffleArray(list.count)
                         list.currentIndex = removeFirstShuffleArrayItem()
                     } else if(shuffle === false && repeatall === false && list.currentIndex != list.count-1) {
