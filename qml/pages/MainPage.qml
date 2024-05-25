@@ -507,7 +507,7 @@ Rectangle {
                 folder: "file://" + dataDir
                 showDirs: false
 //                nameFilters: ["*.mp3"]
-                nameFilters: ["*.ogg", "*.wav", "*.mp3", "*.m4a", "*.flac", "*.wma", "*.aac", "*.aiff"]
+                nameFilters: ["*.ogg", "*.wav", "*.mp3", "*.m4a", "*.flac", "*.aac", "*.aiff"]
             }
             delegate: Component {
                 id: cmpnnt1
@@ -550,7 +550,18 @@ Rectangle {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            list.currentIndex = index
+                            if(playing === true) {
+//                                list.currentIndex = index
+                                audioPlayer.stop()
+                                playing = false
+                                list.currentIndex = index
+                                delay(250, function() {
+                                    audioPlayer.play()
+                                    playing = true
+                                })
+                            } else if(playing === false) {
+                                list.currentIndex = index
+                            }
                         }
                     }
                 }
