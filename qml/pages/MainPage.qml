@@ -507,7 +507,7 @@ Rectangle {
                 folder: "file://" + dataDir
                 showDirs: false
 //                nameFilters: ["*.mp3"]
-                nameFilters: ["*.ogg", "*.wav", "*.mp3"]
+                nameFilters: ["*.ogg", "*.wav", "*.mp3", "*.m4a"]
             }
             delegate: Component {
                 id: cmpnnt1
