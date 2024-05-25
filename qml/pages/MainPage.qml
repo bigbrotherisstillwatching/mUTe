@@ -453,8 +453,10 @@ Rectangle {
 
             Item {
                 id: importItem
-                width:100
-                height: 50
+//                width:100
+//                height: 50
+                width: units.gu(5)
+                height: units.gu(5)
 
 
                 //import
@@ -481,7 +483,7 @@ Rectangle {
 
                 Connections{
                     target: utFilePicker.item
-                    onFilesAdded: console.log("olala import ok")
+                    onFilesAdded: console.log("Import done!")
                 }
             }
         }
@@ -501,9 +503,11 @@ Rectangle {
             FolderListModel {
                 id: folderModel
 //                folder: "file:///home/phablet/.cache/mute.bigbrotherisstillwatching/"
-                folder: "file:///home/phablet/.local/share/mute.bigbrotherisstillwatching/"
+//                folder: "file:///home/phablet/.local/share/mute.bigbrotherisstillwatching/"
+                folder: "file://" + dataDir
                 showDirs: false
-                nameFilters: ["*.mp3"]
+//                nameFilters: ["*.mp3"]
+                nameFilters: ["*.ogg", "*.wav", "*.mp3"]
             }
             delegate: Component {
                 id: cmpnnt1
