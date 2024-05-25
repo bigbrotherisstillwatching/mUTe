@@ -500,7 +500,8 @@ Rectangle {
             }
             FolderListModel {
                 id: folderModel
-                folder: "file:///home/phablet/.cache/mute.bigbrotherisstillwatching/"
+//                folder: "file:///home/phablet/.cache/mute.bigbrotherisstillwatching/"
+                folder: "file:///home/phablet/.local/share/mute.bigbrotherisstillwatching/"
                 showDirs: false
                 nameFilters: ["*.mp3"]
             }
