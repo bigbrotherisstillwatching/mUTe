@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>Main.qml</file>
         <file>pages/MainPage.qml</file>
+        <file>pages/UTFileImport.qml</file>
+        <file>pages/UTFileImportHandler.qml</file>
     </qresource>
 </RCC>
