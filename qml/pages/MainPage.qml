@@ -451,6 +451,39 @@ Rectangle {
                 }
             }
 
+            Item {
+                id: importItem
+                width:100
+                height: 50
+
+
+                //import
+                Loader {
+                    id: utFilePicker
+                    anchors.fill: parent
+                    //anchors.left: btnContainer.left
+                    //anchors.centerIn: parent
+                    Component.onCompleted: {
+//                        if (typeof UBUNTU_TOUCH !== "undefined"){
+
+                        //convert nameFilters for utFilePicker
+                            var extensions = []
+                            for (var j = 0; j < folderModel.nameFilters.length; j++){
+                                var filter = folderModel.nameFilters[j]
+                                var allowedExtension = filter.substring(filter.length-3,filter.length)
+                                extensions.push(allowedExtension)
+
+                            }
+                            utFilePicker.setSource("./UTFileImport.qml", {nameFilters: extensions})
+//                        }
+                    }
+                }
+
+                Connections{
+                    target: utFilePicker.item
+                    onFilesAdded: console.log("olala import ok")
+                }
+            }
         }
 
         ListView {
