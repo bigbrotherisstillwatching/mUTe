@@ -46,7 +46,11 @@ Item {
 
     Button{
         id:btnImport
-        text: "Import File"
+//        text: "Import File"
+        iconName: "add-to-playlist"
+        width: units.gu(5)
+        height: units.gu(5)
+        color: "white"
         onClicked:  picker.show()
 /*        ToolTip{
             id:toolTip
