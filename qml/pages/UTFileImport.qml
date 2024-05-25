@@ -1,7 +1,6 @@
 import QtQuick 2.7
-import QtQuick.Controls 2.7 as Qqc
+//import QtQuick.Controls 2.7 as Qqc
 import Lomiri.Components 1.3
-
 
 Item {
 
@@ -10,7 +9,6 @@ Item {
     property string msg: ""
 
     signal filesAdded
-
 
     //check for allowed extensions
     function isRightFileType(fileName){
@@ -41,9 +39,6 @@ Item {
         utPicker.filesAdded()
     }
 
-
-
-
     Button{
         id:btnImport
 //        text: "Import File"
@@ -61,17 +56,9 @@ Item {
         }*/
     }
 
-
-
     UTFileImportHandler{
         id: picker
         onAccept: utPicker.storeFiles(files)
     }
-
-
-
-
-
-
 }
 
