@@ -65,16 +65,6 @@ Popups.PopupBase {
                 picker.accept(selectedItems)
                 picker.hide()
             }
-
-
-
-
-
         }
     }
-
-
-
-
-
 }
