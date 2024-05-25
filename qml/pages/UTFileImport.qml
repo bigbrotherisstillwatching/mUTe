@@ -48,13 +48,13 @@ Item {
         id:btnImport
         text: "Import File"
         onClicked:  picker.show()
-        ToolTip{
+/*        ToolTip{
             id:toolTip
             //delay: 1000
             timeout: 2000
             visible:utPicker.msg.length > 0
             text: utPicker.msg
-        }
+        }*/
     }
 
 
