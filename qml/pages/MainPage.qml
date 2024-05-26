@@ -124,7 +124,8 @@ Rectangle {
     Flickable {
         id: flick1
         anchors.top: header.bottom
-        contentHeight: units.gu(175)
+//        contentHeight: units.gu(175)
+        contentHeight: itm1.height + mediaTime.height + prgrssbr.height + row1.height + row2.height + list.height
         contentWidth: mainPage.width
         width: mainPage.width
         height: mainPage.height - header.height
