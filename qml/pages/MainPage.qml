@@ -570,6 +570,8 @@ Rectangle {
                 id: rec6
                 color: 'grey'
             }
+            highlightMoveDuration: 500
+            highlightMoveVelocity: -1
             focus: true
         }
     }
