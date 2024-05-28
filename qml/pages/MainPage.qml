@@ -21,6 +21,7 @@ import QtMultimedia 5.12
 import Qt.labs.folderlistmodel 2.12
 import Lomiri.Components 1.3
 import Qt.labs.settings 1.0
+import QtGraphicalEffects 1.12
 
 Rectangle {
     id: mainPage
@@ -289,10 +290,21 @@ Rectangle {
                 visible: true
                 x: prgrssbr.leftPadding + (prgrssbr.horizontal ? prgrssbr.visualPosition * (prgrssbr.availableWidth - width) : (prgrssbr.availableWidth - width) / 2)
                 y: prgrssbr.topPadding + (prgrssbr.vertical ? prgrssbr.visualPosition * (prgrssbr.availableHeight - height) : (prgrssbr.availableHeight - height) / 2)
-                implicitWidth: 26
-                implicitHeight: 26
-                radius: 13
+                implicitWidth: 52
+                implicitHeight: 52
+                radius: 26
                 color: prgrssbr.pressed ? "#32517F" : "white"
+            }
+            DropShadow {
+                anchors.fill: rec4
+                horizontalOffset: 1
+                verticalOffset: 1
+                radius: 6
+                samples: 13
+                color: "black"
+                source: rec4
+                spread: 0
+                cached: true
             }
         }
 
