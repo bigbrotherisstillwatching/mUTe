@@ -292,13 +292,13 @@ Rectangle {
                 width: prgrssbr.availableWidth
                 height: 10
                 radius: 5
-                color: "#32517F"
+                color: settings.darkMode ? "#808080" : "#f1f1f1"
 
                 Rectangle {
                     id: rec3
                     width: prgrssbr.visualPosition * parent.width
                     height: parent.height
-                    color: settings.darkMode ? "#808080" : "#f1f1f1"
+                    color: "#32517F"
                     radius: 2
                 }
             }
