@@ -620,6 +620,7 @@ Rectangle {
                     }
                 }
             }
+            footerPositioning: ListView.PullBackFooter
         }
     }
 }
