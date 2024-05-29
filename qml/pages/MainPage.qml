@@ -558,7 +558,7 @@ Rectangle {
                         anchors.left: parent.left
                         anchors.right: parent.right
                         anchors.bottom: parent.bottom
-                        color: settings.darkMode ? "#121212" : "white"
+                        color: settings.darkMode ? "#808080" : "black"
                         z: 1
                     }
 
