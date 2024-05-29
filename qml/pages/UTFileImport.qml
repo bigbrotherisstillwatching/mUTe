@@ -53,7 +53,12 @@ Item {
         iconName: "add-to-playlist"
         width: units.gu(5)
         height: units.gu(5)
-        color: btnImport.pressed ? "#32517F" : (drkMd ? "#292929" : "white")
+        color: {
+            if(utPicker.drkMd === true) {
+                btnImport.pressed ? "#32517F" : "#292929"
+            } else {
+                btnImport.pressed ? "#32517F" : "white"
+            }
         onClicked: picker.show()
 /*        ToolTip{
             id:toolTip
