@@ -8,7 +8,6 @@ Item {
     id: utPicker
     property var nameFilters: []
     property string msg: ""
-    property alias drkMd: settings.darkMode
 
     signal filesAdded
 
@@ -41,11 +40,11 @@ Item {
         utPicker.filesAdded()
     }
 
-    Settings {
+/*    Settings {
         id: settings
 //        property string shuffle: ""
         property bool darkMode
-    }
+    }*/
 
     Button {
         id: btnImport
@@ -53,7 +52,7 @@ Item {
         iconName: "add-to-playlist"
         width: units.gu(5)
         height: units.gu(5)
-        color: btnImport.pressed ? "#32517F" : (utPicker.drkMd ? "#292929" : "white")
+        color: btnImport.pressed ? "#32517F" : (drkMd ? "#292929" : "white")
         onClicked: picker.show()
 /*        ToolTip{
             id:toolTip
