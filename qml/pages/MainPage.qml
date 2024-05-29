@@ -48,6 +48,14 @@ Rectangle {
         property string shuffle: ""
     }
 
+    Connections {
+        target: Qt.application
+
+        onAboutToQuit: {
+            audioPlayer.stop()
+        }
+    }
+
     function createShuffleArray(listcount) {
 
         let arr = Array.from({ length: listcount }, (x, i) => i);
