@@ -5,9 +5,10 @@ import Qt.labs.settings 1.0
 
 Item {
 
-    id:utPicker
-    property var nameFilters :[]
+    id: utPicker
+    property var nameFilters: []
     property string msg: ""
+    property alias drkMd: settings.darkMode
 
     signal filesAdded
 
@@ -41,18 +42,18 @@ Item {
     }
 
     Settings {
-        id: settings2
+        id: settings
 //        property string shuffle: ""
         property bool darkMode
     }
 
-    Button{
+    Button {
         id: btnImport
 //        text: "Import File"
         iconName: "add-to-playlist"
         width: units.gu(5)
         height: units.gu(5)
-        color: btnImport.pressed ? "#32517F" : (settings2.darkMode ? "#292929" : "white")
+        color: btnImport.pressed ? "#32517F" : (utPicker.drkMd ? "#292929" : "white")
         onClicked: picker.show()
 /*        ToolTip{
             id:toolTip
