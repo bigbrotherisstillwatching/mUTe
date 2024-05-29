@@ -32,6 +32,7 @@ Rectangle {
     property bool shuffle: false
     property bool repeatcurrent: false
     property bool repeatall: false
+    property alias drkMd: settings.darkMode
 
     Timer {
         id: timer
@@ -47,6 +48,7 @@ Rectangle {
     Settings {
         id: settings
         property string shuffle: ""
+        property bool darkMode
     }
 
     Process {
@@ -608,17 +610,39 @@ Rectangle {
                 z: 2
                 color: "white"
 
-                Button {
-                    id: deleteallbttn
-                    anchors.centerIn: parent
-                    iconName: "delete"
-                    width: units.gu(5)
-                    height: units.gu(5)
-                    color: "white"
-                    onClicked: {
-                        process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
+                Row {
+                    id: row3
+                    spacing: units.gu(3)
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+//                    anchors.top: row1.bottom
+//                    topPadding: units.gu(2)                
+
+                    Button {
+                        id: deleteallbttn
+//                        anchors.centerIn: parent
+                        iconName: "delete"
+                        width: units.gu(5)
+                        height: units.gu(5)
+                        color: "white"
+                        onClicked: {
+                            process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
+                        }
+                    }
+
+                    Button {
+                        id: darkModebttn
+//                        anchors.centerIn: parent
+                        iconName: settings.darkMode ? "weather-clear-symbolic" : "weather-clear-night-symbolic"
+                        width: units.gu(5)
+                        height: units.gu(5)
+                        color: "white"
+                        onClicked: {
+                            drkMd = checked
+                        }
                     }
                 }
+
             }
             footerPositioning: ListView.PullBackFooter
         }
