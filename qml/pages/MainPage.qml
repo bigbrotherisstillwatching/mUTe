@@ -616,7 +616,7 @@ Rectangle {
                     height: units.gu(5)
                     color: "white"
                     onClicked: {
-                        process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/."])
+                        process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
                     }
                 }
             }
