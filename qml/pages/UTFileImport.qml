@@ -44,7 +44,7 @@ Item {
     Settings {
         id: settings
 //        property string shuffle: ""
-        property string darkMode: ""
+        property bool darkMode
     }
 
     Button {
@@ -53,13 +53,7 @@ Item {
         iconName: "add-to-playlist"
         width: units.gu(5)
         height: units.gu(5)
-        color: {
-            if(utPicker.drkMd === "true") {
-                btnImport.pressed ? "#32517F" : "#292929"
-            } else {
-                btnImport.pressed ? "#32517F" : "white"
-            }
-        }
+        color: btnImport.pressed ? "#32517F" : (utPicker.drkMd ? "#292929" : "white")
         onClicked: picker.show()
 /*        ToolTip{
             id:toolTip
