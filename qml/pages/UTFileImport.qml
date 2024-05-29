@@ -1,6 +1,7 @@
 import QtQuick 2.7
 //import QtQuick.Controls 2.7 as Qqc
 import Lomiri.Components 1.3
+import Qt.labs.settings 1.0
 
 Item {
 
@@ -39,13 +40,19 @@ Item {
         utPicker.filesAdded()
     }
 
+    Settings {
+        id: settings
+//        property string shuffle: ""
+        property bool darkMode
+    }
+
     Button{
         id:btnImport
 //        text: "Import File"
         iconName: "add-to-playlist"
         width: units.gu(5)
         height: units.gu(5)
-        color: "white"
+        color: btnImport.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
         onClicked:  picker.show()
 /*        ToolTip{
             id:toolTip
