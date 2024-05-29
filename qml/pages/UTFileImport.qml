@@ -54,7 +54,7 @@ Item {
         width: units.gu(5)
         height: units.gu(5)
         color: {
-            if(utPicker.drkMd === true) {
+            if(utPicker.drkMd === "true") {
                 btnImport.pressed ? "#32517F" : "#292929"
             } else {
                 btnImport.pressed ? "#32517F" : "white"
