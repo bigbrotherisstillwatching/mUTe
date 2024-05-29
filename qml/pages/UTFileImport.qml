@@ -59,6 +59,7 @@ Item {
             } else {
                 btnImport.pressed ? "#32517F" : "white"
             }
+        }
         onClicked: picker.show()
 /*        ToolTip{
             id:toolTip
