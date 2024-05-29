@@ -44,7 +44,7 @@ Item {
     Settings {
         id: settings
 //        property string shuffle: ""
-        property string darkMode
+        property string darkMode: ""
     }
 
     Button {
