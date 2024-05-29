@@ -28,6 +28,8 @@ Rectangle {
     id: mainPage
     anchors.fill: parent
 
+    color: settings.darkMode ? "#121212" : "white"
+
     property bool playing: false
     property bool shuffle: false
     property bool repeatcurrent: false
@@ -118,20 +120,20 @@ Rectangle {
         title: "mUTe"
         z: 1
         StyleHints {
-            foregroundColor: "black"
-            backgroundColor: "white"
-            dividerColor: "black"
+            foregroundColor: settings.darkMode ? "#808080" : "black"
+            backgroundColor: settings.darkMode ? "#121212" : "white"
+            dividerColor: settings.darkMode ? "#808080" : "black"
         }
         contents: Rectangle {
             id: hdrrec
             anchors.fill: parent
-            color: "white"
+            color: settings.darkMode ? "#121212" : "white"
             Text {
                 id: hdrtxt
                 anchors.left: hdrrec.left
                 anchors.verticalCenter: hdrrec.verticalCenter
                 text: header.title
-                color: "black"
+                color: settings.darkMode ? "#808080" : "black"
                 font.pointSize: 40
             }
         }
@@ -232,7 +234,7 @@ Rectangle {
                 height: itm1.height
                 width: itm1.width
                 color: "transparent"
-                border.color: "white"
+                border.color: settings.darkMode ? "#121212" : "white"
                 border.width: units.gu(2)
                 z: 1
             }
@@ -249,6 +251,7 @@ Rectangle {
                 text: itm1.display
                 anchors.horizontalCenter: rec1.horizontalCenter
                 anchors.verticalCenter: rec1.verticalCenter
+                color: settings.darkMode ? "#808080" : "black"
             }
         }
 
@@ -289,13 +292,13 @@ Rectangle {
                 width: prgrssbr.availableWidth
                 height: 10
                 radius: 5
-                color: "#f1f1f1"
+                color: "#32517F"
 
                 Rectangle {
                     id: rec3
                     width: prgrssbr.visualPosition * parent.width
                     height: parent.height
-                    color: "#32517F"
+                    color: settings.darkMode ? "#808080" : "#f1f1f1"
                     radius: 2
                 }
             }
@@ -308,11 +311,12 @@ Rectangle {
                 implicitWidth: 52
                 implicitHeight: 52
                 radius: 26
-                color: prgrssbr.pressed ? "#32517F" : "white"
+                color: prgrssbr.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
             }
             DropShadow {
                 anchors.fill: rec4
-                horizontalOffset: 1
+//                horizontalOffset: 1
+                horizontalOffset: 0
                 verticalOffset: 1
                 radius: 6
                 samples: 13
@@ -334,7 +338,7 @@ Rectangle {
                 iconName: "media-skip-backward"
                 width: units.gu(5)
                 height: units.gu(5)
-                color: "white"
+                color: previous.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                 onClicked: {
                     if(shuffle === true && repeatall === false) {
                         list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
@@ -373,7 +377,7 @@ Rectangle {
                 }
                 width: units.gu(5)
                 height: units.gu(5)
-                color: "white"
+                color: playstop.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                 onClicked: {
                     if(playing === true) {
                         audioPlayer.stop()
@@ -392,7 +396,7 @@ Rectangle {
                 iconName: "media-playback-pause"
                 width: units.gu(5)
                 height: units.gu(5)
-                color: "white"
+                color: pause.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                 onClicked: {
                     if(playing == true) {
                         audioPlayer.pause()
@@ -406,7 +410,7 @@ Rectangle {
                 iconName: "media-skip-forward"
                 width: units.gu(5)
                 height: units.gu(5)
-                color: "white"
+                color: next.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                 onClicked: {
                     if(shuffle === true && repeatall === false) {
                         list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
@@ -447,7 +451,7 @@ Rectangle {
                 iconName: "media-playlist-shuffle"
                 width: units.gu(5)
                 height: units.gu(5)
-                color: shuffle ? "green" : "white"
+                color: shufflebttn.pressed ? "#32517F" : (shuffle ? "#32517F" : (settings.darkMode ? "#292929" : "white"))
                 onClicked: {
                     shuffle = !shuffle
                     repeatcurrent = false
@@ -460,7 +464,7 @@ Rectangle {
                 iconName: "media-playlist-repeat-one"
                 width: units.gu(5)
                 height: units.gu(5)
-                color: repeatcurrent ? "green" : "white"
+                color: repeatcurrentbttn.pressed ? "#32517F" : (repeatcurrent ? "#32517F" : (settings.darkMode ? "#292929" : "white"))
                 onClicked: {
                     repeatcurrent = !repeatcurrent
                     repeatall = false
@@ -473,7 +477,7 @@ Rectangle {
                 iconName: "media-playlist-repeat"
                 width: units.gu(5)
                 height: units.gu(5)
-                color: repeatall ? "green" : "white"
+                color: repeatallbttn.pressed ? "#32517F" : (repeatall ? "#32517F" : (settings.darkMode ? "#292929" : "white"))
                 onClicked: {
                     repeatall = !repeatall
                     repeatcurrent = false
@@ -554,7 +558,7 @@ Rectangle {
                         anchors.left: parent.left
                         anchors.right: parent.right
                         anchors.bottom: parent.bottom
-                        color: "black"
+                        color: settings.darkMode ? "#121212" : "white"
                         z: 1
                     }
 
@@ -574,6 +578,7 @@ Rectangle {
                             anchors.left: parent.left
                             anchors.right: parent.right
                             wrapMode: Text.Wrap
+                            color: settings.darkMode ? "#808080" : "black"
                         }
                     }
                     MouseArea {
@@ -597,7 +602,8 @@ Rectangle {
             }
             highlight: Rectangle {
                 id: rec6
-                color: 'grey'
+//                color: 'grey'
+                color: "#32517F"
             }
             highlightMoveDuration: 500
             highlightMoveVelocity: -1
@@ -608,7 +614,7 @@ Rectangle {
                 width: list.width
                 height: units.gu(7)
                 z: 2
-                color: "white"
+                color: settings.darkMode ? "#121212" : "white"
 
                 Row {
                     id: row3
@@ -624,7 +630,7 @@ Rectangle {
                         iconName: "delete"
                         width: units.gu(5)
                         height: units.gu(5)
-                        color: "white"
+                        color: deleteallbttn.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                         onClicked: {
                             process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
                         }
@@ -636,7 +642,7 @@ Rectangle {
                         iconName: settings.darkMode ? "weather-clear-symbolic" : "weather-clear-night-symbolic"
                         width: units.gu(5)
                         height: units.gu(5)
-                        color: "white"
+                        color: darkModebttn.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                         onClicked: {
 //                            drkMd = checked
                             drkMd = !drkMd
