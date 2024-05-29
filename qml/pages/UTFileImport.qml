@@ -41,19 +41,19 @@ Item {
     }
 
     Settings {
-        id: settings
+        id: settings2
 //        property string shuffle: ""
         property bool darkMode
     }
 
     Button{
-        id:btnImport
+        id: btnImport
 //        text: "Import File"
         iconName: "add-to-playlist"
         width: units.gu(5)
         height: units.gu(5)
-        color: btnImport.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
-        onClicked:  picker.show()
+        color: btnImport.pressed ? "#32517F" : (settings2.darkMode ? "#292929" : "white")
+        onClicked: picker.show()
 /*        ToolTip{
             id:toolTip
             //delay: 1000
