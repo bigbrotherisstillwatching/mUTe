@@ -638,7 +638,8 @@ Rectangle {
                         height: units.gu(5)
                         color: "white"
                         onClicked: {
-                            drkMd = checked
+//                            drkMd = checked
+                            drkMd = !drkMd
                         }
                     }
                 }
