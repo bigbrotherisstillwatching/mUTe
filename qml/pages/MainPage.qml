@@ -22,6 +22,7 @@ import Qt.labs.folderlistmodel 2.12
 import Lomiri.Components 1.3
 import Qt.labs.settings 1.0
 import QtGraphicalEffects 1.12
+import Process 1.0
 
 Rectangle {
     id: mainPage
@@ -46,6 +47,10 @@ Rectangle {
     Settings {
         id: settings
         property string shuffle: ""
+    }
+
+    Process {
+        id: process
     }
 
     Connections {
@@ -595,6 +600,26 @@ Rectangle {
             highlightMoveDuration: 500
             highlightMoveVelocity: -1
             focus: true
+
+            footer: Rectangle {
+                id: footerItem
+                width: list.width
+                height: units.gu(7)
+                z: 2
+                color: "white"
+
+                Button {
+                    id: deleteallbttn
+                    anchors.centerIn: parent
+                    iconName: "delete"
+                    width: units.gu(5)
+                    height: units.gu(5)
+                    color: "white"
+                    onClicked: {
+                        process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/."])
+                    }
+                }
+            }
         }
     }
 }
