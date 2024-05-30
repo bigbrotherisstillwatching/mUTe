@@ -320,8 +320,10 @@ Rectangle {
                 horizontalOffset: 0
 //                verticalOffset: 1
                 verticalOffset: 0.5
-                radius: 6
-                samples: 13
+//                radius: 6
+//                samples: 13
+                radius: 0
+                samples: 1
                 color: "black"
                 source: rec4
                 spread: 0
