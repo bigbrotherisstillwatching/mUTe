@@ -1,5 +1,5 @@
 {
-    "policy_groups": ["audio", "content_exchange"],
+    "policy_groups": ["audio", "content_exchange", "content_exchange_source"],
     "read_path": [
         "/opt/click.ubuntu.com/mute.bigbrotherisstillwatching"
         ],
