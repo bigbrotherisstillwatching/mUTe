@@ -6,8 +6,7 @@
     "hooks": {
         "mute": {
             "apparmor": "mute.apparmor",
-            "desktop":  "mute.desktop",
-            "content-hub": "mute.content-hub"
+            "desktop":  "mute.desktop"
         }
     },
     "version": "1.0.0",
