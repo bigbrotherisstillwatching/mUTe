@@ -1,5 +1,12 @@
 {
+    "source": [
+        "music"
+    ],
     "destination": [
+        "music"
+    ],
+    "share": [
         "music"
     ]
 }
+
