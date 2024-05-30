@@ -7,7 +7,7 @@
         "mute": {
             "apparmor": "mute.apparmor",
             "desktop":  "mute.desktop",
-            "content-hub": "contenthub.json"
+            "content-hub": "mute.content-hub"
         }
     },
     "version": "1.0.0",
