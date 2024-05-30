@@ -325,7 +325,7 @@ Rectangle {
                 radius: 0
                 samples: 1
 //                color: "black"
-                color: "gray"
+                color: settings.darkMode ? "black" : "gray"
                 source: rec4
                 spread: 0
                 cached: true
