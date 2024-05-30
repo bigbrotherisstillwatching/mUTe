@@ -260,6 +260,7 @@ Rectangle {
             anchors.top: itm1.bottom
             anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
+            color: settings.darkMode ? "#808080" : "black"
 
             text: {
                 let h,m,s;
@@ -317,7 +318,8 @@ Rectangle {
                 anchors.fill: rec4
 //                horizontalOffset: 1
                 horizontalOffset: 0
-                verticalOffset: 1
+//                verticalOffset: 1
+                verticalOffset: 0.5
                 radius: 6
                 samples: 13
                 color: "black"
@@ -329,7 +331,8 @@ Rectangle {
 
         Row {
             id: row1
-            spacing: units.gu(3)
+//            spacing: units.gu(3)
+            spacing: units.gu(5)
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: prgrssbr.bottom
 
