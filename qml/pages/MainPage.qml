@@ -319,7 +319,7 @@ Rectangle {
 //                horizontalOffset: 1
                 horizontalOffset: 0
 //                verticalOffset: 1
-                verticalOffset: 0.25
+                verticalOffset: 0.4
 //                radius: 6
 //                samples: 13
                 radius: 0
