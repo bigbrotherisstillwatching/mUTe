@@ -324,7 +324,8 @@ Rectangle {
 //                samples: 13
                 radius: 0
                 samples: 1
-                color: "black"
+//                color: "black"
+                color: "gray"
                 source: rec4
                 spread: 0
                 cached: true
