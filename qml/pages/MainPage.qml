@@ -273,14 +273,14 @@ Rectangle {
                 h < 10 ? h = `${h}`: h = `${h}`
 
                 h2 = Math.floor(audioPlayer.duration/1000/60/60);
-                m2 = Math.floor((audioPlayer.duration/1000/60/60 - h)*60);
-                s2 = Math.floor(((audioPlayer.duration/1000/60/60 - h)*60 - m)*60);
+                m2 = Math.floor((audioPlayer.duration/1000/60/60 - h2)*60);
+                s2 = Math.floor(((audioPlayer.duration/1000/60/60 - h2)*60 - m2)*60);
 
                 s2 < 10 ? s2 = `0${s2}`: s2 = `${s2}`
                 m2 < 10 ? m2 = `0${m2}`: m2 = `${m2}`
                 h2 < 10 ? h2 = `${h2}`: h2 = `${h2}`
 
-                return `${h}:${m}:${s} + "/" + ${h2}:${m2}:${s2}`
+                return `${h}:${m}:${s} / ${h2}:${m2}:${s2}`
             }
         }
 
