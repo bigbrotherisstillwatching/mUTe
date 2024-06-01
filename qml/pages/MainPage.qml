@@ -263,7 +263,7 @@ Rectangle {
             color: settings.darkMode ? "#808080" : "black"
 
             text: {
-                let h,m,s;
+                let h,m,s,h2,m2,s2;
                 h = Math.floor(audioPlayer.position/1000/60/60);
                 m = Math.floor((audioPlayer.position/1000/60/60 - h)*60);
                 s = Math.floor(((audioPlayer.position/1000/60/60 - h)*60 - m)*60);
@@ -272,7 +272,15 @@ Rectangle {
                 m < 10 ? m = `0${m}`: m = `${m}`
                 h < 10 ? h = `${h}`: h = `${h}`
 
-                return `${h}:${m}:${s}`
+                h2 = Math.floor(audioPlayer.duration/1000/60/60);
+                m2 = Math.floor((audioPlayer.duration/1000/60/60 - h)*60);
+                s2 = Math.floor(((audioPlayer.duration/1000/60/60 - h)*60 - m)*60);
+
+                s2 < 10 ? s2 = `0${s2}`: s2 = `${s2}`
+                m2 < 10 ? m2 = `0${m2}`: m2 = `${m2}`
+                h2 < 10 ? h2 = `${h2}`: h2 = `${h2}`
+
+                return `${h}:${m}:${s} + "/" + ${h2}:${m2}:${s2}`
             }
         }
 
