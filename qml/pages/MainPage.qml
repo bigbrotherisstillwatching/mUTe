@@ -399,6 +399,7 @@ Rectangle {
                         playing = false
 //                        audioPlayer.seek(audioPlayer.duration - audioPlayer.duration)
 //                        audioPlayer.seek(0)
+                        audioPlayer.position = 0
                     } else {
                         delay(250, function() {
                             audioPlayer.play()
