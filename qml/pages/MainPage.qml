@@ -397,7 +397,8 @@ Rectangle {
                     if(playing === true) {
                         audioPlayer.stop()
                         playing = false
-                        audioPlayer.seek(audioPlayer.duration - audioPlayer.duration)
+//                        audioPlayer.seek(audioPlayer.duration - audioPlayer.duration)
+                        audioPlayer.seek(-1)
                     } else {
                         delay(250, function() {
                             audioPlayer.play()
