@@ -119,7 +119,7 @@ Rectangle {
 
         let i = prgrssbr.value
         do {
-            audioPlayer.decrease();
+            prgrssbr.decrease();
 //            result = result + i;
         } while (i === 0);
     }
