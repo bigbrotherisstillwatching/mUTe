@@ -163,6 +163,7 @@ Rectangle {
         MediaPlayer {
             id: audioPlayer
             audioRole: MediaPlayer.MusicRole
+            notifyInterval: 1
 
             onPlaybackStateChanged: {
                 if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
@@ -396,7 +397,8 @@ Rectangle {
                     if(playing === true) {
                         audioPlayer.stop()
                         playing = false
-                        audioPlayer.seek(0)
+                        audioPlayer.seek(audioplayer.duration - audioplayer.duration)
+                        prgrssbr.value = 0
                     } else {
                         delay(250, function() {
                             audioPlayer.play()
