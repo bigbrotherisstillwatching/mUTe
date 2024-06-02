@@ -115,6 +115,15 @@ Rectangle {
 
     }
 
+    function decreaseuntilzero() {
+
+        let i = prgrssbr.value
+        do {
+            audioPlayer.decrease();
+//            result = result + i;
+        } while (i === 0);
+    }
+
     PageHeader {
         id: header
         title: "mUTe"
@@ -399,7 +408,7 @@ Rectangle {
                         playing = false
 //                        audioPlayer.seek(audioPlayer.duration - audioPlayer.duration)
 //                        audioPlayer.seek(0)
-                        audioPlayer.position = 0
+                          decreaseuntilzero()
                     } else {
                         delay(250, function() {
                             audioPlayer.play()
