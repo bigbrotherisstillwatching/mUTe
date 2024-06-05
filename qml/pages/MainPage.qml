@@ -35,7 +35,7 @@ Rectangle {
     property bool repeatcurrent: false
     property bool repeatall: false
     property alias drkMd: settings.darkMode
-    property alias pb: prgrssbr
+//    property alias pb: prgrssbr
 
     Timer {
         id: timer
@@ -116,14 +116,14 @@ Rectangle {
 
     }
 
-    function decreaseuntilzero() {
+/*    function decreaseuntilzero() {
 
         let i = mainPage.pb.value
         do {
             mainPage.pb.decrease();
 //            result = result + i;
         } while (i === 0);
-    }
+    }*/
 
     PageHeader {
         id: header
@@ -408,8 +408,8 @@ Rectangle {
                         audioPlayer.stop()
                         playing = false
 //                        audioPlayer.seek(audioPlayer.duration - audioPlayer.duration)
-//                        audioPlayer.seek(0)
-                        decreaseuntilzero()
+                        audioPlayer.seek(0)
+//                        decreaseuntilzero()
                     } else {
                         delay(250, function() {
                             audioPlayer.play()
