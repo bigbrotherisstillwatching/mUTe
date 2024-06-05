@@ -118,9 +118,9 @@ Rectangle {
 
     function decreaseuntilzero() {
 
-        let i = pb
+        let i = mainPage.pb.value
         do {
-            pb.decrease();
+            mainPage.pb.decrease();
 //            result = result + i;
         } while (i === 0);
     }
