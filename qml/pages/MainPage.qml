@@ -35,6 +35,7 @@ Rectangle {
     property bool repeatcurrent: false
     property bool repeatall: false
     property alias drkMd: settings.darkMode
+    property alias pb: prgrssbr
 
     Timer {
         id: timer
@@ -117,9 +118,9 @@ Rectangle {
 
     function decreaseuntilzero() {
 
-        let i = prgrssbr.value
+        let i = pb
         do {
-            prgrssbr.decrease();
+            pb.decrease();
 //            result = result + i;
         } while (i === 0);
     }
