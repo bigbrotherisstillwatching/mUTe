@@ -53,7 +53,7 @@ Item {
         width: units.gu(5)
         height: units.gu(5)
         color: btnImport.pressed ? "#32517F" : (drkMd ? "#292929" : "white")
-        onClicked: pageStack.push(Qt.resolvedUrl("./UTFileImportHandler.qml"))
+        onClicked: picker.show()
 /*        ToolTip{
             id:toolTip
             //delay: 1000
@@ -68,3 +68,4 @@ Item {
         onAccept: utPicker.storeFiles(files)
     }
 }
+

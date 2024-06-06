@@ -1,9 +1,9 @@
 import QtQuick 2.7
 import Lomiri.Components 1.3
-//import Lomiri.Components.Popups 1.3 as Popups
+import Lomiri.Components.Popups 1.3 as Popups
 import Lomiri.Content 1.1
 
-Page {
+Popups.PopupBase {
     id: picker
     objectName: "contentPickerDialog"
 
@@ -19,74 +19,37 @@ Page {
     signal accept(var files)
     signal reject()
 
-//    onAccept: hide()
-//    onReject: hide()
+    onAccept: hide()
+    onReject: hide()
 
-    visible: true
-
-//    Rectangle {
-//        anchors.fill: parent
+    Rectangle {
+        anchors.fill: parent
 //        color: "black"
 
-    header: PageHeader {
-        id: header
-        title: "Import"
-        z: 1
-        StyleHints {
-            foregroundColor: drkMd ? "#808080" : "black"
-            backgroundColor: drkMd ? "#121212" : "white"
-            dividerColor: drkMd ? "#808080" : "black"
-        }
-        contents: Rectangle {
-            id: hdrrec
+        ContentTransferHint {
             anchors.fill: parent
-            color: drkMd ? "#121212" : "white"
-            Text {
-                id: hdrtxt
-                anchors.left: hdrrec.left
-                anchors.verticalCenter: hdrrec.verticalCenter
-                text: header.title
-                color: drkMd ? "#808080" : "black"
-                font.pointSize: 40
+            activeTransfer: picker.activeTransfer
+        }
+
+        ContentPeerPicker {
+            id: peerPicker
+            anchors.fill: parent
+            visible: true
+            contentType: ContentType.Music
+            handler: ContentHandler.Source
+
+            onPeerSelected: {
+
+                peer.selectionType = ContentTransfer.Single
+                picker.activeTransfer = peer.request()
+
+            }
+
+            onCancelPressed: {
+                picker.reject()
             }
         }
-        leadingActionBar.actions: [
-            Action {
-                iconName: "close"
-//                text: "Back"
-                onTriggered: {
-                    pageStack.pop()
-                }
-            }
-        ]
     }
-
-    ContentTransferHint {
-        anchors.fill: parent
-        activeTransfer: picker.activeTransfer
-    }
-
-    ContentPeerPicker {
-        id: peerPicker
-        anchors.fill: parent
-//        visible: true
-        visible: parent.visible
-        showTitle: false
-        contentType: ContentType.Music
-        handler: ContentHandler.Source
-
-        onPeerSelected: {
-
-            peer.selectionType = ContentTransfer.Single
-            picker.activeTransfer = peer.request()
-
-        }
-
-        onCancelPressed: {
-            picker.reject()
-        }
-    }
-//}
 
     Connections {
         id: stateChangeConnection
@@ -101,8 +64,7 @@ Page {
                 }
                 //utPicker.storeFiles(selectedItems)
                 picker.accept(selectedItems)
-//                picker.hide()
-                pageStack.pop()
+                picker.hide()
             }
         }
     }
