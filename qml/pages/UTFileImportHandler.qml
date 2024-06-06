@@ -34,7 +34,8 @@ Popups.PopupBase {
         ContentPeerPicker {
             id: peerPicker
             anchors.fill: parent
-            visible: true
+//            visible: true
+            visible: false
             contentType: ContentType.Music
             handler: ContentHandler.Source
 
