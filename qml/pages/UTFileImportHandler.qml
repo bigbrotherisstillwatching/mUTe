@@ -1,9 +1,9 @@
 import QtQuick 2.7
 import Lomiri.Components 1.3
-import Lomiri.Components.Popups 1.3 as Popups
+//import Lomiri.Components.Popups 1.3 as Popups
 import Lomiri.Content 1.1
 
-Popups.PopupBase {
+Page {
     id: picker
     objectName: "contentPickerDialog"
 
@@ -19,37 +19,74 @@ Popups.PopupBase {
     signal accept(var files)
     signal reject()
 
-    onAccept: hide()
-    onReject: hide()
+//    onAccept: hide()
+//    onReject: hide()
 
-    Rectangle {
-        anchors.fill: parent
+    visible: false
+
+//    Rectangle {
+//        anchors.fill: parent
 //        color: "black"
 
-        ContentTransferHint {
+    header: PageHeader {
+        id: header
+        title: "Import"
+        z: 1
+        StyleHints {
+            foregroundColor: drkMd ? "#808080" : "black"
+            backgroundColor: drkMd ? "#121212" : "white"
+            dividerColor: drkMd ? "#808080" : "black"
+        }
+        contents: Rectangle {
+            id: hdrrec
             anchors.fill: parent
-            activeTransfer: picker.activeTransfer
+            color: drkMd ? "#121212" : "white"
+            Text {
+                id: hdrtxt
+                anchors.left: hdrrec.left
+                anchors.verticalCenter: hdrrec.verticalCenter
+                text: header.title
+                color: drkMd ? "#808080" : "black"
+                font.pointSize: 40
+            }
+        }
+        leadingActionBar.actions: [
+            Action {
+                iconName: "close"
+//                text: "Back"
+                onTriggered: {
+                    pageStack.pop()
+                }
+            }
+        ]
+    }
+
+    ContentTransferHint {
+        anchors.fill: parent
+        activeTransfer: picker.activeTransfer
+    }
+
+    ContentPeerPicker {
+        id: peerPicker
+        anchors.fill: parent
+//        visible: true
+        visible: parent.visible
+        showTitle: false
+        contentType: ContentType.Music
+        handler: ContentHandler.Source
+
+        onPeerSelected: {
+
+            peer.selectionType = ContentTransfer.Single
+            picker.activeTransfer = peer.request()
+
         }
 
-        ContentPeerPicker {
-            id: peerPicker
-            anchors.fill: parent
-            visible: true
-            contentType: ContentType.Music
-            handler: ContentHandler.Source
-
-            onPeerSelected: {
-
-                peer.selectionType = ContentTransfer.Single
-                picker.activeTransfer = peer.request()
-
-            }
-
-            onCancelPressed: {
-                picker.reject()
-            }
+        onCancelPressed: {
+            picker.reject()
         }
     }
+//}
 
     Connections {
         id: stateChangeConnection
@@ -64,7 +101,8 @@ Popups.PopupBase {
                 }
                 //utPicker.storeFiles(selectedItems)
                 picker.accept(selectedItems)
-                picker.hide()
+//                picker.hide()
+                pageStack.pop()
             }
         }
     }
