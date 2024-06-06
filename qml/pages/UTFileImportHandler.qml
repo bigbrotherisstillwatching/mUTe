@@ -22,7 +22,7 @@ Page {
 //    onAccept: hide()
 //    onReject: hide()
 
-    visible: false
+    visible: true
 
 //    Rectangle {
 //        anchors.fill: parent
