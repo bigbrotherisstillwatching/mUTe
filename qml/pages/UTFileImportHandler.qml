@@ -24,7 +24,7 @@ Popups.PopupBase {
 
     Rectangle {
         anchors.fill: parent
-        color: "black"
+//        color: "black"
 
         ContentTransferHint {
             anchors.fill: parent
@@ -34,7 +34,7 @@ Popups.PopupBase {
         ContentPeerPicker {
             id: peerPicker
             anchors.fill: parent
-            visible: false
+            visible: true
             contentType: ContentType.Music
             handler: ContentHandler.Source
 
