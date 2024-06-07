@@ -1,4 +1,11 @@
 {
-    "policy_groups": ["audio"],
-    "policy_version": 20.04
+    "policy_groups": ["audio", "content_exchange"],
+    "read_path": [
+        "/opt/click.ubuntu.com/mute.bigbrotherisstillwatching"
+        ],
+    "write_path": [
+        "/opt/click.ubuntu.com/mute.bigbrotherisstillwatching"
+        ],
+    "policy_version": 20.04,
+    "template": "unconfined"
 }

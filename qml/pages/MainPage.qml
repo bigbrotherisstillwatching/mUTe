@@ -20,15 +20,21 @@ import QtQuick.Layouts 1.3
 import QtMultimedia 5.12
 import Qt.labs.folderlistmodel 2.12
 import Lomiri.Components 1.3
+import Qt.labs.settings 1.0
+import QtGraphicalEffects 1.12
+import Process 1.0
 
 Rectangle {
     id: mainPage
     anchors.fill: parent
 
+    color: settings.darkMode ? "#121212" : "white"
+
     property bool playing: false
     property bool shuffle: false
     property bool repeatcurrent: false
     property bool repeatall: false
+    property alias drkMd: settings.darkMode
 
     Timer {
         id: timer
@@ -41,25 +47,93 @@ Rectangle {
         timer.start();
     }
 
+    Settings {
+        id: settings
+        property string shuffle: ""
+        property bool darkMode
+    }
+
+    Process {
+        id: process
+    }
+
+    Connections {
+        target: Qt.application
+
+        onAboutToQuit: {
+            audioPlayer.stop()
+        }
+    }
+
+    function createShuffleArray(listcount) {
+
+        let arr = Array.from({ length: listcount }, (x, i) => i);
+        let currentIndex = arr.length;
+
+        while (currentIndex != 0) {
+
+            let randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            [arr[currentIndex], arr[randomIndex]] = [arr[randomIndex], arr[currentIndex]];
+        }
+
+        settings.setValue("shuffle", JSON.stringify(arr))
+    }
+
+    function firstShuffleArrayItem() {
+
+        var s
+
+        try {
+            s = JSON.parse(settings.value("shuffle"))
+        } catch (e) {
+            s = {}
+        }
+
+        let f = s[0];
+        return f;
+    }
+
+    function removeFirstShuffleArrayItem() {
+
+        var s
+
+        try {
+            s = JSON.parse(settings.value("shuffle"))
+        } catch (e) {
+            s = {}
+        }
+
+        const array1 = s;
+
+        const firstElement = array1.shift();
+
+        settings.setValue("shuffle", JSON.stringify(array1))
+
+        return firstElement;
+
+    }
+
     PageHeader {
         id: header
         title: "mUTe"
         z: 1
         StyleHints {
-            foregroundColor: "black"
-            backgroundColor: "white"
-            dividerColor: "black"
+            foregroundColor: settings.darkMode ? "#808080" : "black"
+            backgroundColor: settings.darkMode ? "#121212" : "white"
+            dividerColor: settings.darkMode ? "#808080" : "black"
         }
         contents: Rectangle {
             id: hdrrec
             anchors.fill: parent
-            color: "white"
+            color: settings.darkMode ? "#121212" : "white"
             Text {
                 id: hdrtxt
                 anchors.left: hdrrec.left
                 anchors.verticalCenter: hdrrec.verticalCenter
                 text: header.title
-                color: "black"
+                color: settings.darkMode ? "#808080" : "black"
                 font.pointSize: 40
             }
         }
@@ -68,7 +142,7 @@ Rectangle {
     Flickable {
         id: flick1
         anchors.top: header.bottom
-        contentHeight: units.gu(175)
+        contentHeight: mainPage.height - header.height
         contentWidth: mainPage.width
         width: mainPage.width
         height: mainPage.height - header.height
@@ -87,35 +161,61 @@ Rectangle {
         MediaPlayer {
             id: audioPlayer
             audioRole: MediaPlayer.MusicRole
-//            playlist: Playlist {
-//                id: playlist
-//                PlaylistItem { source: folderModel; }
-//            }
+            notifyInterval: 1
+
             onPlaybackStateChanged: {
                 if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
                     list.currentIndex += 1
-                    audioPlayer.play()
+                    delay(250, function() {
+                        audioPlayer.play()
+                        playing = true
+                    })
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
                     audioPlayer.stop()
                     mainPage.playing = false
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
                     list.currentIndex = 0
-                    audioPlayer.play()
+                    delay(250, function() {
+                        audioPlayer.play()
+                        playing = true
+                    })
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
                     list.currentIndex += 1
-                    audioPlayer.play()
+                    delay(250, function() {
+                        audioPlayer.play()
+                        playing = true
+                    })
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === true && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
-                    audioPlayer.play()
+                    delay(250, function() {
+                        audioPlayer.play()
+                        playing = true
+                    })
+                } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
+                    list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
+                    delay(250, function() {
+                        audioPlayer.play()
+                        playing = true
+                    })
+                } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
+                    if(firstShuffleArrayItem() === undefined) {
+                        audioPlayer.stop()
+                        mainPage.playing = false
+                        mainPage.shuffle = false
+                    } else {
+                        list.currentIndex = removeFirstShuffleArrayItem()
+                        delay(250, function() {
+                            audioPlayer.play()
+                            playing = true
+                        })
+                    }
                 }
             }
         }
 
         Item {
             id: itm1
-//            property string text: list.model.get(list.currentIndex, "fileName")
             property string text: {
                 var flNm = list.model.get(list.currentIndex, "fileName");
-//                var nameLength = flNm.length;
                 var dotLastIndex = flNm.lastIndexOf('.');
                 var finalName = flNm.substring(0, dotLastIndex);
 
@@ -126,7 +226,6 @@ Rectangle {
             property string display: combined.substring(step) + combined.substring(0, step)
             property int step: 0
             width: parent.width
-//            height: units.gu(9)
             height: units.gu(6)
 
             Rectangle {
@@ -134,9 +233,7 @@ Rectangle {
                 height: itm1.height
                 width: itm1.width
                 color: "transparent"
-                border.color: "white"
-//                border.width: 70
-//                border.width: 50
+                border.color: settings.darkMode ? "#121212" : "white"
                 border.width: units.gu(2)
                 z: 1
             }
@@ -153,6 +250,7 @@ Rectangle {
                 text: itm1.display
                 anchors.horizontalCenter: rec1.horizontalCenter
                 anchors.verticalCenter: rec1.verticalCenter
+                color: settings.darkMode ? "#808080" : "black"
             }
         }
 
@@ -161,13 +259,10 @@ Rectangle {
             anchors.top: itm1.bottom
             anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
-/*            text: {
-                var m = Math.floor(audioPlayer.position / 60000)
-                var ms = (audioPlayer.position / 1000 - m * 60).toFixed(1)
-                return `${m}:${ms.padStart(4, 0)}`
-            }*/
+            color: settings.darkMode ? "#808080" : "black"
+
             text: {
-                let h,m,s;
+                let h,m,s,h2,m2,s2;
                 h = Math.floor(audioPlayer.position/1000/60/60);
                 m = Math.floor((audioPlayer.position/1000/60/60 - h)*60);
                 s = Math.floor(((audioPlayer.position/1000/60/60 - h)*60 - m)*60);
@@ -176,42 +271,39 @@ Rectangle {
                 m < 10 ? m = `0${m}`: m = `${m}`
                 h < 10 ? h = `${h}`: h = `${h}`
 
-                return `${h}:${m}:${s}`
+                h2 = Math.floor(audioPlayer.duration/1000/60/60);
+                m2 = Math.floor((audioPlayer.duration/1000/60/60 - h2)*60);
+                s2 = Math.floor(((audioPlayer.duration/1000/60/60 - h2)*60 - m2)*60);
+
+                s2 < 10 ? s2 = `0${s2}`: s2 = `${s2}`
+                m2 < 10 ? m2 = `0${m2}`: m2 = `${m2}`
+                h2 < 10 ? h2 = `${h2}`: h2 = `${h2}`
+
+                return `${h}:${m}:${s} / ${h2}:${m2}:${s2}`
             }
         }
 
         Qqc.Slider {
             id: prgrssbr
-//            from: 0.00
-//            to: 1.00
             to: 1.0
             live: true
-//            stepSize: 0.01
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: mediaTime.bottom
-//            anchors.topMargin: units.gu(1)
-//            enabled: true
-//            enabled: audioPlayer.seekable
             value: audioPlayer.position / audioPlayer.duration
-//            onMoved: audioPlayer.setPosition(value * audioPlayer.duration)
             onMoved: audioPlayer.seek(value * audioPlayer.duration)
 
-/*            MouseArea {
-                anchors.fill: parent
-                enabled: true
-            }*/
-
             background: Rectangle {
+                id: rec2
                 x: (prgrssbr.width  - width) / 2
                 y: (prgrssbr.height - height) / 2
                 implicitWidth: 200
                 width: prgrssbr.availableWidth
                 height: 10
                 radius: 5
-//                color: settings.darkMode ? "#808080" : "#f1f1f1"
-                color: "#f1f1f1"
+                color: settings.darkMode ? "#808080" : "#f1f1f1"
 
                 Rectangle {
+                    id: rec3
                     width: prgrssbr.visualPosition * parent.width
                     height: parent.height
                     color: "#32517F"
@@ -220,135 +312,89 @@ Rectangle {
             }
 
             handle: Rectangle {
+                id: rec4
                 visible: true
                 x: prgrssbr.leftPadding + (prgrssbr.horizontal ? prgrssbr.visualPosition * (prgrssbr.availableWidth - width) : (prgrssbr.availableWidth - width) / 2)
                 y: prgrssbr.topPadding + (prgrssbr.vertical ? prgrssbr.visualPosition * (prgrssbr.availableHeight - height) : (prgrssbr.availableHeight - height) / 2)
-                implicitWidth: 26
-                implicitHeight: 26
-                radius: 13
-                color: prgrssbr.pressed ? "#32517F" : "white"
+                implicitWidth: 52
+                implicitHeight: 52
+                radius: 26
+                color: prgrssbr.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
+            }
+            DropShadow {
+                anchors.fill: rec4
+                horizontalOffset: 0
+                verticalOffset: 0.5
+                radius: 0
+                samples: 1
+                color: settings.darkMode ? "black" : "gray"
+                source: rec4
+                spread: 0
+                cached: true
             }
         }
 
-/*        Text {
-            id: mediaTime
-            anchors.top: prgrssbr.bottom
-            anchors.horizontalCenter: parent.horizontalCenter
-            horizontalAlignment: Text.AlignHCenter
-            text: {
-                var m = Math.floor(audioPlayer.position / 60000)
-                var ms = (audioPlayer.position / 1000 - m * 60).toFixed(1)
-                return `${m}:${ms.padStart(4, 0)}`
-            }
-        }*/
-
-/*        Item {
-            id: itm1
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: parent.top
-            anchors.topMargin: units.gu(3)
-//            property alias text: txt3.text
-//            property int itm1spacing: 50
-//            width: txt3.width + itm1spacing
-            width: parent.width * 0.75
-            height: txt3.height
-            clip: true
-
-            Text {
-                id: txt3
-//                text: "Hello World!"
-                text: list.model.get(list.currentIndex, "fileName")
-                NumberAnimation on x { running: true; from: 0; to: -itm1.width; duration: 5000; loops: Animation.Infinite }
-
-                Text {
-                    x: itm1.width
-                    text: txt3.text
-                }
-            }
-        }*/
-
-/*        Item {
-            id: itm1
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: parent.top
-            anchors.topMargin: units.gu(3)
-            property string text: list.model.get(list.currentIndex, "fileName")
-            property string spacing: "      "
-            property string combined: text + spacing
-            property string display: combined.substring(step) + combined.substring(0, step)
-            property int step: 0
-
-            Timer {
-                id: timer2
-                interval: 200
-                running: true
-                repeat: true
-                onTriggered: parent.step = (parent.step + 1) % parent.combined.length
-            }
-
-            Text {
-                text: parent.display
-            }
-        }*/
-
         Row {
             id: row1
-            spacing: units.gu(3)
+            spacing: units.gu(5)
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: prgrssbr.bottom
-//            topPadding: units.gu(1)
 
             Button {
                 id: previous
-//                text: "previous"
-                iconName: "media-seek-backward"
+                iconName: "media-skip-backward"
                 width: units.gu(5)
                 height: units.gu(5)
-//                anchors.right: playpause.left
-                color: "white"
+                color: previous.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                 onClicked: {
-                    if(list.currentIndex == 0) {
+                    if(shuffle === true && repeatall === false) {
+                        list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
+                    } else if(shuffle === false && repeatall === false && list.currentIndex === 0) {
                         list.currentIndex = list.count-1
-                    } else {
+                    } else if(shuffle === true && repeatall === true) {
+                        createShuffleArray(list.count)
+                        list.currentIndex = removeFirstShuffleArrayItem()
+                    } else if(shuffle === false && repeatall === false && list.currentIndex != 0) {
                         list.currentIndex -= 1
                     }
                     if(playing == true) {
-                        delay(100, function() {
-                            audioPlayer.stop()
-                            playing = false
-                        })
-                        delay(200, function() {
+                        audioPlayer.stop()
+                        playing = false
+                        delay(250, function() {
                             audioPlayer.play()
                             playing = true
                         })
                     } else if(playing == false) {
-                        audioPlayer.play()
-                        playing = true
+                        delay(250, function() {
+                            audioPlayer.play()
+                            playing = true
+                        })
                     }
                 }
             }
         
             Button {
                 id: playstop
-//                text: "play/pause"
                 iconName: {
-                    if(playing == true) {
+                    if(playing === true) {
                         "media-playback-stop"
-                    } else if(playing == false) {
+                    } else if(playing === false) {
                         "media-playback-start"
                     }
                 }
                 width: units.gu(5)
                 height: units.gu(5)
-//                anchors.right: next.left
-                color: "white"
+                color: playstop.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                 onClicked: {
-                    if(playing == true) {
+                    if(playing === true) {
                         audioPlayer.stop()
                         playing = false
+                        audioPlayer.seek(0)
                     } else {
-                        audioPlayer.play()
-                        playing = true
+                        delay(250, function() {
+                            audioPlayer.play()
+                            playing = true
+                        })
                     }
                 }
             }
@@ -358,76 +404,47 @@ Rectangle {
                 iconName: "media-playback-pause"
                 width: units.gu(5)
                 height: units.gu(5)
-                color: "white"
+                color: pause.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                 onClicked: {
-                    audioPlayer.pause()
-                    playing = false
+                    if(playing == true) {
+                        audioPlayer.pause()
+                        playing = false
+                    }
                 }
             }
 
             Button {
                 id: next
-//                text: "next"
-                iconName: "media-seek-forward"
+                iconName: "media-skip-forward"
                 width: units.gu(5)
                 height: units.gu(5)
-//                anchors.right: parent.right
-                color: "white"
+                color: next.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                 onClicked: {
-                    if(list.currentIndex == list.count-1) {
+                    if(shuffle === true && repeatall === false) {
+                        list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
+                    } else if(shuffle === false && repeatall === false && list.currentIndex === list.count-1) {
                         list.currentIndex = 0
-                    } else {
+                    } else if(shuffle === true && repeatall === true) {
+                        createShuffleArray(list.count)
+                        list.currentIndex = removeFirstShuffleArrayItem()
+                    } else if(shuffle === false && repeatall === false && list.currentIndex != list.count-1) {
                         list.currentIndex += 1
                     }
                     if(playing == true) {
-                        delay(100, function() {
-                            audioPlayer.stop()
-                            playing = false
-                        })
-                        delay(200, function() {
+                        audioPlayer.stop()
+                        playing = false
+                        delay(250, function() {
                             audioPlayer.play()
                             playing = true
                         })
                     } else if(playing == false) {
-                        audioPlayer.play()
-                        playing = true
+                        delay(250, function() {
+                            audioPlayer.play()
+                            playing = true
+                        })
                     }
                 }
             }
-
-/*            Button {
-                id: shufflebttn
-                iconName: "media-playlist-shuffle"
-                width: units.gu(5)
-                height: units.gu(5)
-                color: shuffle ? "green" : "white"
-                onClicked: shuffle = !shuffle
-            }
-
-            Button {
-                id: repeatcurrentbttn
-                iconName: "media-playlist-repeat-one"
-                width: units.gu(5)
-                height: units.gu(5)
-                color: repeatcurrent ? "green" : "white"
-                onClicked: {
-                    repeatcurrent = !repeatcurrent
-                    repeatall = false
-                }
-            }
-
-            Button {
-                id: repeatallbttn
-                iconName: "media-playlist-repeat"
-                width: units.gu(5)
-                height: units.gu(5)
-                color: repeatall ? "green" : "white"
-                onClicked: {
-                    repeatall = !repeatall
-                    repeatcurrent = false
-                }
-            }*/
-
         }
 
         Row {
@@ -435,7 +452,6 @@ Rectangle {
             spacing: units.gu(3)
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: row1.bottom
-//            topPadding: units.gu(3)
             topPadding: units.gu(2)
 
             Button {
@@ -443,8 +459,12 @@ Rectangle {
                 iconName: "media-playlist-shuffle"
                 width: units.gu(5)
                 height: units.gu(5)
-                color: shuffle ? "green" : "white"
-                onClicked: shuffle = !shuffle
+                color: shufflebttn.pressed ? "#32517F" : (shuffle ? "#32517F" : (settings.darkMode ? "#292929" : "white"))
+                onClicked: {
+                    shuffle = !shuffle
+                    repeatcurrent = false
+                    createShuffleArray(list.count)
+                }
             }
 
             Button {
@@ -452,10 +472,11 @@ Rectangle {
                 iconName: "media-playlist-repeat-one"
                 width: units.gu(5)
                 height: units.gu(5)
-                color: repeatcurrent ? "green" : "white"
+                color: repeatcurrentbttn.pressed ? "#32517F" : (repeatcurrent ? "#32517F" : (settings.darkMode ? "#292929" : "white"))
                 onClicked: {
                     repeatcurrent = !repeatcurrent
                     repeatall = false
+                    shuffle = false
                 }
             }
 
@@ -464,51 +485,85 @@ Rectangle {
                 iconName: "media-playlist-repeat"
                 width: units.gu(5)
                 height: units.gu(5)
-                color: repeatall ? "green" : "white"
+                color: repeatallbttn.pressed ? "#32517F" : (repeatall ? "#32517F" : (settings.darkMode ? "#292929" : "white"))
                 onClicked: {
                     repeatall = !repeatall
                     repeatcurrent = false
                 }
             }
 
+            Item {
+                id: importItem
+                width: units.gu(5)
+                height: units.gu(5)
+
+
+                //import
+                Loader {
+                    id: utFilePicker
+                    anchors.fill: parent
+                    Component.onCompleted: {
+                        var extensions = []
+                        for (var j = 0; j < folderModel.nameFilters.length; j++){
+                            var filter = folderModel.nameFilters[j]
+                            var allowedExtension = filter.substring(filter.length-3,filter.length)
+                            extensions.push(allowedExtension)
+
+                        }
+                        utFilePicker.setSource("./UTFileImport.qml", {nameFilters: extensions})
+                    }
+                }
+
+                Connections{
+                    target: utFilePicker.item
+                    onFilesAdded: console.log("Import done!")
+                }
+            }
         }
 
         ListView {
             id: list
             anchors.top: row2.bottom
-//            anchors.topMargin: units.gu(3)
             anchors.topMargin: units.gu(2)
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.bottom: parent.bottom
-//            width: parent.width
-//            height: parent.height
-//            height: flick1.contentHeight/2
             model: folderModel
             clip: true
             onCurrentIndexChanged: {
-                // This will handle changing playlist with all possible selection methods
                 audioPlayer.source = folderModel.get(currentIndex, "fileURL")
             }
             FolderListModel {
                 id: folderModel
-                folder: "file:///home/phablet/.cache/mute.bigbrotherisstillwatching/"
+                folder: "file://" + dataDir
                 showDirs: false
-                nameFilters: ["*.mp3"]
+                nameFilters: ["*.ogg", "*.wav", "*.mp3", "*.m4a", "*.flac", "*.aac", "*.aiff"]
             }
             delegate: Component {
                 id: cmpnnt1
                 Item {
                     id: itm2
                     width: list.width
-//                    height: 40
                     height: units.gu(6.5)
                     anchors.left: parent.left
                     anchors.right: parent.right
+
+                    Rectangle {
+                        id: rec5
+                        height: 1
+                        width: parent.width
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.bottom: parent.bottom
+                        color: settings.darkMode ? "#808080" : "black"
+                        z: 1
+                    }
+
                     Column {
                         id: clmn1
                         anchors.left: parent.left
                         anchors.right: parent.right
+                        z: 1
                         Text {
                             id: txt4
                             text: fileName
@@ -520,31 +575,73 @@ Rectangle {
                             anchors.left: parent.left
                             anchors.right: parent.right
                             wrapMode: Text.Wrap
+                            color: settings.darkMode ? "#808080" : "black"
                         }
                     }
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            list.currentIndex = index
+                            if(playing === true) {
+                                audioPlayer.stop()
+                                playing = false
+                                list.currentIndex = index
+                                delay(250, function() {
+                                    audioPlayer.play()
+                                    playing = true
+                                })
+                            } else if(playing === false) {
+                                list.currentIndex = index
+                            }
                         }
                     }
                 }
             }
             highlight: Rectangle {
-                color: 'grey'
+                id: rec6
+                color: "#32517F"
             }
+            highlightMoveDuration: 500
+            highlightMoveVelocity: -1
             focus: true
-        }
 
-/*        Text {
-            id: txt1
-            text: audioPlayer.status
-        }
+            footer: Rectangle {
+                id: footerItem
+                width: list.width
+                height: units.gu(7)
+                z: 2
+                color: settings.darkMode ? "#121212" : "white"
 
-        Text {
-            id: txt2
-            text: audioPlayer.playbackState
-            anchors.top: txt1.bottom
-        }*/
+                Row {
+                    id: row3
+                    spacing: units.gu(3)
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter                
+
+                    Button {
+                        id: deleteallbttn
+                        iconName: "delete"
+                        width: units.gu(5)
+                        height: units.gu(5)
+                        color: deleteallbttn.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
+                        onClicked: {
+                            process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
+                        }
+                    }
+
+                    Button {
+                        id: darkModebttn
+                        iconName: settings.darkMode ? "weather-clear-symbolic" : "weather-clear-night-symbolic"
+                        width: units.gu(5)
+                        height: units.gu(5)
+                        color: darkModebttn.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
+                        onClicked: {
+                            drkMd = !drkMd
+                        }
+                    }
+                }
+
+            }
+            footerPositioning: ListView.PullBackFooter
+        }
     }
 }
