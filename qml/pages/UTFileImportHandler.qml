@@ -22,9 +22,20 @@ Popups.PopupBase {
     onAccept: hide()
     onReject: hide()
 
+    StyleHints {
+        foregroundColor: drkMd ? "#808080" : "black"
+        backgroundColor: drkMd ? "#121212" : "white"
+        dividerColor: drkMd ? "#808080" : "black"
+    }
+
     Rectangle {
         anchors.fill: parent
 //        color: "black"
+        StyleHints {
+            foregroundColor: drkMd ? "#808080" : "black"
+            backgroundColor: drkMd ? "#121212" : "white"
+            dividerColor: drkMd ? "#808080" : "black"
+        }
 
         ContentTransferHint {
             anchors.fill: parent
@@ -48,6 +59,13 @@ Popups.PopupBase {
             onCancelPressed: {
                 picker.reject()
             }
+
+            StyleHints {
+                foregroundColor: drkMd ? "#808080" : "black"
+                backgroundColor: drkMd ? "#121212" : "white"
+                dividerColor: drkMd ? "#808080" : "black"
+            }
+
         }
     }
 
