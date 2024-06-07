@@ -35,7 +35,6 @@ Rectangle {
     property bool repeatcurrent: false
     property bool repeatall: false
     property alias drkMd: settings.darkMode
-//    property alias pb: prgrssbr
 
     Timer {
         id: timer
@@ -116,15 +115,6 @@ Rectangle {
 
     }
 
-/*    function decreaseuntilzero() {
-
-        let i = mainPage.pb.value
-        do {
-            mainPage.pb.decrease();
-//            result = result + i;
-        } while (i === 0);
-    }*/
-
     PageHeader {
         id: header
         title: "mUTe"
@@ -152,8 +142,6 @@ Rectangle {
     Flickable {
         id: flick1
         anchors.top: header.bottom
-//        contentHeight: units.gu(175)
-//        contentHeight: itm1.height + mediaTime.height + prgrssbr.height + row1.height + row2.height + list.height
         contentHeight: mainPage.height - header.height
         contentWidth: mainPage.width
         width: mainPage.width
@@ -335,15 +323,10 @@ Rectangle {
             }
             DropShadow {
                 anchors.fill: rec4
-//                horizontalOffset: 1
                 horizontalOffset: 0
-//                verticalOffset: 1
                 verticalOffset: 0.5
-//                radius: 6
-//                samples: 13
                 radius: 0
                 samples: 1
-//                color: "black"
                 color: settings.darkMode ? "black" : "gray"
                 source: rec4
                 spread: 0
@@ -353,7 +336,6 @@ Rectangle {
 
         Row {
             id: row1
-//            spacing: units.gu(3)
             spacing: units.gu(5)
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: prgrssbr.bottom
@@ -407,9 +389,7 @@ Rectangle {
                     if(playing === true) {
                         audioPlayer.stop()
                         playing = false
-//                        audioPlayer.seek(audioPlayer.duration - audioPlayer.duration)
                         audioPlayer.seek(0)
-//                        decreaseuntilzero()
                     } else {
                         delay(250, function() {
                             audioPlayer.play()
@@ -514,8 +494,6 @@ Rectangle {
 
             Item {
                 id: importItem
-//                width:100
-//                height: 50
                 width: units.gu(5)
                 height: units.gu(5)
 
@@ -524,21 +502,15 @@ Rectangle {
                 Loader {
                     id: utFilePicker
                     anchors.fill: parent
-                    //anchors.left: btnContainer.left
-                    //anchors.centerIn: parent
                     Component.onCompleted: {
-//                        if (typeof UBUNTU_TOUCH !== "undefined"){
+                        var extensions = []
+                        for (var j = 0; j < folderModel.nameFilters.length; j++){
+                            var filter = folderModel.nameFilters[j]
+                            var allowedExtension = filter.substring(filter.length-3,filter.length)
+                            extensions.push(allowedExtension)
 
-                        //convert nameFilters for utFilePicker
-                            var extensions = []
-                            for (var j = 0; j < folderModel.nameFilters.length; j++){
-                                var filter = folderModel.nameFilters[j]
-                                var allowedExtension = filter.substring(filter.length-3,filter.length)
-                                extensions.push(allowedExtension)
-
-                            }
-                            utFilePicker.setSource("./UTFileImport.qml", {nameFilters: extensions})
-//                        }
+                        }
+                        utFilePicker.setSource("./UTFileImport.qml", {nameFilters: extensions})
                     }
                 }
 
@@ -563,11 +535,8 @@ Rectangle {
             }
             FolderListModel {
                 id: folderModel
-//                folder: "file:///home/phablet/.cache/mute.bigbrotherisstillwatching/"
-//                folder: "file:///home/phablet/.local/share/mute.bigbrotherisstillwatching/"
                 folder: "file://" + dataDir
                 showDirs: false
-//                nameFilters: ["*.mp3"]
                 nameFilters: ["*.ogg", "*.wav", "*.mp3", "*.m4a", "*.flac", "*.aac", "*.aiff"]
             }
             delegate: Component {
@@ -613,7 +582,6 @@ Rectangle {
                         anchors.fill: parent
                         onClicked: {
                             if(playing === true) {
-//                                list.currentIndex = index
                                 audioPlayer.stop()
                                 playing = false
                                 list.currentIndex = index
@@ -630,7 +598,6 @@ Rectangle {
             }
             highlight: Rectangle {
                 id: rec6
-//                color: 'grey'
                 color: "#32517F"
             }
             highlightMoveDuration: 500
@@ -648,13 +615,10 @@ Rectangle {
                     id: row3
                     spacing: units.gu(3)
                     anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-//                    anchors.top: row1.bottom
-//                    topPadding: units.gu(2)                
+                    anchors.verticalCenter: parent.verticalCenter                
 
                     Button {
                         id: deleteallbttn
-//                        anchors.centerIn: parent
                         iconName: "delete"
                         width: units.gu(5)
                         height: units.gu(5)
@@ -666,13 +630,11 @@ Rectangle {
 
                     Button {
                         id: darkModebttn
-//                        anchors.centerIn: parent
                         iconName: settings.darkMode ? "weather-clear-symbolic" : "weather-clear-night-symbolic"
                         width: units.gu(5)
                         height: units.gu(5)
                         color: darkModebttn.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                         onClicked: {
-//                            drkMd = checked
                             drkMd = !drkMd
                         }
                     }
