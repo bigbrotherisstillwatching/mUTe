@@ -566,9 +566,7 @@ Rectangle {
 //                folder: "file:///home/phablet/.cache/mute.bigbrotherisstillwatching/"
 //                folder: "file:///home/phablet/.local/share/mute.bigbrotherisstillwatching/"
                 folder: "file://" + dataDir
-                showDirs: true
-                showDirsFirst: true
-                showDotAndDotDot: true
+                showDirs: false
 //                nameFilters: ["*.mp3"]
                 nameFilters: ["*.ogg", "*.wav", "*.mp3", "*.m4a", "*.flac", "*.aac", "*.aiff"]
             }
