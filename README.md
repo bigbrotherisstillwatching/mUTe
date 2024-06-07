@@ -1,6 +1,11 @@
 # mUTe
 
-Audioplayer for Ubuntu Touch Focal
+Very simple audioplayer for Ubuntu Touch Focal (because the standard music player is not working properly for me on Fairphone 4)
+
+## Keep in mind that:
+
+- it's an unconfined app    
+- releases for arm64 only
 
 ## License
 
