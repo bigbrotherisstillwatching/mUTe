@@ -24,7 +24,6 @@ Popups.PopupBase {
 
     Rectangle {
         anchors.fill: parent
-//        color: "black"
 
         ContentTransferHint {
             anchors.fill: parent
