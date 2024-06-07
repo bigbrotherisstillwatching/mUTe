@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>contenthub.json</file>
-    </qresource>
-</RCC>
