@@ -9,7 +9,7 @@
             "desktop":  "mute.desktop"
         }
     },
-    "version": "1.0.0",
+    "version": "1.0.1",
     "maintainer": "bbisw <140657673+bigbrotherisstillwatching@users.noreply.github.com>",
     "framework" : "@CLICK_FRAMEWORK@"
 }
