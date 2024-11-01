@@ -371,7 +371,7 @@ Rectangle {
                 color: previous.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                 onClicked: {
                     if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState) {
-                        createShuffleArray(list.count)
+//                        createShuffleArray(list.count)
                         list.currentIndex = removeFirstShuffleArrayItem()
                     } else if(shuffle === false && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === 0) {
                         list.currentIndex = list.count-1
@@ -450,7 +450,7 @@ Rectangle {
                 color: next.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                 onClicked: {
                     if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState) {
-                        createShuffleArray(list.count)
+//                        createShuffleArray(list.count)
                         list.currentIndex = removeFirstShuffleArrayItem()
                     } else if(shuffle === false && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === list.count-1) {
                         list.currentIndex = 0
