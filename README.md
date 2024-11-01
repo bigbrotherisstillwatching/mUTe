@@ -7,6 +7,18 @@ Very simple audioplayer for Ubuntu Touch Focal (because the standard music playe
 - it's an unconfined app    
 - releases for arm64 only
 
+## ToDo:
+
+- unfortunately i realized that there's still a lot to do:
+
+  - [ ] skipping behaviour when repeatcurrent is activated
+  - [ ] skipping behaviour when repeatall is activated
+  - [ ] list behaviour when adding or removing songs
+  - [ ] shuffle behaviour when skipping
+  - [ ] empty shuffle array when disabling shuffle
+
+  maybe more...
+
 ## License
 
 Copyright (C) 2024  bbisw
