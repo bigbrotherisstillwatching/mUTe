@@ -356,6 +356,10 @@ Rectangle {
                         list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
                     } else if(shuffle === false && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex != 0) {
                         list.currentIndex -= 1
+                    } else if(shuffle === false && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === 0) {
+                        list.currentIndex = list.count-1
+                    } else if(shuffle === false && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex != 0) {
+                        list.currentIndex -= 1
                     } else if(shuffle === false && repeatall === false && repeatcurrent === true && audioPlayer.playbackState === MediaPlayer.PlayingState) {
                         //do nothing
                     }
@@ -430,6 +434,10 @@ Rectangle {
                     } else if(shuffle === true && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState) {
                         list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
                     } else if(shuffle === false && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex != list.count-1) {
+                        list.currentIndex += 1
+                    } else if(shuffle === false && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === list.count-1) {
+                        list.currentIndex = 0
+                    } else if(shuffle === false && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex != list.count-1) {
                         list.currentIndex += 1
                     } else if(shuffle === false && repeatall === false && repeatcurrent === true && audioPlayer.playbackState === MediaPlayer.PlayingState) {
                         //do nothing
