@@ -422,15 +422,17 @@ Rectangle {
                 height: units.gu(5)
                 color: next.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                 onClicked: {
-                    if(shuffle === true && repeatall === false) {
-                        list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
-                    } else if(shuffle === false && repeatall === false && list.currentIndex === list.count-1) {
-                        list.currentIndex = 0
-                    } else if(shuffle === true && repeatall === true) {
+                    if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState) {
                         createShuffleArray(list.count)
                         list.currentIndex = removeFirstShuffleArrayItem()
-                    } else if(shuffle === false && repeatall === false && list.currentIndex != list.count-1) {
+                    } else if(shuffle === false && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === list.count-1) {
+                        list.currentIndex = 0
+                    } else if(shuffle === true && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState) {
+                        list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
+                    } else if(shuffle === false && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex != list.count-1) {
                         list.currentIndex += 1
+                    } else if(shuffle === false && repeatall === false && repeatcurrent === true && audioPlayer.playbackState === MediaPlayer.PlayingState) {
+                        //do nothing
                     }
                     if(playing == true) {
                         audioPlayer.stop()
