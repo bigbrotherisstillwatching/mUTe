@@ -36,6 +36,10 @@ Rectangle {
     property bool repeatall: false
     property alias drkMd: settings.darkMode
 
+    Component.onCompleted: {
+        settings.setValue("shuffle", "")
+    }
+
     Timer {
         id: timer
     }
@@ -115,7 +119,7 @@ Rectangle {
 
     }
 
-    function emptyArray() {
+/*    function emptyArray() {
     
         var s
 
@@ -131,7 +135,7 @@ Rectangle {
 
         settings.setValue("shuffle", JSON.stringify(f))
 
-    }
+    }*/
 
     PageHeader {
         id: header
@@ -219,6 +223,7 @@ Rectangle {
                         audioPlayer.stop()
                         mainPage.playing = false
                         mainPage.shuffle = false
+                        settings.setValue("shuffle", "")
                     } else {
                         list.currentIndex = removeFirstShuffleArrayItem()
                         delay(250, function() {
