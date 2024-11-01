@@ -115,6 +115,24 @@ Rectangle {
 
     }
 
+    function emptyArray() {
+    
+        var s
+
+        try {
+            s = JSON.parse(settings.value("shuffle"))
+        } catch (e) {
+            s = {}
+        }
+
+        s.length = 0;
+
+        let f = s.toString();
+
+        settings.setValue("shuffle", JSON.stringify(f))
+
+    }
+
     PageHeader {
         id: header
         title: "mUTe"
@@ -473,9 +491,16 @@ Rectangle {
                 height: units.gu(5)
                 color: shufflebttn.pressed ? "#32517F" : (shuffle ? "#32517F" : (settings.darkMode ? "#292929" : "white"))
                 onClicked: {
-                    shuffle = !shuffle
+                    if(shuffle === true) {
+                        shuffle = false
+                        settings.setValue("shuffle", "")
+                    } else if(shuffle === false) {
+                        shuffle = true
+                        createShuffleArray(list.count)
+                    }
+//                    shuffle = !shuffle
                     repeatcurrent = false
-                    createShuffleArray(list.count)
+//                    createShuffleArray(list.count)
                 }
             }
 
