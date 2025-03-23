@@ -206,7 +206,7 @@ Rectangle {
                     list.currentIndex += 1
                     delay(250, function() {
                         audioPlayer.play()
-                        playing = true
+                        mainPage.playing = true
                     })
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
                     audioPlayer.stop()
@@ -215,24 +215,24 @@ Rectangle {
                     list.currentIndex = 0
                     delay(250, function() {
                         audioPlayer.play()
-                        playing = true
+                        mainPage.playing = true
                     })
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
                     list.currentIndex += 1
                     delay(250, function() {
                         audioPlayer.play()
-                        playing = true
+                        mainPage.playing = true
                     })
                 } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === true && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
                     delay(250, function() {
                         audioPlayer.play()
-                        playing = true
+                        mainPage.playing = true
                     })
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
                     list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
                     delay(250, function() {
                         audioPlayer.play()
-                        playing = true
+                        mainPage.playing = true
                     })
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
                     if(firstShuffleArrayItem() === undefined) {
@@ -244,7 +244,7 @@ Rectangle {
                         list.currentIndex = removeFirstShuffleArrayItem()
                         delay(250, function() {
                             audioPlayer.play()
-                            playing = true
+                            mainPage.playing = true
                         })
                     }
                 }
