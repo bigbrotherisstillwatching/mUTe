@@ -55,6 +55,7 @@ Rectangle {
         id: settings
         property string shuffle: ""
         property bool darkMode
+        property string currentIndex: ""
     }
 
     Process {
@@ -83,9 +84,24 @@ Rectangle {
         }
 
         settings.setValue("shuffle", JSON.stringify(arr))
+
     }
 
-    function firstShuffleArrayItem() {
+    function returnCurrentIndex(listcurrentindex) {
+
+        var s
+
+        try {
+            s = JSON.parse(settings.value("shuffle"))
+        } catch (e) {
+            s = {}
+        }
+
+        settings.setValue("currentIndex", JSON.stringify(s.indexOf(listcurrentindex)))
+
+    }
+
+/*    function firstShuffleArrayItem() {
 
         var s
 
@@ -97,9 +113,9 @@ Rectangle {
 
         let f = s[0];
         return f;
-    }
+    }*/
 
-    function removeFirstShuffleArrayItem() {
+/*    function removeFirstShuffleArrayItem() {
 
         var s
 
@@ -117,7 +133,7 @@ Rectangle {
 
         return firstElement;
 
-    }
+    }*/
 
 /*    function emptyArray() {
     
