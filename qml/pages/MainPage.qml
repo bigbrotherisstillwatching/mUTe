@@ -285,18 +285,24 @@ Rectangle {
                         mainPage.playing = true
                     })
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
-                    if(firstShuffleArrayItem() === undefined) {
-                        audioPlayer.stop()
-                        mainPage.playing = false
-                        mainPage.shuffle = false
-                        settings.setValue("shuffle", "")
+                    if(mainPage.frstShffl === false) {
+                        list.currentIndex = firstShuffleArrayItem()
+                        mainPage.frstShffl = !mainPage.frstShffl
                     } else {
-                        list.currentIndex = removeFirstShuffleArrayItem()
-                        delay(250, function() {
-                            audioPlayer.play()
-                            mainPage.playing = true
-                        })
-                    }
+                        if(nextShuffleArrayItem(list.currentIndex) === undefined) {
+                            audioPlayer.stop()
+                            mainPage.playing = false
+                            mainPage.shuffle = false
+                            settings.setValue("shuffle", "")
+                            settings.setValue("firstShuffle", "false")
+                        } else {
+                            list.currentIndex = nextShuffleArrayItem(list.currentIndex)
+                        }
+                    }                        
+                    delay(250, function() {
+                        audioPlayer.play()
+                        mainPage.playing = true
+                    })
                 }
             }
         }
