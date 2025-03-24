@@ -115,7 +115,7 @@ Rectangle {
         return f;
     }
 
-    function nextIndex(listcurrentindex) {
+    function nextShuffleArrayItem(listcurrentindex) {
         
         var s
         
@@ -135,7 +135,7 @@ Rectangle {
         
     }
 
-    function prevIndex(listcurrentindex) {
+    function prevShuffleArrayItem(listcurrentindex) {
         
         var s
         
