@@ -87,7 +87,7 @@ Rectangle {
 
     }
 
-    function returnCurrentIndex(listcurrentindex) {
+/*    function returnCurrentIndex(listcurrentindex) {
 
         var s
 
@@ -99,9 +99,9 @@ Rectangle {
 
         settings.setValue("currentIndex", JSON.stringify(s.indexOf(listcurrentindex)))
 
-    }
+    }*/
 
-/*    function firstShuffleArrayItem() {
+    function firstShuffleArrayItem() {
 
         var s
 
@@ -113,7 +113,47 @@ Rectangle {
 
         let f = s[0];
         return f;
-    }*/
+    }
+
+    function nextIndex(listcurrentindex) {
+        
+        var s
+        
+        try {
+            s = JSON.parse(settings.value("shuffle"))
+        } catch (e) {
+            s = {}
+        }
+    
+        const index1 = s.indexOf(listcurrentindex);
+    
+        const index2 = s.find((element) => element === index1);
+        
+        const next = s[index2 + 1];
+        
+        return next;
+        
+    }
+
+    function prevIndex(listcurrentindex) {
+        
+        var s
+        
+        try {
+            s = JSON.parse(settings.value("shuffle"))
+        } catch (e) {
+            s = {}
+        }
+    
+        const index1 = s.indexOf(listcurrentindex);
+    
+        const index2 = s.find((element) => element === index1);
+        
+        const prev = s[index2 - 1];
+        
+        return prev;
+        
+    }
 
 /*    function removeFirstShuffleArrayItem() {
 
