@@ -288,6 +288,10 @@ Rectangle {
                     if(mainPage.frstShffl === false) {
                         list.currentIndex = firstShuffleArrayItem()
                         mainPage.frstShffl = !mainPage.frstShffl
+                        delay(250, function() {
+                            audioPlayer.play()
+                            mainPage.playing = true
+                        })
                     } else {
                         if(nextShuffleArrayItem(list.currentIndex) === undefined) {
                             audioPlayer.stop()
@@ -297,12 +301,12 @@ Rectangle {
                             settings.setValue("firstShuffle", "false")
                         } else {
                             list.currentIndex = nextShuffleArrayItem(list.currentIndex)
+                            delay(250, function() {
+                                audioPlayer.play()
+                                mainPage.playing = true
+                            })
                         }
                     }                        
-                    delay(250, function() {
-                        audioPlayer.play()
-                        mainPage.playing = true
-                    })
                 }
             }
         }
