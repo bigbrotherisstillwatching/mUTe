@@ -35,7 +35,7 @@ Rectangle {
     property bool repeatcurrent: false
     property bool repeatall: false
     property alias drkMd: settings.darkMode
-//    property alias frstShffl: settings.firstShuffle
+    property alias frstShffl: settings.firstShuffle
 
     Component.onCompleted: {
         settings.setValue("shuffle", "")
