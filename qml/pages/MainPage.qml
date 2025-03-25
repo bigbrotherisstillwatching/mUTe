@@ -56,7 +56,7 @@ Rectangle {
         id: settings
         property string shuffle: ""
         property bool darkMode
-        property bool firstShuffle: false
+        property string firstShuffle: "false"
     }
 
     Process {
@@ -272,7 +272,7 @@ Rectangle {
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
                     if(mainPage.frstShffl === false) {
                         list.currentIndex = firstShuffleArrayItem()
-                        mainPage.frstShffl = !mainPage.frstShffl
+                        settings.setValue("firstShuffle", "true")
                     } else {
                         if(nextShuffleArrayItem(list.currentIndex) === undefined) {
                             list.currentIndex = firstShuffleArrayItem()
@@ -287,7 +287,7 @@ Rectangle {
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
                     if(mainPage.frstShffl === false) {
                         list.currentIndex = firstShuffleArrayItem()
-                        mainPage.frstShffl = !mainPage.frstShffl
+                        settings.setValue("firstShuffle", "true")
                         delay(250, function() {
                             audioPlayer.play()
                             mainPage.playing = true
