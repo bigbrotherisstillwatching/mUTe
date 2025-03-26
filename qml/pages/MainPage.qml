@@ -500,6 +500,7 @@ Rectangle {
                         shuffle = false
                         repeatcurrent = false
                         repeatall = false
+                        settings.setValue("shuffle", "")
                     } else {
                         delay(250, function() {
                             audioPlayer.play()
