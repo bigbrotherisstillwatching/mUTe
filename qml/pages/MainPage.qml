@@ -270,7 +270,7 @@ Rectangle {
                         mainPage.playing = true
                     })
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
-                    if(settings.value("shuffle") === false) {
+                    if(settings.value("shuffle") === "false") {
                         list.currentIndex = firstShuffleArrayItem()
                         settings.setValue("firstShuffle", "true")
                     } else {
