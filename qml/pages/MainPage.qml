@@ -496,6 +496,10 @@ Rectangle {
                         audioPlayer.stop()
                         playing = false
                         audioPlayer.seek(0)
+                        settings.setValue("firstShuffle", "no")
+                        shuffle = false
+                        repeatcurrent = false
+                        repeatall = false
                     } else {
                         delay(250, function() {
                             audioPlayer.play()
