@@ -580,6 +580,7 @@ Rectangle {
                     if(shuffle === true) {
                         shuffle = false
                         settings.setValue("shuffle", "")
+                        settings.setValue("firstShuffle", "no")
                     } else if(shuffle === false) {
                         shuffle = true
                         createShuffleArray(list.count)
