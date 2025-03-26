@@ -57,7 +57,7 @@ Rectangle {
         id: settings
         property string shuffle: ""
         property bool darkMode
-        property string firstShuffle: "no"
+        property string firstShuffle: ""
     }
 
     Process {
