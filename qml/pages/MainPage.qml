@@ -35,7 +35,7 @@ Rectangle {
     property bool repeatcurrent: false
     property bool repeatall: false
     property alias drkMd: settings.darkMode
-    property alias frstShffl: settings.firstShuffle
+//    property alias frstShffl: settings.firstShuffle
 
     Component.onCompleted: {
         settings.setValue("shuffle", "")
@@ -270,9 +270,9 @@ Rectangle {
                         mainPage.playing = true
                     })
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
-                    if(mainPage.frstShffl === false) {
+                    if(settings.value("shuffle") === false) {
                         list.currentIndex = firstShuffleArrayItem()
-                        mainPage.settings.setValue("firstShuffle", "true")
+                        maiPage.settings.setValue("firstShuffle", "true")
                     } else {
                         if(nextShuffleArrayItem(list.currentIndex) === undefined) {
                             list.currentIndex = firstShuffleArrayItem()
@@ -285,7 +285,7 @@ Rectangle {
                         mainPage.playing = true
                     })
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
-                    if(mainPage.frstShffl === false) {
+                    if(settings.value("shuffle") === false) {
                         list.currentIndex = firstShuffleArrayItem()
                         mainPage.settings.setValue("firstShuffle", "true")
                         delay(250, function() {
