@@ -39,7 +39,7 @@ Rectangle {
 
     Component.onCompleted: {
         settings.setValue("shuffle", "")
-//        settings.setValue("firstShuffle", JSON.stringify("no"))
+        settings.setValue("firstShuffle", "no")
     }
 
     Timer {
