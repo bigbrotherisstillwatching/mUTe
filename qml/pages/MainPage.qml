@@ -270,9 +270,9 @@ Rectangle {
                         mainPage.playing = true
                     })
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
-                    if(mainPage.settings.value("shuffle") === false) {
+                    if(settings.value("shuffle") === false) {
                         list.currentIndex = firstShuffleArrayItem()
-                        maiPage.settings.setValue("firstShuffle", "true")
+                        settings.setValue("firstShuffle", "true")
                     } else {
                         if(nextShuffleArrayItem(list.currentIndex) === undefined) {
                             list.currentIndex = firstShuffleArrayItem()
@@ -285,9 +285,9 @@ Rectangle {
                         mainPage.playing = true
                     })
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
-                    if(mainPage.settings.value("shuffle") === false) {
+                    if(settings.value("shuffle") === false) {
                         list.currentIndex = firstShuffleArrayItem()
-                        mainPage.settings.setValue("firstShuffle", "true")
+                        settings.setValue("firstShuffle", "true")
                         delay(250, function() {
                             audioPlayer.play()
                             mainPage.playing = true
@@ -297,8 +297,8 @@ Rectangle {
                             audioPlayer.stop()
                             mainPage.playing = false
                             mainPage.shuffle = false
-                            mainPage.settings.setValue("shuffle", "")
-                            mainPage.settings.setValue("firstShuffle", "false")
+                            settings.setValue("shuffle", "")
+                            settings.setValue("firstShuffle", "false")
                         } else {
                             list.currentIndex = nextShuffleArrayItem(list.currentIndex)
                             delay(250, function() {
