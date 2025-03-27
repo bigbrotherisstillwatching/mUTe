@@ -115,6 +115,22 @@ Rectangle {
 
         let f = s[0];
         return f;
+    
+    }
+
+    function lastShuffleArrayItem() {
+
+        var s
+
+        try {
+            s = JSON.parse(settings.value("shuffle"))
+        } catch (e) {
+            s = {}
+        }
+
+        const lastElement = s[s.length - 1];
+        return lastElement;
+    
     }
 
     function nextShuffleArrayItem(listcurrentindex) {
@@ -450,13 +466,19 @@ Rectangle {
                     if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === firstShuffleArrayItem()) {
 //                        createShuffleArray(list.count)
 //                        list.currentIndex = removeFirstShuffleArrayItem()
-                        
-                    } else if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === 0) {
-                        list.currentIndex = list.count-1
+                        list.currentIndex = lastShuffleArrayItem()
+                    } else if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem()) {
+                        list.currentIndex = prevShuffleArrayItem(list.currentIndex)
+                    } else if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === lastShuffleArrayItem()) {
+                        list.currentIndex = prevShuffleArrayItem(list.currentIndex)
                     } else if(shuffle === false && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === 0) {
                         list.currentIndex = list.count-1
-                    } else if(shuffle === true && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState) {
-                        list.currentIndex = Math.floor(Math.random() * ((list.count-1) - 0 + 1)) + 0
+                    } else if(shuffle === true && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === firstShuffleArrayItem()) {
+                        list.currentIndex = lastShuffleArrayItem()
+                    } else if(shuffle === true && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem()) {
+                        list.currentIndex = prevShuffleArrayItem(list.currentIndex)
+                    } else if(shuffle === true && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === lastShuffleArrayItem()) {
+                        list.currentIndex = prevShuffleArrayItem(list.currentIndex)
                     } else if(shuffle === false && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex != 0) {
                         list.currentIndex -= 1
                     } else if(shuffle === false && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === 0) {
