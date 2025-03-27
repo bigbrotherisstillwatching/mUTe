@@ -528,6 +528,11 @@ Rectangle {
                         repeatall = false
                         settings.setValue("shuffle", "")
                     } else if(playing === false) {
+                        delay(250, function() {
+                            audioPlayer.play()
+                            playing = true
+                        })
+                    } else if(playing === false && shuffle === true) {
                         if(list.currentIndex === firstShuffleArrayItem()) {
                             settings.setValue("firstShuffleArraySongPlayed", "yes")
                         }
