@@ -39,7 +39,7 @@ Rectangle {
 
     Component.onCompleted: {
         settings.setValue("shuffle", "")
-        settings.setValue("firstShuffle", "no")
+        settings.setValue("firstShuffleArraySongPlayed", "no")
     }
 
     Timer {
@@ -57,7 +57,7 @@ Rectangle {
         id: settings
         property string shuffle: ""
         property bool darkMode
-        property string firstShuffle: "no"
+        property string firstShuffleArraySongPlayed: "no"
     }
 
     Process {
@@ -271,10 +271,10 @@ Rectangle {
                         mainPage.playing = true
                     })
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
-                    if(settings.value("firstShuffle") === "no") {
+                    if(settings.value("firstShuffleArraySongPlayed") === "no") {
                         list.currentIndex = firstShuffleArrayItem()
-                        settings.setValue("firstShuffle", "yes")
-                    } else if(settings.value("firstShuffle") === "yes") {
+                        settings.setValue("firstShuffleArraySongPlayed", "yes")
+                    } else if(settings.value("firstShuffleArraySongPlayed") === "yes") {
                         if(nextShuffleArrayItem(list.currentIndex) === undefined) {
                             list.currentIndex = firstShuffleArrayItem()
                         } else {
@@ -286,20 +286,20 @@ Rectangle {
                         mainPage.playing = true
                     })
                 } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
-                    if(settings.value("firstShuffle") === "no") {
+                    if(settings.value("firstShuffleArraySongPlayed") === "no") {
                         list.currentIndex = firstShuffleArrayItem()
-                        settings.setValue("firstShuffle", "yes")
+                        settings.setValue("firstShuffleArraySongPlayed", "yes")
                         delay(250, function() {
                             audioPlayer.play()
                             mainPage.playing = true
                         })
-                    } else if(settings.value("firstShuffle") === "yes") {
+                    } else if(settings.value("firstShuffleArraySongPlayed") === "yes") {
                         if(nextShuffleArrayItem(list.currentIndex) === undefined) {
                             audioPlayer.stop()
                             mainPage.playing = false
                             mainPage.shuffle = false
                             settings.setValue("shuffle", "")
-                            settings.setValue("firstShuffle", "no")
+                            settings.setValue("firstShuffleArraySongPlayed", "no")
                         } else {
                             list.currentIndex = nextShuffleArrayItem(list.currentIndex)
                             delay(250, function() {
@@ -447,9 +447,12 @@ Rectangle {
                 height: units.gu(5)
                 color: previous.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                 onClicked: {
-                    if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState) {
+                    if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === firstShuffleArrayItem()) {
 //                        createShuffleArray(list.count)
-                        list.currentIndex = removeFirstShuffleArrayItem()
+//                        list.currentIndex = removeFirstShuffleArrayItem()
+                        
+                    } else if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === 0) {
+                        list.currentIndex = list.count-1
                     } else if(shuffle === false && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === 0) {
                         list.currentIndex = list.count-1
                     } else if(shuffle === true && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState) {
@@ -471,10 +474,11 @@ Rectangle {
                             playing = true
                         })
                     } else if(playing == false) {
-                        delay(250, function() {
+/*                        delay(250, function() {
                             audioPlayer.play()
                             playing = true
-                        })
+                        })*/
+                        //do nothing
                     }
                 }
             }
@@ -496,12 +500,15 @@ Rectangle {
                         audioPlayer.stop()
                         playing = false
                         audioPlayer.seek(0)
-                        settings.setValue("firstShuffle", "no")
+                        settings.setValue("firstShuffleArraySongPlayed", "no")
                         shuffle = false
                         repeatcurrent = false
                         repeatall = false
                         settings.setValue("shuffle", "")
-                    } else {
+                    } else if(playing === false) {
+                        if(list.currentIndex === firstShuffleArrayItem()) {
+                            settings.setValue("firstShuffleArraySongPlayed", "yes")
+                        }
                         delay(250, function() {
                             audioPlayer.play()
                             playing = true
@@ -581,7 +588,7 @@ Rectangle {
                     if(shuffle === true) {
                         shuffle = false
                         settings.setValue("shuffle", "")
-                        settings.setValue("firstShuffle", "no")
+                        settings.setValue("firstShuffleArraySongPlayed", "no")
                     } else if(shuffle === false) {
                         shuffle = true
                         createShuffleArray(list.count)
