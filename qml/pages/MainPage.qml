@@ -39,7 +39,7 @@ Rectangle {
     Component.onCompleted: {
         settings.setValue("shuffle", "")
         settings.setValue("firstShuffleArraySongPlayed", "no")
-        delay(250, function() {
+        delay(1000, function() {
             settings.setValue("latestIndex", list.currentIndex)
         })
 //        settings.setValue("latestIndex", list.currentIndex)
