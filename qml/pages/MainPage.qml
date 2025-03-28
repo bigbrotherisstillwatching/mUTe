@@ -50,6 +50,7 @@ Rectangle {
         property string shuffle: ""
         property bool darkMode
         property string firstShuffleArraySongPlayed: "no"
+        property int latestIndex: ""
     }
 
     Process {
@@ -277,6 +278,7 @@ Rectangle {
                     }                        
                 }
             }
+            onPlaying: settings.setValue("latestIndex", list.currentIndex)
         }
 
         Item {
