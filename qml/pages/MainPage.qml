@@ -440,14 +440,14 @@ Rectangle {
                     } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === true) {
                         //do nothing
                     }
-                    if(playing == true) {
+                    if(playing === true) {
                         audioPlayer.stop()
                         playing = false
                         delay(250, function() {
                             audioPlayer.play()
                             playing = true
                         })
-                    } else if(playing == false) {
+                    } else if(playing === false) {
                         //do nothing
                     }
                 }
@@ -499,7 +499,7 @@ Rectangle {
                 height: units.gu(5)
                 color: pause.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                 onClicked: {
-                    if(playing == true) {
+                    if(playing === true) {
                         audioPlayer.pause()
                         playing = false
                     }
@@ -536,14 +536,14 @@ Rectangle {
                     } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === true) {
                         //do nothing
                     }
-                    if(playing == true) {
+                    if(playing === true) {
                         audioPlayer.stop()
                         playing = false
                         delay(250, function() {
                             audioPlayer.play()
                             playing = true
                         })
-                    } else if(playing == false) {
+                    } else if(playing === false) {
                         //do nothing
                     }
                 }
@@ -623,9 +623,22 @@ Rectangle {
                     }
                 }
 
-                Connections{
+                Connections {
                     target: utFilePicker.item
-                    onFilesAdded: console.log("Import done!")
+//                    onFilesAdded: console.log("Import done!")
+                    onFilesAdded: {
+                        console.log("Import done!")
+                        if(playing === true) {
+                            audioPlayer.pause()
+                            playing = false
+                            delay(250, function() {
+                                audioPlayer.play()
+                                playing = true
+                            })
+                        } else if(playing === false) {
+                            list.currentIndex = settings.value("latestIndex")
+                        }
+                    }
                 }
             }
         }
