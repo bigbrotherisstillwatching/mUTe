@@ -674,6 +674,11 @@ Rectangle {
                 folder: "file://" + dataDir
                 showDirs: false
                 nameFilters: ["*.ogg", "*.wav", "*.mp3", "*.m4a", "*.flac", "*.aac", "*.aiff"]
+                onStatusChanged: {
+                    if(folderModel.status === FolderListModel.Ready) {
+                        settings.setValue("latestIndex", list.currentIndex)
+                    }
+                }
             }
             delegate: Component {
                 id: cmpnnt1
@@ -780,10 +785,6 @@ Rectangle {
 
             }
             footerPositioning: ListView.PullBackFooter
-
-            Component.onCompleted: {
-                list.currentIndex = settings.value("latestIndex")
-            }
         }
     }
 }
