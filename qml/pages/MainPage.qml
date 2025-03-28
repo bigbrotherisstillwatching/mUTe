@@ -50,7 +50,7 @@ Rectangle {
         property string shuffle: ""
         property bool darkMode
         property string firstShuffleArraySongPlayed: "no"
-        property int latestIndex: ""
+        property string latestIndex: ""
     }
 
     Process {
