@@ -631,6 +631,7 @@ Rectangle {
                         if(playing === true) {
                             audioPlayer.pause()
                             playing = false
+                            list.currentIndex = settings.value("latestIndex")
                             delay(250, function() {
                                 audioPlayer.play()
                                 playing = true
