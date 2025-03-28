@@ -52,7 +52,7 @@ Rectangle {
         property string shuffle: ""
         property bool darkMode
         property string firstShuffleArraySongPlayed: "no"
-//        property string latestIndex: ""
+        property string latestIndex: ""
 //        property string songsAdded: ""
     }
 
@@ -281,7 +281,7 @@ Rectangle {
                     }                        
                 }
             }
-//            onPlaying: settings.setValue("latestIndex", list.currentIndex)
+            onPlaying: settings.setValue("latestIndex", list.currentIndex)
         }
 
         Item {
@@ -721,12 +721,14 @@ Rectangle {
                                 audioPlayer.stop()
                                 playing = false
                                 list.currentIndex = index
+                                settings.setValue("latestIndex", list.currentIndex)
                                 delay(250, function() {
                                     audioPlayer.play()
                                     playing = true
                                 })
                             } else if(playing === false) {
                                 list.currentIndex = index
+                                settings.setValue("latestIndex", list.currentIndex)
                             }
                         }
                     }
@@ -779,9 +781,9 @@ Rectangle {
             }
             footerPositioning: ListView.PullBackFooter
 
-/*            Component.onCompleted: {
+            Component.onCompleted: {
                 list.currentIndex = settings.value("latestIndex")
-            }*/
+            }
         }
     }
 }
