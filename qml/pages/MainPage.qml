@@ -45,13 +45,6 @@ Rectangle {
         id: timer
     }
 
-    function delay(delayTime,cb) {
-        timer.interval = delayTime;
-        timer.repeat = false;
-        timer.triggered.connect(cb);
-        timer.start();
-    }
-
     Settings {
         id: settings
         property string shuffle: ""
@@ -69,6 +62,15 @@ Rectangle {
         onAboutToQuit: {
             audioPlayer.stop()
         }
+    }
+
+/*###########FUNCTIONS##########*/
+
+    function delay(delayTime,cb) {
+        timer.interval = delayTime;
+        timer.repeat = false;
+        timer.triggered.connect(cb);
+        timer.start();
     }
 
     function createShuffleArray(listcount) {
@@ -157,6 +159,8 @@ Rectangle {
         return prev;
         
     }
+
+/*##########FUNCTIONS#OVER##########*/
 
     PageHeader {
         id: header
