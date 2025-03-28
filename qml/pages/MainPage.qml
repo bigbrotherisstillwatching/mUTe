@@ -778,6 +778,10 @@ Rectangle {
 
             }
             footerPositioning: ListView.PullBackFooter
+
+/*            Component.onCompleted: {
+                list.currentIndex = settings.value("latestIndex")
+            }*/
         }
     }
 }
