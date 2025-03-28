@@ -35,7 +35,7 @@ Rectangle {
     property bool repeatcurrent: false
     property bool repeatall: false
     property alias drkMd: settings.darkMode
-    property alias lstmdl: list.model
+//    property alias lstmdl: list.model
 
     Component.onCompleted: {
         settings.setValue("shuffle", "")
@@ -284,7 +284,8 @@ Rectangle {
             id: itm1
             property string text: {
 //                var flNm = list.model.get(list.currentIndex, "fileName");
-                var flNm = lstmdl.get(list.currentIndex, "fileName");
+//                var flNm = lstmdl.get(list.currentIndex, "fileName");
+                var flNm = folderModel.get(list.currentIndex, "fileName");
                 var dotLastIndex = flNm.lastIndexOf('.');
                 var finalName = flNm.substring(0, dotLastIndex);
 
