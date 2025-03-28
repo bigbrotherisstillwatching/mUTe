@@ -637,7 +637,9 @@ Rectangle {
                                 playing = true
                             })
                         } else if(playing === false) {
-                            list.currentIndex = settings.value("latestIndex")
+                            delay(250, function() {
+                                list.currentIndex = settings.value("latestIndex")
+                            })
                         }
                     }
                 }
