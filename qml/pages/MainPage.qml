@@ -52,7 +52,7 @@ Rectangle {
         property string shuffle: ""
         property bool darkMode
         property string firstShuffleArraySongPlayed: "no"
-        property string latestIndex: ""
+//        property string latestIndex: ""
 //        property string songsAdded: ""
     }
 
@@ -281,7 +281,7 @@ Rectangle {
                     }                        
                 }
             }
-            onPlaying: settings.setValue("latestIndex", list.currentIndex)
+//            onPlaying: settings.setValue("latestIndex", list.currentIndex)
         }
 
         Item {
@@ -674,11 +674,11 @@ Rectangle {
                 folder: "file://" + dataDir
                 showDirs: false
                 nameFilters: ["*.ogg", "*.wav", "*.mp3", "*.m4a", "*.flac", "*.aac", "*.aiff"]
-                onStatusChanged: {
+/*                onStatusChanged: {
                     if(folderModel.status === FolderListModel.Ready) {
                         settings.setValue("latestIndex", list.currentIndex)
                     }
-                }
+                }*/
             }
             delegate: Component {
                 id: cmpnnt1
@@ -726,14 +726,14 @@ Rectangle {
                                 audioPlayer.stop()
                                 playing = false
                                 list.currentIndex = index
-                                settings.setValue("latestIndex", list.currentIndex)
+//                                settings.setValue("latestIndex", list.currentIndex)
                                 delay(250, function() {
                                     audioPlayer.play()
                                     playing = true
                                 })
                             } else if(playing === false) {
                                 list.currentIndex = index
-                                settings.setValue("latestIndex", list.currentIndex)
+//                                settings.setValue("latestIndex", list.currentIndex)
                             }
                         }
                     }
