@@ -36,7 +36,7 @@ jobs:
 #        run:
 #         mkdir ~/mute && cd ~/mute && clickable create --non-interactive --template cmake --title mUTe --description "Audioplayer for Ubuntu Touch Focal" --name mute --namespace bigbrotherisstillwatching --maintainer "bbisw" --mail 140657673+bigbrotherisstillwatching@users.noreply.github.com --license gpl3 --copyright-year 2024 --arch arm64
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v4.4.3
+        uses: actions/upload-artifact@v4.6.2
         if: always()
         with:
           name: "mute-${{ matrix.arch }}--${{ matrix.build }}--click"
