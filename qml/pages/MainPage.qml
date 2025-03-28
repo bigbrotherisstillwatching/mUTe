@@ -463,41 +463,41 @@ Rectangle {
                 height: units.gu(5)
                 color: previous.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                 onClicked: {
-                    if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === firstShuffleArrayItem()) {
+                    if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === firstShuffleArrayItem()) {
 //                        createShuffleArray(list.count)
 //                        list.currentIndex = removeFirstShuffleArrayItem()
                         list.currentIndex = lastShuffleArrayItem()
-                    } else if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.StoppedState && list.currentIndex === firstShuffleArrayItem()) {
-                        list.currentIndex = lastShuffleArrayItem()
-                    } else if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem()) {
+//                    } else if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.StoppedState && list.currentIndex === firstShuffleArrayItem()) {
+//                        list.currentIndex = lastShuffleArrayItem()
+                    } else if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem()) {
                         list.currentIndex = prevShuffleArrayItem(list.currentIndex)
-                    } else if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.StoppedState && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem()) {
+//                    } else if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.StoppedState && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem()) {
+//                        list.currentIndex = prevShuffleArrayItem(list.currentIndex)
+                    } else if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === lastShuffleArrayItem()) {
                         list.currentIndex = prevShuffleArrayItem(list.currentIndex)
-                    } else if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === lastShuffleArrayItem()) {
-                        list.currentIndex = prevShuffleArrayItem(list.currentIndex)
-                    } else if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.StoppedState && list.currentIndex === lastShuffleArrayItem()) {
-                        list.currentIndex = prevShuffleArrayItem(list.currentIndex)
-                    } else if(shuffle === false && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === 0) {
+//                    } else if(shuffle === true && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.StoppedState && list.currentIndex === lastShuffleArrayItem()) {
+//                        list.currentIndex = prevShuffleArrayItem(list.currentIndex)
+                    } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === 0) {
                         list.currentIndex = list.count-1
-                    } else if(shuffle === true && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === firstShuffleArrayItem()) {
+                    } else if(mainPage.shuffle === true && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex === firstShuffleArrayItem()) {
                         list.currentIndex = lastShuffleArrayItem()
-                    } else if(shuffle === true && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.StoppedState && list.currentIndex === firstShuffleArrayItem()) {
-                        list.currentIndex = lastShuffleArrayItem()
-                    } else if(shuffle === true && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem()) {
+//                    } else if(shuffle === true && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.StoppedState && list.currentIndex === firstShuffleArrayItem()) {
+//                        list.currentIndex = lastShuffleArrayItem()
+                    } else if(mainPage.shuffle === true && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem()) {
                         list.currentIndex = prevShuffleArrayItem(list.currentIndex)
-                    } else if(shuffle === true && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.StoppedState && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem()) {
+//                    } else if(shuffle === true && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.StoppedState && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem()) {
+//                        list.currentIndex = prevShuffleArrayItem(list.currentIndex)
+                    } else if(mainPage.shuffle === true && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex === lastShuffleArrayItem()) {
                         list.currentIndex = prevShuffleArrayItem(list.currentIndex)
-                    } else if(shuffle === true && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === lastShuffleArrayItem()) {
-                        list.currentIndex = prevShuffleArrayItem(list.currentIndex)
-                    } else if(shuffle === true && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.StoppedState && list.currentIndex === lastShuffleArrayItem()) {
-                        list.currentIndex = prevShuffleArrayItem(list.currentIndex)
-                    } else if(shuffle === false && repeatall === false && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex != 0) {
+//                    } else if(shuffle === true && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.StoppedState && list.currentIndex === lastShuffleArrayItem()) {
+//                        list.currentIndex = prevShuffleArrayItem(list.currentIndex)
+                    } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex != 0) {
                         list.currentIndex -= 1
-                    } else if(shuffle === false && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex === 0) {
+                    } else if(mainPage.shuffle === false && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex === 0) {
                         list.currentIndex = list.count-1
-                    } else if(shuffle === false && repeatall === true && repeatcurrent === false && audioPlayer.playbackState === MediaPlayer.PlayingState && list.currentIndex != 0) {
+                    } else if(mainPage.shuffle === false && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex != 0) {
                         list.currentIndex -= 1
-                    } else if(shuffle === false && repeatall === false && repeatcurrent === true && audioPlayer.playbackState === MediaPlayer.PlayingState) {
+                    } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === true) {
                         //do nothing
                     }
                     if(playing == true) {
