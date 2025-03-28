@@ -50,7 +50,7 @@ Rectangle {
         property string shuffle: ""
         property bool darkMode
         property string firstShuffleArraySongPlayed: "no"
-        property string latestIndex: ""
+//        property string latestIndex: ""
     }
 
     Process {
@@ -278,7 +278,7 @@ Rectangle {
                     }                        
                 }
             }
-            onPlaying: settings.setValue("latestIndex", list.currentIndex)
+//            onPlaying: settings.setValue("latestIndex", list.currentIndex)
         }
 
         Item {
@@ -625,8 +625,8 @@ Rectangle {
 
                 Connections {
                     target: utFilePicker.item
-//                    onFilesAdded: console.log("Import done!")
-                    onFilesAdded: {
+                    onFilesAdded: console.log("Import done!")
+/*                    onFilesAdded: {
                         console.log("Import done!")
                         if(playing === true) {
                             delay(250, function() {
@@ -643,7 +643,7 @@ Rectangle {
                                 list.currentIndex = settings.value("latestIndex")
                             })
                         }
-                    }
+                    }*/
                 }
             }
         }
