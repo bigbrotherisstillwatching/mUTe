@@ -19,6 +19,7 @@ Very simple audioplayer for Ubuntu Touch Focal (because the standard music playe
   - [ ] empty shuffle array when opening app
   - [ ] (automatically) update checkout and upload-artifact actions
   - [ ] empty shuffle array when shuffled once through all songs
+  - [ ] symbol color in light mode
 
   maybe more...
 
