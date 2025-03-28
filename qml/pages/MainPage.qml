@@ -39,6 +39,8 @@ Rectangle {
     Component.onCompleted: {
         settings.setValue("shuffle", "")
         settings.setValue("firstShuffleArraySongPlayed", "no")
+        settings.setValue("latestIndex", list.currentIndex)
+        settings.setValue("songsAdded", "")
     }
 
     Timer {
@@ -50,7 +52,8 @@ Rectangle {
         property string shuffle: ""
         property bool darkMode
         property string firstShuffleArraySongPlayed: "no"
-//        property string latestIndex: ""
+        property string latestIndex: ""
+        property string songsAdded: ""
     }
 
     Process {
@@ -278,7 +281,7 @@ Rectangle {
                     }                        
                 }
             }
-//            onPlaying: settings.setValue("latestIndex", list.currentIndex)
+            onPlaying: settings.setValue("latestIndex", list.currentIndex)
         }
 
         Item {
@@ -625,25 +628,31 @@ Rectangle {
 
                 Connections {
                     target: utFilePicker.item
-                    onFilesAdded: console.log("Import done!")
-/*                    onFilesAdded: {
+//                    onFilesAdded: console.log("Import done!")
+                    onFilesAdded: {
                         console.log("Import done!")
-                        if(playing === true) {
-                            delay(250, function() {
-                                audioPlayer.pause()
-                                playing = false
+                        settings.setValue("songsAdded", "yes")
+                        delay(1000, function() {
+                            settings.setValue("songsAdded", "no")
+                        })
+                        if(settings.value("songsAdded") === "yes" && playing === true) {
+                            audioPlayer.pause()
+                            playing = false
+                            delay(500, function() {
                                 list.currentIndex = settings.value("latestIndex")
-                            })
-                            delay(250, function() {
                                 audioPlayer.play()
                                 playing = true
                             })
-                        } else if(playing === false) {
-                            delay(250, function() {
+                        } else if(settings.value("songsAdded") === "no" && playing === true) {
+                            //do nothing
+                        } else if(settings.value("songsAdded") === "yes" && playing === false) {
+                            delay(500, function() {
                                 list.currentIndex = settings.value("latestIndex")
                             })
+                        } else if(settings.value("songsAdded") === "no" && playing === false) {
+                            //do nothing
                         }
-                    }*/
+                    }
                 }
             }
         }
