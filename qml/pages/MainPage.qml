@@ -39,9 +39,9 @@ Rectangle {
     Component.onCompleted: {
         settings.setValue("shuffle", "")
         settings.setValue("firstShuffleArraySongPlayed", "no")
-        delay(1000, function() {
+/*        delay(1000, function() {
             settings.setValue("latestIndex", list.currentIndex)
-        })
+        })*/
 //        settings.setValue("latestIndex", list.currentIndex)
 //        settings.setValue("songsAdded", "")
     }
@@ -671,6 +671,7 @@ Rectangle {
             clip: true
             onCurrentIndexChanged: {
                 audioPlayer.source = folderModel.get(currentIndex, "fileURL")
+                settings.setValue("latestIndex", list.currentIndex)
             }
             FolderListModel {
                 id: folderModel
