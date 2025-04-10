@@ -808,7 +808,7 @@ Rectangle {
                         onClicked: {
                             process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
                             settings.setValue("latestIndex", "")
-                            list.currentIndex = undefined
+                            list.currentIndex = -1
                         }
                     }
 
