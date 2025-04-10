@@ -809,7 +809,8 @@ Rectangle {
                             process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
                             settings.setValue("latestIndex", "")
 //                            list.currentIndex = -1
-                            folderModel.remove(list.currentIndex)
+//                            folderModel.remove(list.currentIndex)
+                            audioPlayer.source = folderModel.get(currentIndex, "fileURL")
                         }
                     }
 
