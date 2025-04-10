@@ -24,6 +24,7 @@
 #include <QQmlContext>
 #include <QtQml>
 #include "process.h"
+#include "restarter.h"
 
 int main(int argc, char *argv[])
 {
@@ -36,6 +37,7 @@ int main(int argc, char *argv[])
     qDebug() << "Starting app from main.cpp";
 
     qmlRegisterType<Process>( "Process", 1, 0, "Process" );
+    qmlRegisterType<Restarter>("closx.restarter", 1, 0, "Restarter");
 
     QQuickView *view = new QQuickView();
 
