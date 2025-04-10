@@ -635,7 +635,12 @@ Rectangle {
 
                 Connections {
                     target: utFilePicker.item
-                    onFilesAdded: console.log("Import done!")
+//                    onFilesAdded: console.log("Import done!")
+                    onFilesAdded: {
+                        console.log("Import done!")
+                        audioPlayer.stop()
+                        playing = false
+                    }
 /*                    onFilesAdded: {
                         console.log("Import done!")
                         settings.setValue("songsAdded", "yes")
