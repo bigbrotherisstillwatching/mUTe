@@ -684,7 +684,11 @@ Rectangle {
                 nameFilters: ["*.ogg", "*.wav", "*.mp3", "*.m4a", "*.flac", "*.aac", "*.aiff"]
                 onStatusChanged: {
                     if(folderModel.status === FolderListModel.Ready) {
-                        list.currentIndex = settings.value("latestIndex")
+                        if(list.currentIndex === undefined) {
+                            list.currentIndex = 0
+                        } else {
+                            list.currentIndex = settings.value("latestIndex")
+                        }
                     }
                 }
             }
