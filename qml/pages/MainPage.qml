@@ -810,7 +810,6 @@ Rectangle {
                             settings.setValue("latestIndex", "")
 //                            list.currentIndex = -1
 //                            folderModel.remove(list.currentIndex)
-                            audioPlayer.source = folderModel.get(currentIndex, "fileURL")
                         }
                     }
 
