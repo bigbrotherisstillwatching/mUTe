@@ -23,6 +23,7 @@ import Lomiri.Components 1.3
 import Qt.labs.settings 1.0
 import QtGraphicalEffects 1.12
 import Process 1.0
+import closx.restarter 1.0
 
 Rectangle {
     id: mainPage
@@ -810,6 +811,9 @@ Rectangle {
                             settings.setValue("latestIndex", "")
 //                            list.currentIndex = -1
 //                            folderModel.remove(list.currentIndex)
+                            delay(1000, function() {
+                                restarter.makeRestart()
+                            })
                         }
                     }
 
