@@ -284,7 +284,7 @@ Rectangle {
                     }                        
                 }
             }
-//            onPlaying: settings.setValue("latestIndex", list.currentIndex)
+            onPlaying: settings.setValue("latestIndex", list.currentIndex)
         }
 
         Item {
@@ -671,7 +671,7 @@ Rectangle {
             clip: true
             onCurrentIndexChanged: {
                 audioPlayer.source = folderModel.get(currentIndex, "fileURL")
-                settings.setValue("latestIndex", list.currentIndex)
+//                settings.setValue("latestIndex", list.currentIndex)
             }
             FolderListModel {
                 id: folderModel
