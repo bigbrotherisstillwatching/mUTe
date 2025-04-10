@@ -45,7 +45,7 @@ Rectangle {
 /*        delay(1000, function() {
             list.currentIndex = settings.value("latestIndex")
         })*/
-        list.currentIndex = settings.value("latestIndex")
+//        list.currentIndex = settings.value("latestIndex")
 //        settings.setValue("latestIndex", list.currentIndex)
 //        settings.setValue("songsAdded", "")
     }
@@ -682,11 +682,11 @@ Rectangle {
                 folder: "file://" + dataDir
                 showDirs: false
                 nameFilters: ["*.ogg", "*.wav", "*.mp3", "*.m4a", "*.flac", "*.aac", "*.aiff"]
-/*                onStatusChanged: {
+                onStatusChanged: {
                     if(folderModel.status === FolderListModel.Ready) {
-                        settings.setValue("latestIndex", list.currentIndex)
+                        list.currentIndex = settings.value("latestIndex")
                     }
-                }*/
+                }
             }
             delegate: Component {
                 id: cmpnnt1
