@@ -77,6 +77,10 @@ Rectangle {
         }
     }
 
+    Restarter {
+        id: restarter
+    }
+
 /*###########FUNCTIONS##########*/
 
     function delay(delayTime,cb) {
