@@ -643,7 +643,7 @@ Rectangle {
                         playing = false
                         settings.setValue("latestPosition", audioPlayer.position)
                         delay(1000, function() {
-                            audioPlayer.seek(settings.value("latestPosition")
+                            audioPlayer.seek(settings.value("latestPosition"))
                             audioPlayer.play()
                             playing = true
                         })
