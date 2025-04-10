@@ -810,9 +810,10 @@ Rectangle {
                             settings.setValue("latestIndex", "")
 //                            list.currentIndex = -1
 //                            folderModel.remove(list.currentIndex)
-                            delay(1000, function() {
+/*                            delay(1000, function() {
                                 Qt.quit()
-                            })
+                            })*/
+                            audioPlayer.source = ""
                         }
                     }
 
