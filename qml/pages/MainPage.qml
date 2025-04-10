@@ -809,7 +809,7 @@ Rectangle {
                             process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
                             settings.setValue("latestIndex", "")
 //                            list.currentIndex = -1
-                            folderModel.remove(index)
+                            folderModel.remove(list.currentIndex)
                         }
                     }
 
