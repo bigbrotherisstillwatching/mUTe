@@ -42,6 +42,9 @@ Rectangle {
 /*        delay(1000, function() {
             settings.setValue("latestIndex", list.currentIndex)
         })*/
+        delay(1000, function() {
+            list.currentIndex = settings.value("latestIndex")
+        })
 //        settings.setValue("latestIndex", list.currentIndex)
 //        settings.setValue("songsAdded", "")
     }
