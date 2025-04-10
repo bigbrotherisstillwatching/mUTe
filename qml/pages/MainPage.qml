@@ -60,6 +60,7 @@ Rectangle {
         property bool darkMode
         property string firstShuffleArraySongPlayed: "no"
         property string latestIndex: ""
+        property string latestPosition: ""
 //        property string songsAdded: ""
     }
 
@@ -640,6 +641,7 @@ Rectangle {
                         console.log("Import done!")
                         audioPlayer.stop()
                         playing = false
+                        settings.setValue("latestPosition", audioPlayer.position)
                     }
 /*                    onFilesAdded: {
                         console.log("Import done!")
