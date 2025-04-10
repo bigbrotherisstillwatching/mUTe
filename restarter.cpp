@@ -1,5 +1,6 @@
 #include "restarter.h"
-#include <QApplication>
+#include <QGuiApplication>
+#include <QCoreApplication>
 #include <QProcess>
 
 
