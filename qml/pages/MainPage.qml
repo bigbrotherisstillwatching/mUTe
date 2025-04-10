@@ -640,13 +640,17 @@ Rectangle {
                     onFilesAdded: {
                         console.log("Import done!")
                         if(playing === true) {
-                            settings.setValue("latestPosition", audioPlayer.position)
+//                            settings.setValue("latestPosition", audioPlayer.position)
                             audioPlayer.pause()
                             playing = false
 //                            settings.setValue("latestPosition", audioPlayer.position)
-                            audioPlayer.seek(settings.value("latestPosition"))
-                            audioPlayer.play()
-                            playing = true
+//                            audioPlayer.seek(settings.value("latestPosition"))
+                            delay(1000, function() {
+                                audioPlayer.play()
+                                playing = true
+                            })
+//                            audioPlayer.play()
+//                            playing = true
                         }
 //                        delay(1000, function() {
 //                            audioPlayer.seek(settings.value("latestPosition"))
