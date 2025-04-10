@@ -780,6 +780,7 @@ Rectangle {
                         color: deleteallbttn.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                         onClicked: {
                             process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
+                            settings.setValue("latestIndex", "")
                         }
                     }
 
