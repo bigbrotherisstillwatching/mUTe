@@ -515,37 +515,37 @@ Rectangle {
                 height: units.gu(5)
                 color: next.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                 onClicked: {
-                    if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === firstShuffleArrayItem() && settings.value("filesAddedRecently") === "0") {
+                    if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === firstShuffleArrayItem()) {
                         list.currentIndex = nextShuffleArrayItem(list.currentIndex)
-                    } else if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem() && settings.value("filesAddedRecently") === "0") {
+                    } else if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem()) {
                         list.currentIndex = nextShuffleArrayItem(list.currentIndex)
-                    } else if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === lastShuffleArrayItem() && settings.value("filesAddedRecently") === "0") {
+                    } else if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === lastShuffleArrayItem()) {
                         list.currentIndex = firstShuffleArrayItem()
-                    } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === list.count-1 && settings.value("filesAddedRecently") === "0") {
+                    } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === list.count-1) {
                         list.currentIndex = 0
-                    } else if(mainPage.shuffle === true && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex === firstShuffleArrayItem() && settings.value("filesAddedRecently") === "0") {
+                    } else if(mainPage.shuffle === true && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex === firstShuffleArrayItem()) {
                         list.currentIndex = nextShuffleArrayItem(list.currentIndex)
-                    } else if(mainPage.shuffle === true && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem() && settings.value("filesAddedRecently") === "0") {
+                    } else if(mainPage.shuffle === true && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem()) {
                         list.currentIndex = nextShuffleArrayItem(list.currentIndex)
-                    } else if(mainPage.shuffle === true && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex === lastShuffleArrayItem() && settings.value("filesAddedRecently") === "0") {
+                    } else if(mainPage.shuffle === true && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex === lastShuffleArrayItem()) {
                         list.currentIndex = firstShuffleArrayItem()
-                    } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex != list.count-1 && settings.value("filesAddedRecently") === "0") {
+                    } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex != list.count-1) {
                         list.currentIndex += 1
-                    } else if(mainPage.shuffle === false && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex === list.count-1 && settings.value("filesAddedRecently") === "0") {
+                    } else if(mainPage.shuffle === false && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex === list.count-1) {
                         list.currentIndex = 0
-                    } else if(mainPage.shuffle === false && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex != list.count-1 && settings.value("filesAddedRecently") === "0") {
+                    } else if(mainPage.shuffle === false && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex != list.count-1) {
                         list.currentIndex += 1
-                    } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === true && settings.value("filesAddedRecently") === "0") {
+                    } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === true) {
                         //do nothing
                     }
-                    if(playing === true && settings.value("filesAddedRecently") === "0") {
+                    if(playing === true) {
                         audioPlayer.stop()
                         playing = false
                         delay(250, function() {
                             audioPlayer.play()
                             playing = true
                         })
-                    } else if(playing === false && settings.value("filesAddedRecently") === "0") {
+                    } else if(playing === false) {
                         //do nothing
                     }
                 }
@@ -645,16 +645,10 @@ Rectangle {
                             delay(750, function() {
                                 settings.setValue("filesAddedRecently", "0")
                             })
-                        } else {
-                            //do nothing
                         }
-/*                        } else if(playing === true && settings.value("filesAddedRecently") === "0") {
-                            //do nothing
-                        } else if(playing === false && settings.value("filesAddedRecently") === "1") {
-                            //do nothing
-                        } else if(playing === false && settings.value("filesAddedRecently") === "0") {
-                            //do nothing
-                        }*/
+                        delay(750, function() {
+                            settings.setValue("filesAddedRecently", "0")
+                        })
                     }
                 }
             }
