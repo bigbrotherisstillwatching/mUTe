@@ -52,7 +52,7 @@ Rectangle {
         property string firstShuffleArraySongPlayed: "no"
         property string latestIndex: ""
         property string latestPosition: ""
-        property string filesAddedRecently: "0"
+        property string filesAddedRecently: ""
     }
 
     Process {
@@ -642,12 +642,10 @@ Rectangle {
                             delay(500, function() {
                                 audioPlayer.seek(settings.value("latestPosition"))
                             })
-                            delay(750, function() {
-                                settings.setValue("filesAddedRecently", "0")
-                            })
-                        } else {
-                            //do nothing
                         }
+                        delay(750, function() {
+                            settings.setValue("filesAddedRecently", "0")
+                        })
                     }
                 }
             }
