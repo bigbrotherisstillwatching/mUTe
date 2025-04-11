@@ -813,7 +813,7 @@ Rectangle {
 /*                            delay(1000, function() {
                                 Qt.quit()
                             })*/
-                            audioPlayer.destroy()
+//                            audioPlayer.destroy()
                         }
                     }
 
