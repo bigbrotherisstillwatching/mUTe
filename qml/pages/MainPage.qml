@@ -641,16 +641,19 @@ Rectangle {
                     onFilesAdded: {
                         console.log("Import done!")
                         if(playing === true) {
-//                            settings.setValue("latestPosition", audioPlayer.position)
+                            settings.setValue("latestPosition", audioPlayer.position)
 //                            settings.setValue("latestDuration", audioPlayer.duration)
-                            audioPlayer.pause()
+                            audioPlayer.stop()
                             playing = false
 //                            settings.setValue("latestPosition", audioPlayer.position)
 //                            audioPlayer.seek(settings.value("latestPosition"))
 //                            audioPlayer.seek(audioplayer.position)
-                            delay(1000, function() {
+                            delay(250, function() {
                                 audioPlayer.play()
                                 playing = true
+                            })
+                            delay(500, function() {
+                                audioPlayer.seek(settings.value("latestPosition"))
                             })
 //                            audioPlayer.play()
 //                            playing = true
@@ -809,18 +812,18 @@ Rectangle {
                         height: units.gu(5)
                         color: deleteallbttn.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                         onClicked: {
-//                            process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
-//                            settings.setValue("latestIndex", "")
+                            process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
+                            settings.setValue("latestIndex", "")
 //                            list.currentIndex = -1
 //                            folderModel.remove(list.currentIndex)
-/*                            delay(1000, function() {
+                            delay(1000, function() {
                                 Qt.quit()
-                            })*/
-//                            audioPlayer.destroy()
-                            settings.setValue("latestPosition", audioPlayer.position)
-                            delay(5000, function() {
-                                audioPlayer.seek(settings.value("latestPosition"))
                             })
+//                            audioPlayer.destroy()
+//                            settings.setValue("latestPosition", audioPlayer.position)
+/*                            delay(5000, function() {
+                                audioPlayer.seek(settings.value("latestPosition"))
+                            })*/
                         }
                     }
 
