@@ -52,7 +52,7 @@ Rectangle {
         property string firstShuffleArraySongPlayed: "no"
         property string latestIndex: ""
         property string latestPosition: ""
-        property string filesAddedRecently: ""
+        property string filesAddedRecently: "0"
     }
 
     Process {
@@ -515,37 +515,37 @@ Rectangle {
                 height: units.gu(5)
                 color: next.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
                 onClicked: {
-                    if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === firstShuffleArrayItem()) {
+                    if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === firstShuffleArrayItem() && settings.value("filesAddedRecently") === "0") {
                         list.currentIndex = nextShuffleArrayItem(list.currentIndex)
-                    } else if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem()) {
+                    } else if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem() && settings.value("filesAddedRecently") === "0") {
                         list.currentIndex = nextShuffleArrayItem(list.currentIndex)
-                    } else if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === lastShuffleArrayItem()) {
+                    } else if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === lastShuffleArrayItem() && settings.value("filesAddedRecently") === "0") {
                         list.currentIndex = firstShuffleArrayItem()
-                    } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === list.count-1) {
+                    } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === list.count-1 && settings.value("filesAddedRecently") === "0") {
                         list.currentIndex = 0
-                    } else if(mainPage.shuffle === true && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex === firstShuffleArrayItem()) {
+                    } else if(mainPage.shuffle === true && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex === firstShuffleArrayItem() && settings.value("filesAddedRecently") === "0") {
                         list.currentIndex = nextShuffleArrayItem(list.currentIndex)
-                    } else if(mainPage.shuffle === true && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem()) {
+                    } else if(mainPage.shuffle === true && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex != firstShuffleArrayItem() && list.currentIndex != lastShuffleArrayItem() && settings.value("filesAddedRecently") === "0") {
                         list.currentIndex = nextShuffleArrayItem(list.currentIndex)
-                    } else if(mainPage.shuffle === true && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex === lastShuffleArrayItem()) {
+                    } else if(mainPage.shuffle === true && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex === lastShuffleArrayItem() && settings.value("filesAddedRecently") === "0") {
                         list.currentIndex = firstShuffleArrayItem()
-                    } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex != list.count-1) {
+                    } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex != list.count-1 && settings.value("filesAddedRecently") === "0") {
                         list.currentIndex += 1
-                    } else if(mainPage.shuffle === false && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex === list.count-1) {
+                    } else if(mainPage.shuffle === false && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex === list.count-1 && settings.value("filesAddedRecently") === "0") {
                         list.currentIndex = 0
-                    } else if(mainPage.shuffle === false && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex != list.count-1) {
+                    } else if(mainPage.shuffle === false && mainPage.repeatall === true && mainPage.repeatcurrent === false && list.currentIndex != list.count-1 && settings.value("filesAddedRecently") === "0") {
                         list.currentIndex += 1
-                    } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === true) {
+                    } else if(mainPage.shuffle === false && mainPage.repeatall === false && mainPage.repeatcurrent === true && settings.value("filesAddedRecently") === "0") {
                         //do nothing
                     }
-                    if(playing === true) {
+                    if(playing === true && settings.value("filesAddedRecently") === "0") {
                         audioPlayer.stop()
                         playing = false
                         delay(250, function() {
                             audioPlayer.play()
                             playing = true
                         })
-                    } else if(playing === false) {
+                    } else if(playing === false && settings.value("filesAddedRecently") === "0") {
                         //do nothing
                     }
                 }
@@ -645,13 +645,16 @@ Rectangle {
                             delay(750, function() {
                                 settings.setValue("filesAddedRecently", "0")
                             })
-                        } else if(playing === true && settings.value("filesAddedRecently") === "0") {
+                        } else {
+                            //do nothing
+                        }
+/*                        } else if(playing === true && settings.value("filesAddedRecently") === "0") {
                             //do nothing
                         } else if(playing === false && settings.value("filesAddedRecently") === "1") {
                             //do nothing
                         } else if(playing === false && settings.value("filesAddedRecently") === "0") {
                             //do nothing
-                        }
+                        }*/
                     }
                 }
             }
