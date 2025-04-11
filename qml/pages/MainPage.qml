@@ -23,6 +23,7 @@ import Lomiri.Components 1.3
 import Qt.labs.settings 1.0
 import QtGraphicalEffects 1.12
 import Process 1.0
+import QtTest 1.12
 
 Rectangle {
     id: mainPage
@@ -627,9 +628,14 @@ Rectangle {
                 Connections {
                     target: utFilePicker.item
 //                    onFilesAdded: console.log("Import done!")
+                    SignalSpy {
+                        id: spy
+                        target: utFilePicker.item
+                        signalName: "filesAdded"
+                    }
                     onFilesAdded: {
                         console.log("Import done!")
-                        if(playing === true) {
+/*                        if(playing === true) {
                             settings.setValue("latestPosition", audioPlayer.position)
                             audioPlayer.stop()
                             playing = false
@@ -640,6 +646,19 @@ Rectangle {
                             delay(500, function() {
                                 audioPlayer.seek(settings.value("latestPosition"))
                             })
+                        }*/
+                        if(playing === true && spy.count === 1) {
+                            settings.setValue("latestPosition", audioPlayer.position)
+                            audioPlayer.stop()
+                            playing = false
+                            delay(250, function() {
+                                audioPlayer.play()
+                                playing = true
+                            })
+                            delay(500, function() {
+                                audioPlayer.seek(settings.value("latestPosition"))
+                            })
+                            spy.clear()
                         }
                     }
                 }
