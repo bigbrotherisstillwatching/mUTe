@@ -39,15 +39,6 @@ Rectangle {
     Component.onCompleted: {
         settings.setValue("shuffle", "")
         settings.setValue("firstShuffleArraySongPlayed", "no")
-/*        delay(1000, function() {
-            settings.setValue("latestIndex", list.currentIndex)
-        })*/
-/*        delay(1000, function() {
-            list.currentIndex = settings.value("latestIndex")
-        })*/
-//        list.currentIndex = settings.value("latestIndex")
-//        settings.setValue("latestIndex", list.currentIndex)
-//        settings.setValue("songsAdded", "")
     }
 
     Timer {
@@ -61,8 +52,6 @@ Rectangle {
         property string firstShuffleArraySongPlayed: "no"
         property string latestIndex: ""
         property string latestPosition: ""
-//        property string latestDuration: ""
-//        property string songsAdded: ""
     }
 
     Process {
@@ -642,12 +631,8 @@ Rectangle {
                         console.log("Import done!")
                         if(playing === true) {
                             settings.setValue("latestPosition", audioPlayer.position)
-//                            settings.setValue("latestDuration", audioPlayer.duration)
                             audioPlayer.stop()
                             playing = false
-//                            settings.setValue("latestPosition", audioPlayer.position)
-//                            audioPlayer.seek(settings.value("latestPosition"))
-//                            audioPlayer.seek(audioplayer.position)
                             delay(250, function() {
                                 audioPlayer.play()
                                 playing = true
@@ -655,44 +640,8 @@ Rectangle {
                             delay(500, function() {
                                 audioPlayer.seek(settings.value("latestPosition"))
                             })
-//                            audioPlayer.play()
-//                            playing = true
                         }
-//                        delay(1000, function() {
-//                            audioPlayer.seek(settings.value("latestPosition"))
-//                            audioPlayer.play()
-//                            playing = true
-//                        })
-//                        delay(1250, function() {
-//                            audioPlayer.seek(settings.value("latestPosition"))
-//                            audioPlayer.play()
-//                            playing = true
-//                        })
                     }
-/*                    onFilesAdded: {
-                        console.log("Import done!")
-                        settings.setValue("songsAdded", "yes")
-                        delay(1000, function() {
-                            settings.setValue("songsAdded", "no")
-                        })
-                        if(settings.value("songsAdded") === "yes" && playing === true) {
-                            audioPlayer.pause()
-                            playing = false
-                            delay(500, function() {
-                                list.currentIndex = settings.value("latestIndex")
-                                audioPlayer.play()
-                                playing = true
-                            })
-                        } else if(settings.value("songsAdded") === "no" && playing === true) {
-                            //do nothing
-                        } else if(settings.value("songsAdded") === "yes" && playing === false) {
-                            delay(500, function() {
-                                list.currentIndex = settings.value("latestIndex")
-                            })
-                        } else if(settings.value("songsAdded") === "no" && playing === false) {
-                            //do nothing
-                        }
-                    }*/
                 }
             }
         }
@@ -708,7 +657,6 @@ Rectangle {
             clip: true
             onCurrentIndexChanged: {
                 audioPlayer.source = folderModel.get(currentIndex, "fileURL")
-//                settings.setValue("latestIndex", list.currentIndex)
             }
             FolderListModel {
                 id: folderModel
@@ -771,14 +719,12 @@ Rectangle {
                                 audioPlayer.stop()
                                 playing = false
                                 list.currentIndex = index
-//                                settings.setValue("latestIndex", list.currentIndex)
                                 delay(250, function() {
                                     audioPlayer.play()
                                     playing = true
                                 })
                             } else if(playing === false) {
                                 list.currentIndex = index
-//                                settings.setValue("latestIndex", list.currentIndex)
                             }
                         }
                     }
@@ -814,16 +760,9 @@ Rectangle {
                         onClicked: {
                             process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
                             settings.setValue("latestIndex", "")
-//                            list.currentIndex = -1
-//                            folderModel.remove(list.currentIndex)
                             delay(1000, function() {
                                 Qt.quit()
                             })
-//                            audioPlayer.destroy()
-//                            settings.setValue("latestPosition", audioPlayer.position)
-/*                            delay(5000, function() {
-                                audioPlayer.seek(settings.value("latestPosition"))
-                            })*/
                         }
                     }
 
