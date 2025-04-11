@@ -60,7 +60,7 @@ Rectangle {
         property bool darkMode
         property string firstShuffleArraySongPlayed: "no"
         property string latestIndex: ""
-//        property string latestPosition: ""
+        property string latestPosition: ""
 //        property string latestDuration: ""
 //        property string songsAdded: ""
     }
@@ -641,13 +641,13 @@ Rectangle {
                     onFilesAdded: {
                         console.log("Import done!")
                         if(playing === true) {
-//                            settings.setValue("latestPosition", audioPlayer.position)
+                            settings.setValue("latestPosition", audioPlayer.position)
 //                            settings.setValue("latestDuration", audioPlayer.duration)
                             audioPlayer.pause()
                             playing = false
 //                            settings.setValue("latestPosition", audioPlayer.position)
-//                            audioPlayer.seek(settings.value("latestPosition"))
-                            audioPlayer.seek(audioplayer.position)
+                            audioPlayer.seek("settings.value("latestPosition")")
+//                            audioPlayer.seek(audioplayer.position)
                             delay(1000, function() {
                                 audioPlayer.play()
                                 playing = true
