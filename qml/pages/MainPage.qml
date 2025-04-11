@@ -61,6 +61,7 @@ Rectangle {
         property string firstShuffleArraySongPlayed: "no"
         property string latestIndex: ""
         property string latestPosition: ""
+        property string latestDuration: ""
 //        property string songsAdded: ""
     }
 
@@ -640,11 +641,12 @@ Rectangle {
                     onFilesAdded: {
                         console.log("Import done!")
                         if(playing === true) {
-//                            settings.setValue("latestPosition", audioPlayer.position)
+                            settings.setValue("latestPosition", audioPlayer.position)
+                            settings.setValue("latestDuration", audioPlayer.duration)
                             audioPlayer.pause()
                             playing = false
 //                            settings.setValue("latestPosition", audioPlayer.position)
-//                            audioPlayer.seek(settings.value("latestPosition"))
+                            audioPlayer.seek((settings.value("latestPosition") / settings.value("latestDuration")) * settings.value("latestDuration"))
                             delay(1000, function() {
                                 audioPlayer.play()
                                 playing = true
@@ -810,9 +812,9 @@ Rectangle {
                             settings.setValue("latestIndex", "")
 //                            list.currentIndex = -1
 //                            folderModel.remove(list.currentIndex)
-/*                            delay(1000, function() {
+                            delay(1000, function() {
                                 Qt.quit()
-                            })*/
+                            })
 //                            audioPlayer.destroy()
                         }
                     }
