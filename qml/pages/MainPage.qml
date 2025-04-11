@@ -221,7 +221,6 @@ Rectangle {
             id: audioPlayer
             audioRole: MediaPlayer.MusicRole
             notifyInterval: 1
-            autoLoad: false
 
             onPlaybackStateChanged: {
                 if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
