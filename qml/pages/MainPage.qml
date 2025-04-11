@@ -630,7 +630,7 @@ Rectangle {
 //                    onFilesAdded: console.log("Import done!")
                     onFilesAdded: {
                         console.log("Import done!")
-                        settings.setValue("filesAddedRecently", "0")
+                        settings.setValue("filesAddedRecently", "1")
                         if(playing === true && settings.value("filesAddedRecently") === "1") {
                             settings.setValue("latestPosition", audioPlayer.position)
                             audioPlayer.stop()
@@ -642,10 +642,16 @@ Rectangle {
                             delay(500, function() {
                                 audioPlayer.seek(settings.value("latestPosition"))
                             })
+                            delay(750, function() {
+                                settings.setValue("filesAddedRecently", "0")
+                            })
+                        } else if(playing === true && settings.value("filesAddedRecently") === "0") {
+                            //do nothing
+                        } else if(playing === false && settings.value("filesAddedRecently") === "1") {
+                            //do nothing
+                        } else if(playing === false && settings.value("filesAddedRecently") === "0") {
+                            //do nothing
                         }
-/*                        delay(750, function() {
-                            settings.setValue("filesAddedRecently", "0")
-                        })*/
                     }
                 }
             }
