@@ -61,7 +61,7 @@ Rectangle {
         property string firstShuffleArraySongPlayed: "no"
         property string latestIndex: ""
         property string latestPosition: ""
-        property string latestDuration: ""
+//        property string latestDuration: ""
 //        property string songsAdded: ""
     }
 
@@ -642,11 +642,11 @@ Rectangle {
                         console.log("Import done!")
                         if(playing === true) {
                             settings.setValue("latestPosition", audioPlayer.position)
-                            settings.setValue("latestDuration", audioPlayer.duration)
+ //                           settings.setValue("latestDuration", audioPlayer.duration)
                             audioPlayer.pause()
                             playing = false
 //                            settings.setValue("latestPosition", audioPlayer.position)
-                            audioPlayer.seek((settings.value("latestPosition") / settings.value("latestDuration")) * settings.value("latestDuration"))
+                            audioPlayer.seek(settings.value("latestPosition"))
                             delay(1000, function() {
                                 audioPlayer.play()
                                 playing = true
