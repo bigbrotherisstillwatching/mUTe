@@ -51,8 +51,8 @@ Rectangle {
         property bool darkMode
         property string firstShuffleArraySongPlayed: "no"
         property string latestIndex: ""
-        property string latestPosition: ""
-        property string filesAddedRecently: "0"
+//        property string latestPosition: ""
+//        property string filesAddedRecently: "0"
     }
 
     Process {
@@ -630,26 +630,26 @@ Rectangle {
 //                    onFilesAdded: console.log("Import done!")
                     onFilesAdded: {
                         console.log("Import done!")
-                        settings.setValue("filesAddedRecently", "1")
-                        if(playing === true && settings.value("filesAddedRecently") === "1") {
-                            settings.setValue("latestPosition", audioPlayer.position)
+//                        settings.setValue("filesAddedRecently", "1")
+                        if(playing === true) {
+//                            settings.setValue("latestPosition", audioPlayer.position)
                             audioPlayer.stop()
                             playing = false
                             audioPlayer.seek(0)
-                            delay(250, function() {
+/*                            delay(250, function() {
                                 audioPlayer.play()
                                 playing = true
-                            })
-                            delay(500, function() {
+                            })*/
+/*                            delay(500, function() {
                                 audioPlayer.seek(settings.value("latestPosition"))
-                            })
-                            delay(750, function() {
+                            })*/
+/*                            delay(750, function() {
                                 settings.setValue("filesAddedRecently", "0")
-                            })
+                            })*/
                         }
-                        delay(1000, function() {
+/*                        delay(1000, function() {
                             settings.setValue("filesAddedRecently", "0")
-                        })
+                        })*/
                     }
                 }
             }
