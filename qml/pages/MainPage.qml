@@ -635,7 +635,7 @@ Rectangle {
 //                            settings.setValue("latestPosition", audioPlayer.position)
                             audioPlayer.stop()
                             playing = false
-//                            delay(250, function() {
+/*                            delay(250, function() {
                                 audioPlayer.play()
                                 playing = true
                             })*/
