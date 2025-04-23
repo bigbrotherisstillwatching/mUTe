@@ -44,6 +44,7 @@ configure_file(manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/manifest.json)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifest.json DESTINATION ${CMAKE_INSTALL_PREFIX})
 install(FILES ${PROJECT_NAME}.apparmor DESTINATION ${DATA_DIR})
 install(FILES assets/logo.svg DESTINATION assets)
+install(FILES scripts/restart.sh DESTINATION scripts PERMISSIONS OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 
 qt5_add_resources(QT_RESOURCES qml/qml.qrc)
 qt5_add_resources(QT_RESOURCES assets/assets.qrc)
@@ -53,7 +54,7 @@ target_link_libraries(${PROJECT_NAME} Qt5::Gui Qt5::Qml Qt5::Quick Qt5::QuickCon
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 # Translations
-file(GLOB_RECURSE I18N_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/po qml/*.qml qml/*.js)
+file(GLOB_RECURSE I18N_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/po qml/*.qml qml/*.js scripts)
 list(APPEND I18N_SRC_FILES ${DESKTOP_FILE_NAME}.in.h)
 
 find_program(INTLTOOL_MERGE intltool-merge)
