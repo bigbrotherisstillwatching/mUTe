@@ -281,51 +281,63 @@ Rectangle {
             onPlaying: settings.setValue("latestIndex", list.currentIndex)
         }
 
-        Item {
-            id: itm1
-            property string text: {
-                var flNm = list.model.get(list.currentIndex, "fileName");
-                var dotLastIndex = flNm.lastIndexOf(".");
-                var finalName = flNm.substring(0, dotLastIndex);
-
-                return finalName;
-            }
-            property string spacing: "          "
-            property string combined: text + spacing
-            property string display: combined.substring(step) + combined.substring(0, step)
-            property int step: 0
+        Loader {
+            id: cmpnnt2ldr
+            sourceComponent: cmpnnt2
+            anchors.top: flick1.top
             width: parent.width
             height: units.gu(6)
+        }
 
-            Rectangle {
-                id: rec1
-                height: itm1.height
-                width: itm1.width
-                color: "transparent"
-                border.color: drkMd ? "#121212" : "white"
-                border.width: units.gu(2)
-                z: 1
-            }
+        Component {
+            id: cmpnnt2
+            Item {
+                id: itm1
+                property string text: {
+                    var flNm = list.model.get(list.currentIndex, "fileName");
+                    var dotLastIndex = flNm.lastIndexOf(".");
+                    var finalName = flNm.substring(0, dotLastIndex);
 
-            Timer {
-                id: timer2
-                interval: 200
-                running: true
-                repeat: true
-                onTriggered: itm1.step = (itm1.step + 1) % itm1.combined.length
-            }
+                    return finalName;
+                }
+                property string spacing: "          "
+                property string combined: text + spacing
+                property string display: combined.substring(step) + combined.substring(0, step)
+                property int step: 0
+//                width: parent.width
+//                height: units.gu(6)
 
-            Text {
-                text: itm1.display
-                anchors.horizontalCenter: rec1.horizontalCenter
-                anchors.verticalCenter: rec1.verticalCenter
-                color: drkMd ? "#808080" : "black"
+                Rectangle {
+                    id: rec1
+                    height: itm1.height
+                    width: itm1.width
+                    color: "transparent"
+                    border.color: drkMd ? "#121212" : "white"
+                    border.width: units.gu(2)
+                    z: 1
+                }
+
+                Timer {
+                    id: timer2
+                    interval: 200
+                    running: true
+                    repeat: true
+                    onTriggered: itm1.step = (itm1.step + 1) % itm1.combined.length
+                }
+
+                Text {
+                    text: itm1.display
+                    anchors.horizontalCenter: rec1.horizontalCenter
+                    anchors.verticalCenter: rec1.verticalCenter
+                    color: drkMd ? "#808080" : "black"
+                }
             }
         }
 
         Text {
             id: mediaTime
-            anchors.top: itm1.bottom
+//            anchors.top: itm1.bottom
+            anchors.top: cmpnnt2ldr.bottom
             anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
             color: drkMd ? "#808080" : "black"
