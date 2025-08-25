@@ -28,7 +28,7 @@ Rectangle {
     id: mainPage
     anchors.fill: parent
 
-    color: settings.darkMode ? "#121212" : "white"
+    color: drkMd ? "#121212" : "white"
 
     property bool playing: false
     property bool shuffle: false
@@ -51,8 +51,6 @@ Rectangle {
         property bool darkMode
         property string firstShuffleArraySongPlayed: "no"
         property string latestIndex: ""
-//        property string latestPosition: ""
-//        property string filesAddedRecently: "0"
     }
 
     Process {
@@ -170,20 +168,20 @@ Rectangle {
         title: "mUTe"
         z: 1
         StyleHints {
-            foregroundColor: settings.darkMode ? "#808080" : "black"
-            backgroundColor: settings.darkMode ? "#121212" : "white"
-            dividerColor: settings.darkMode ? "#808080" : "black"
+            foregroundColor: drkMd ? "#808080" : "black"
+            backgroundColor: drkMd ? "#121212" : "white"
+            dividerColor: drkMd ? "#808080" : "black"
         }
         contents: Rectangle {
             id: hdrrec
             anchors.fill: parent
-            color: settings.darkMode ? "#121212" : "white"
+            color: drkMd ? "#121212" : "white"
             Text {
                 id: hdrtxt
                 anchors.left: hdrrec.left
                 anchors.verticalCenter: hdrrec.verticalCenter
                 text: header.title
-                color: settings.darkMode ? "#808080" : "black"
+                color: drkMd ? "#808080" : "black"
                 font.pointSize: 40
             }
         }
@@ -287,7 +285,6 @@ Rectangle {
             id: itm1
             property string text: {
                 var flNm = list.model.get(list.currentIndex, "fileName");
-//                var dotLastIndex = flNm.lastIndexOf('.');
                 var dotLastIndex = flNm.lastIndexOf(".");
                 var finalName = flNm.substring(0, dotLastIndex);
 
@@ -305,7 +302,7 @@ Rectangle {
                 height: itm1.height
                 width: itm1.width
                 color: "transparent"
-                border.color: settings.darkMode ? "#121212" : "white"
+                border.color: drkMd ? "#121212" : "white"
                 border.width: units.gu(2)
                 z: 1
             }
@@ -322,7 +319,7 @@ Rectangle {
                 text: itm1.display
                 anchors.horizontalCenter: rec1.horizontalCenter
                 anchors.verticalCenter: rec1.verticalCenter
-                color: settings.darkMode ? "#808080" : "black"
+                color: drkMd ? "#808080" : "black"
             }
         }
 
@@ -331,7 +328,7 @@ Rectangle {
             anchors.top: itm1.bottom
             anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
-            color: settings.darkMode ? "#808080" : "black"
+            color: drkMd ? "#808080" : "black"
 
             text: {
                 let h,m,s,h2,m2,s2;
@@ -372,7 +369,7 @@ Rectangle {
                 width: prgrssbr.availableWidth
                 height: 10
                 radius: 5
-                color: settings.darkMode ? "#808080" : "#f1f1f1"
+                color: drkMd ? "#808080" : "#f1f1f1"
 
                 Rectangle {
                     id: rec3
@@ -391,7 +388,7 @@ Rectangle {
                 implicitWidth: 52
                 implicitHeight: 52
                 radius: 26
-                color: prgrssbr.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
+                color: prgrssbr.pressed ? "#32517F" : (drkMd ? "#292929" : "white")
             }
             DropShadow {
                 anchors.fill: rec4
@@ -399,7 +396,7 @@ Rectangle {
                 verticalOffset: 0.5
                 radius: 0
                 samples: 1
-                color: settings.darkMode ? "black" : "gray"
+                color: drkMd ? "black" : "gray"
                 source: rec4
                 spread: 0
                 cached: true
@@ -417,7 +414,7 @@ Rectangle {
                 iconName: "media-skip-backward"
                 width: units.gu(5)
                 height: units.gu(5)
-                color: previous.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
+                color: previous.pressed ? "#32517F" : (drkMd ? "#292929" : "white")
                 onClicked: {
                     if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === firstShuffleArrayItem()) {
                         list.currentIndex = lastShuffleArrayItem()
@@ -466,7 +463,7 @@ Rectangle {
                 }
                 width: units.gu(5)
                 height: units.gu(5)
-                color: playstop.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
+                color: playstop.pressed ? "#32517F" : (drkMd ? "#292929" : "white")
                 onClicked: {
                     if(playing === true) {
                         audioPlayer.stop()
@@ -499,7 +496,7 @@ Rectangle {
                 iconName: "media-playback-pause"
                 width: units.gu(5)
                 height: units.gu(5)
-                color: pause.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
+                color: pause.pressed ? "#32517F" : (drkMd ? "#292929" : "white")
                 onClicked: {
                     if(playing === true) {
                         audioPlayer.pause()
@@ -513,7 +510,7 @@ Rectangle {
                 iconName: "media-skip-forward"
                 width: units.gu(5)
                 height: units.gu(5)
-                color: next.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
+                color: next.pressed ? "#32517F" : (drkMd ? "#292929" : "white")
                 onClicked: {
                     if(mainPage.shuffle === true && mainPage.repeatall === false && mainPage.repeatcurrent === false && list.currentIndex === firstShuffleArrayItem()) {
                         list.currentIndex = nextShuffleArrayItem(list.currentIndex)
@@ -564,7 +561,7 @@ Rectangle {
                 iconName: "media-playlist-shuffle"
                 width: units.gu(5)
                 height: units.gu(5)
-                color: shufflebttn.pressed ? "#32517F" : (shuffle ? "#32517F" : (settings.darkMode ? "#292929" : "white"))
+                color: shufflebttn.pressed ? "#32517F" : (shuffle ? "#32517F" : (drkMd ? "#292929" : "white"))
                 onClicked: {
                     if(shuffle === true) {
                         shuffle = false
@@ -583,7 +580,7 @@ Rectangle {
                 iconName: "media-playlist-repeat-one"
                 width: units.gu(5)
                 height: units.gu(5)
-                color: repeatcurrentbttn.pressed ? "#32517F" : (repeatcurrent ? "#32517F" : (settings.darkMode ? "#292929" : "white"))
+                color: repeatcurrentbttn.pressed ? "#32517F" : (repeatcurrent ? "#32517F" : (drkMd ? "#292929" : "white"))
                 onClicked: {
                     repeatcurrent = !repeatcurrent
                     repeatall = false
@@ -596,7 +593,7 @@ Rectangle {
                 iconName: "media-playlist-repeat"
                 width: units.gu(5)
                 height: units.gu(5)
-                color: repeatallbttn.pressed ? "#32517F" : (repeatall ? "#32517F" : (settings.darkMode ? "#292929" : "white"))
+                color: repeatallbttn.pressed ? "#32517F" : (repeatall ? "#32517F" : (drkMd ? "#292929" : "white"))
                 onClicked: {
                     repeatall = !repeatall
                     repeatcurrent = false
@@ -627,29 +624,13 @@ Rectangle {
 
                 Connections {
                     target: utFilePicker.item
-//                    onFilesAdded: console.log("Import done!")
                     onFilesAdded: {
                         console.log("Import done!")
-//                        settings.setValue("filesAddedRecently", "1")
                         if(playing === true) {
-//                            settings.setValue("latestPosition", audioPlayer.position)
                             audioPlayer.stop()
                             playing = false
                             audioPlayer.seek(0)
-/*                            delay(250, function() {
-                                audioPlayer.play()
-                                playing = true
-                            })*/
-/*                            delay(500, function() {
-                                audioPlayer.seek(settings.value("latestPosition"))
-                            })*/
-/*                            delay(750, function() {
-                                settings.setValue("filesAddedRecently", "0")
-                            })*/
                         }
-/*                        delay(1000, function() {
-                            settings.setValue("filesAddedRecently", "0")
-                        })*/
                     }
                 }
             }
@@ -698,7 +679,7 @@ Rectangle {
                         anchors.left: parent.left
                         anchors.right: parent.right
                         anchors.bottom: parent.bottom
-                        color: settings.darkMode ? "#808080" : "black"
+                        color: drkMd ? "#808080" : "black"
                         z: 1
                     }
 
@@ -708,7 +689,7 @@ Rectangle {
                         anchors.right: parent.right
                         z: 1
                         Text {
-                            id: txt4
+                            id: txt
                             text: fileName
                             height: parent.height
                             width: parent.width
@@ -718,7 +699,7 @@ Rectangle {
                             anchors.left: parent.left
                             anchors.right: parent.right
                             wrapMode: Text.Wrap
-                            color: settings.darkMode ? "#808080" : "black"
+                            color: drkMd ? "#808080" : "black"
                         }
                     }
                     MouseArea {
@@ -752,7 +733,7 @@ Rectangle {
                 width: list.width
                 height: units.gu(7)
                 z: 2
-                color: settings.darkMode ? "#121212" : "white"
+                color: drkMd ? "#121212" : "white"
 
                 Row {
                     id: row3
@@ -765,7 +746,7 @@ Rectangle {
                         iconName: "delete"
                         width: units.gu(5)
                         height: units.gu(5)
-                        color: deleteallbttn.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
+                        color: deleteallbttn.pressed ? "#32517F" : (drkMd ? "#292929" : "white")
                         onClicked: {
                             process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
                             settings.setValue("latestIndex", "")
@@ -777,10 +758,10 @@ Rectangle {
 
                     Button {
                         id: darkModebttn
-                        iconName: settings.darkMode ? "weather-clear-symbolic" : "weather-clear-night-symbolic"
+                        iconName: drkMd ? "weather-clear-symbolic" : "weather-clear-night-symbolic"
                         width: units.gu(5)
                         height: units.gu(5)
-                        color: darkModebttn.pressed ? "#32517F" : (settings.darkMode ? "#292929" : "white")
+                        color: darkModebttn.pressed ? "#32517F" : (drkMd ? "#292929" : "white")
                         onClicked: {
                             drkMd = !drkMd
                         }
