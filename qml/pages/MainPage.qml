@@ -49,7 +49,7 @@ Rectangle {
         id: timer2
         interval: 2000
         repeat: false
-//        running: false
+        running: false
         onTriggered: {
             cmpnnt2ldr.active = true
         }
@@ -297,6 +297,7 @@ Rectangle {
             anchors.top: flick1.top
             width: parent.width
             height: units.gu(6)
+            active: true
         }
 
         Component {
