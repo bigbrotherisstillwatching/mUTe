@@ -45,6 +45,16 @@ Rectangle {
         id: timer
     }
 
+    Timer {
+        id: timer2
+        interval: 2000
+        repeat: false
+//        running: false
+        onTriggered: {
+            cmpnnt2ldr.active = true
+        }
+    }
+
     Settings {
         id: settings
         property string shuffle: ""
@@ -765,6 +775,8 @@ Rectangle {
                             delay(1000, function() {
 //                                Qt.quit()
                                 cmpnnt2ldr.active = false
+                                playing = false
+                                timer2.running = true
                             })
                         }
                     }
