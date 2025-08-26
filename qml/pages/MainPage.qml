@@ -45,7 +45,7 @@ Rectangle {
         id: timer
     }
 
-    Timer {
+/*    Timer {
         id: timer3
         interval: 2000
         repeat: false
@@ -54,7 +54,7 @@ Rectangle {
 //            cmpnnt2ldr.active = true
               cmpnnt2ldr.sourceComponent = cmpnnt2
         }
-    }
+    }*/
 
     Settings {
         id: settings
@@ -778,8 +778,9 @@ Rectangle {
 //                                Qt.quit()
 //                                cmpnnt2ldr.active = false
                                 cmpnnt2ldr.sourceComponent = undefined
+                                cmpnnt2ldr.sourceComponent = cmpnnt2
                                 playing = false
-                                timer3.running = true
+//                                timer3.running = true
                             })
                         }
                     }
