@@ -46,7 +46,7 @@ Rectangle {
     }
 
     Timer {
-        id: timer2
+        id: timer3
         interval: 2000
         repeat: false
         running: false
@@ -777,7 +777,7 @@ Rectangle {
 //                                Qt.quit()
                                 cmpnnt2ldr.active = false
                                 playing = false
-                                timer2.running = true
+                                timer3.running = true
                             })
                         }
                     }
