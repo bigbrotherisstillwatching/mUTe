@@ -51,7 +51,8 @@ Rectangle {
         repeat: false
         running: false
         onTriggered: {
-            cmpnnt2ldr.active = true
+//            cmpnnt2ldr.active = true
+              cmpnnt2ldr.sourceComponent = cmpnnt2
         }
     }
 
@@ -775,7 +776,8 @@ Rectangle {
                             settings.setValue("latestIndex", "")
                             delay(1000, function() {
 //                                Qt.quit()
-                                cmpnnt2ldr.active = false
+//                                cmpnnt2ldr.active = false
+                                cmpnnt2ldr.sourceComponent = undefined
                                 playing = false
                                 timer3.running = true
                             })
