@@ -45,16 +45,16 @@ Rectangle {
         id: timer
     }
 
-/*    Timer {
+    Timer {
         id: timer3
         interval: 2000
         repeat: false
         running: false
         onTriggered: {
-//            cmpnnt2ldr.active = true
-              cmpnnt2ldr.sourceComponent = cmpnnt2
+            cmpnnt2ldr.active = true
+//              cmpnnt2ldr.sourceComponent = cmpnnt2
         }
-    }*/
+    }
 
     Settings {
         id: settings
@@ -650,7 +650,8 @@ Rectangle {
                     target: utFilePicker.item
                     onFilesAdded: {
                         console.log("Import done!")
-                        cmpnnt2ldr.active = true
+//                        cmpnnt2ldr.active = true
+                        timer3.running = true
                         if(playing === true) {
                             audioPlayer.stop()
                             playing = false
