@@ -650,6 +650,7 @@ Rectangle {
                     target: utFilePicker.item
                     onFilesAdded: {
                         console.log("Import done!")
+                        cmpnnt2ldr.active = true
                         if(playing === true) {
                             audioPlayer.stop()
                             playing = false
@@ -775,14 +776,14 @@ Rectangle {
                             process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
                             settings.setValue("latestIndex", "")
                             cmpnnt2ldr.active = false
-                            delay(1000, function() {
+//                            delay(1000, function() {
 //                                Qt.quit()
-                                cmpnnt2ldr.active = true
+//                                cmpnnt2ldr.active = true
 //                                cmpnnt2ldr.sourceComponent = undefined
 //                                cmpnnt2ldr.sourceComponent = cmpnnt2
-                                playing = false
+//                                playing = false
 //                                timer3.running = true
-                            })
+//                            })
                         }
                     }
 
