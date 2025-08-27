@@ -47,7 +47,7 @@ Rectangle {
 
     Timer {
         id: timer3
-        interval: 2000
+        interval: 1000
         repeat: false
         running: false
         onTriggered: {
@@ -777,6 +777,7 @@ Rectangle {
                             process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
                             settings.setValue("latestIndex", "")
                             cmpnnt2ldr.active = false
+                            list.currentIndex = 0
 //                            delay(1000, function() {
 //                                Qt.quit()
 //                                cmpnnt2ldr.active = true
