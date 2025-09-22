@@ -677,6 +677,7 @@ Rectangle {
                         console.log("Import done!")
 //                        cmpnnt2ldr.active = true
                         timer3.running = true
+                        timer4.running = true
                         if(playing === true) {
                             audioPlayer.stop()
                             playing = false
@@ -802,6 +803,7 @@ Rectangle {
                             process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
                             settings.setValue("latestIndex", "")
                             cmpnnt2ldr.active = false
+                            cmpnnt3ldr.active = false
 //                            list.currentIndex = 0
                             list.currentIndex = -1
 //                            delay(1000, function() {
