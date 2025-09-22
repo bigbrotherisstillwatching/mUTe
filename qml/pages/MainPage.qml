@@ -799,6 +799,12 @@ Rectangle {
                             drkMd = !drkMd
                         }
                     }
+
+                    Text {
+                        id: txt2
+                        text: list.currentIndex
+                    }
+
                 }
 
             }
