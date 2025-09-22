@@ -803,7 +803,14 @@ Rectangle {
 
                     Text {
                         id: txt2
-                        text: list.currentIndex
+//                        text: list.currentIndex
+                        text: audioPlayer.position
+                    }
+
+                    Text {
+                        id: txt3
+//                        text: list.currentIndex
+                        text: audioPlayer.duration
                     }
 
                 }
