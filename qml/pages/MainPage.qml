@@ -405,7 +405,8 @@ Rectangle {
             to: 1.0
             live: true
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: mediaTime.bottom
+//            anchors.top: mediaTime.bottom
+            anchors.top: cmpnnt3ldr.bottom
             value: audioPlayer.position / audioPlayer.duration
             onMoved: audioPlayer.seek(value * audioPlayer.duration)
 
