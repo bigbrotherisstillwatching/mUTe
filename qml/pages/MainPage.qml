@@ -806,7 +806,7 @@ Rectangle {
                             cmpnnt3ldr.active = false
 //                            list.currentIndex = 0
                             list.currentIndex = -1
-                            audioPlayer.source = ""
+//                            audioPlayer.source = ""
 //                            delay(1000, function() {
 //                                Qt.quit()
 //                                cmpnnt2ldr.active = true
