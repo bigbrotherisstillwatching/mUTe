@@ -56,7 +56,7 @@ Rectangle {
         }
     }
 
-    Timer {
+/*    Timer {
         id: timer4
         interval: 1000
         repeat: false
@@ -65,7 +65,7 @@ Rectangle {
             cmpnnt3ldr.active = true
 //              cmpnnt3ldr.sourceComponent = cmpnnt3
         }
-    }
+    }*/
 
     Settings {
         id: settings
@@ -228,136 +228,148 @@ Rectangle {
             }
         }
 
-        MediaPlayer {
-            id: audioPlayer
-            audioRole: MediaPlayer.MusicRole
-            notifyInterval: 1
+        Loader {
+            id: cmpnnt2ldr
+            sourceComponent: cmpnnt2
+//            anchors.top: flick1.top
+//            width: parent.width
+//            height: units.gu(6)
+            active: true
+        }
 
-            onPlaybackStateChanged: {
-                if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
-                    list.currentIndex += 1
-                    delay(250, function() {
-                        audioPlayer.play()
-                        mainPage.playing = true
-                    })
-                } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
-                    audioPlayer.stop()
-                    mainPage.playing = false
-                } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
-                    list.currentIndex = 0
-                    delay(250, function() {
-                        audioPlayer.play()
-                        mainPage.playing = true
-                    })
-                } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
-                    list.currentIndex += 1
-                    delay(250, function() {
-                        audioPlayer.play()
-                        mainPage.playing = true
-                    })
-                } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === true && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
-                    delay(250, function() {
-                        audioPlayer.play()
-                        mainPage.playing = true
-                    })
-                } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
-                    if(settings.value("firstShuffleArraySongPlayed") === "no") {
-                        list.currentIndex = firstShuffleArrayItem()
-                        settings.setValue("firstShuffleArraySongPlayed", "yes")
-                    } else if(settings.value("firstShuffleArraySongPlayed") === "yes") {
-                        if(nextShuffleArrayItem(list.currentIndex) === undefined) {
-                            list.currentIndex = firstShuffleArrayItem()
-                        } else {
-                            list.currentIndex = nextShuffleArrayItem(list.currentIndex)
-                        }
-                    }
-                    delay(250, function() {
-                        audioPlayer.play()
-                        mainPage.playing = true
-                    })
-                } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
-                    if(settings.value("firstShuffleArraySongPlayed") === "no") {
-                        list.currentIndex = firstShuffleArrayItem()
-                        settings.setValue("firstShuffleArraySongPlayed", "yes")
+        Component {
+            id: cmpnnt2
+            MediaPlayer {
+                id: audioPlayer
+                audioRole: MediaPlayer.MusicRole
+                notifyInterval: 1
+
+                onPlaybackStateChanged: {
+                    if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
+                        list.currentIndex += 1
                         delay(250, function() {
                             audioPlayer.play()
                             mainPage.playing = true
                         })
-                    } else if(settings.value("firstShuffleArraySongPlayed") === "yes") {
-                        if(nextShuffleArrayItem(list.currentIndex) === undefined) {
-                            audioPlayer.stop()
-                            mainPage.playing = false
-                            mainPage.shuffle = false
-                            settings.setValue("shuffle", "")
-                            settings.setValue("firstShuffleArraySongPlayed", "no")
-                        } else {
-                            list.currentIndex = nextShuffleArrayItem(list.currentIndex)
+                    } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
+                        audioPlayer.stop()
+                        mainPage.playing = false
+                    } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex === list.count-1) {
+                        list.currentIndex = 0
+                        delay(250, function() {
+                            audioPlayer.play()
+                            mainPage.playing = true
+                        })
+                    } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7 && list.currentIndex < list.count-1) {
+                        list.currentIndex += 1
+                        delay(250, function() {
+                            audioPlayer.play()
+                            mainPage.playing = true
+                        })
+                        } else if(mainPage.playing === true && mainPage.shuffle === false && mainPage.repeatcurrent === true && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
+                        delay(250, function() {
+                            audioPlayer.play()
+                            mainPage.playing = true
+                        })
+                    } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === true && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
+                        if(settings.value("firstShuffleArraySongPlayed") === "no") {
+                            list.currentIndex = firstShuffleArrayItem()
+                            settings.setValue("firstShuffleArraySongPlayed", "yes")
+                        } else if(settings.value("firstShuffleArraySongPlayed") === "yes") {
+                            if(nextShuffleArrayItem(list.currentIndex) === undefined) {
+                                list.currentIndex = firstShuffleArrayItem()
+                            } else {
+                                list.currentIndex = nextShuffleArrayItem(list.currentIndex)
+                            }
+                        }
+                        delay(250, function() {
+                            audioPlayer.play()
+                            mainPage.playing = true
+                        })
+                    } else if(mainPage.playing === true && mainPage.shuffle === true && mainPage.repeatcurrent === false && mainPage.repeatall === false && audioPlayer.playbackState === MediaPlayer.StoppedState && audioPlayer.status === 7) {
+                        if(settings.value("firstShuffleArraySongPlayed") === "no") {
+                            list.currentIndex = firstShuffleArrayItem()
+                            settings.setValue("firstShuffleArraySongPlayed", "yes")
                             delay(250, function() {
                                 audioPlayer.play()
                                 mainPage.playing = true
                             })
+                        } else if(settings.value("firstShuffleArraySongPlayed") === "yes") {
+                            if(nextShuffleArrayItem(list.currentIndex) === undefined) {
+                                audioPlayer.stop()
+                                mainPage.playing = false
+                                mainPage.shuffle = false
+                                settings.setValue("shuffle", "")
+                                settings.setValue("firstShuffleArraySongPlayed", "no")
+                            } else {
+                                list.currentIndex = nextShuffleArrayItem(list.currentIndex)
+                                delay(250, function() {
+                                    audioPlayer.play()
+                                    mainPage.playing = true
+                                })
+                            }
                         }
-                    }                        
+                    }
                 }
+                onPlaying: settings.setValue("latestIndex", list.currentIndex)
             }
-            onPlaying: settings.setValue("latestIndex", list.currentIndex)
         }
 
-        Loader {
+/*        Loader {
             id: cmpnnt2ldr
             sourceComponent: cmpnnt2
             anchors.top: flick1.top
             width: parent.width
             height: units.gu(6)
             active: true
-        }
+        }*/
 
-        Component {
-            id: cmpnnt2
-            Item {
-                id: itm1
-                property string text: {
-                    var flNm = list.model.get(list.currentIndex, "fileName");
-                    var dotLastIndex = flNm.lastIndexOf(".");
-                    var finalName = flNm.substring(0, dotLastIndex);
+//        Component {
+//            id: cmpnnt2
+        Item {
+            id: itm1
+            property string text: {
+                var flNm = list.model.get(list.currentIndex, "fileName");
+                var dotLastIndex = flNm.lastIndexOf(".");
+                var finalName = flNm.substring(0, dotLastIndex);
 
-                    return finalName;
-                }
-                property string spacing: "          "
-                property string combined: text + spacing
-                property string display: combined.substring(step) + combined.substring(0, step)
-                property int step: 0
-//                width: parent.width
-//                height: units.gu(6)
+                return finalName;
+            }
+            property string spacing: "          "
+            property string combined: text + spacing
+            property string display: combined.substring(step) + combined.substring(0, step)
+            property int step: 0
+            width: parent.width
+            height: units.gu(6)
 
-                Rectangle {
-                    id: rec1
-                    height: itm1.height
-                    width: itm1.width
-                    color: "transparent"
-                    border.color: drkMd ? "#121212" : "white"
-                    border.width: units.gu(2)
-                    z: 1
-                }
+            Rectangle {
+                id: rec1
+                height: itm1.height
+                width: itm1.width
+                color: "transparent"
+                border.color: drkMd ? "#121212" : "white"
+                border.width: units.gu(2)
+                z: 1
+            }
 
-                Timer {
-                    id: timer2
-                    interval: 200
-                    running: true
-                    repeat: true
-                    onTriggered: itm1.step = (itm1.step + 1) % itm1.combined.length
-                }
+            Timer {
+                id: timer2
+                interval: 200
+                running: true
+                repeat: true
+                onTriggered: itm1.step = (itm1.step + 1) % itm1.combined.length
+            }
 
-                Text {
-                    text: itm1.display
-                    anchors.horizontalCenter: rec1.horizontalCenter
-                    anchors.verticalCenter: rec1.verticalCenter
-                    color: drkMd ? "#808080" : "black"
-                }
+            Text {
+                text: itm1.display
+                anchors.horizontalCenter: rec1.horizontalCenter
+                anchors.verticalCenter: rec1.verticalCenter
+                color: drkMd ? "#808080" : "black"
             }
         }
+//        }
 
-        Loader {
+/*        Loader {
             id: cmpnnt3ldr
             sourceComponent: cmpnnt3
             anchors.top: cmpnnt2ldr.bottom
@@ -365,48 +377,48 @@ Rectangle {
 //            height: units.gu(6)
             anchors.horizontalCenter: parent.horizontalCenter
             active: true
-        }
+        }*/
 
-        Component {
-            id: cmpnnt3
-            Text {
-                id: mediaTime
-//                anchors.top: itm1.bottom
-//                anchors.top: cmpnnt2ldr.bottom
-//                anchors.horizontalCenter: parent.horizontalCenter
-                horizontalAlignment: Text.AlignHCenter
-                color: drkMd ? "#808080" : "black"
+//        Component {
+//            id: cmpnnt3
+        Text {
+            id: mediaTime
+            anchors.top: itm1.bottom
+//            anchors.top: cmpnnt2ldr.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            horizontalAlignment: Text.AlignHCenter
+            color: drkMd ? "#808080" : "black"
 
-                text: {
-                    let h,m,s,h2,m2,s2;
-                    h = Math.floor(audioPlayer.position/1000/60/60);
-                    m = Math.floor((audioPlayer.position/1000/60/60 - h)*60);
-                    s = Math.floor(((audioPlayer.position/1000/60/60 - h)*60 - m)*60);
+            text: {
+                let h,m,s,h2,m2,s2;
+                h = Math.floor(audioPlayer.position/1000/60/60);
+                m = Math.floor((audioPlayer.position/1000/60/60 - h)*60);
+                s = Math.floor(((audioPlayer.position/1000/60/60 - h)*60 - m)*60);
 
-                    s < 10 ? s = `0${s}`: s = `${s}`
-                    m < 10 ? m = `0${m}`: m = `${m}`
-                    h < 10 ? h = `${h}`: h = `${h}`
+                s < 10 ? s = `0${s}`: s = `${s}`
+                m < 10 ? m = `0${m}`: m = `${m}`
+                h < 10 ? h = `${h}`: h = `${h}`
 
-                    h2 = Math.floor(audioPlayer.duration/1000/60/60);
-                    m2 = Math.floor((audioPlayer.duration/1000/60/60 - h2)*60);
-                    s2 = Math.floor(((audioPlayer.duration/1000/60/60 - h2)*60 - m2)*60);
+                h2 = Math.floor(audioPlayer.duration/1000/60/60);
+                m2 = Math.floor((audioPlayer.duration/1000/60/60 - h2)*60);
+                s2 = Math.floor(((audioPlayer.duration/1000/60/60 - h2)*60 - m2)*60);
 
-                    s2 < 10 ? s2 = `0${s2}`: s2 = `${s2}`
-                    m2 < 10 ? m2 = `0${m2}`: m2 = `${m2}`
-                    h2 < 10 ? h2 = `${h2}`: h2 = `${h2}`
+                s2 < 10 ? s2 = `0${s2}`: s2 = `${s2}`
+                m2 < 10 ? m2 = `0${m2}`: m2 = `${m2}`
+                h2 < 10 ? h2 = `${h2}`: h2 = `${h2}`
 
-                    return `${h}:${m}:${s} / ${h2}:${m2}:${s2}`
-                }
+                return `${h}:${m}:${s} / ${h2}:${m2}:${s2}`
             }
         }
+//        }
 
         Qqc.Slider {
             id: prgrssbr
             to: 1.0
             live: true
             anchors.horizontalCenter: parent.horizontalCenter
-//            anchors.top: mediaTime.bottom
-            anchors.top: cmpnnt3ldr.bottom
+            anchors.top: mediaTime.bottom
+//            anchors.top: cmpnnt3ldr.bottom
             value: audioPlayer.position / audioPlayer.duration
             onMoved: audioPlayer.seek(value * audioPlayer.duration)
 
@@ -677,7 +689,7 @@ Rectangle {
                         console.log("Import done!")
 //                        cmpnnt2ldr.active = true
                         timer3.running = true
-                        timer4.running = true
+//                        timer4.running = true
                         if(playing === true) {
                             audioPlayer.stop()
                             playing = false
@@ -803,8 +815,8 @@ Rectangle {
                             process.start("/bin/bash",["-c", "rm -rf /home/phablet/.local/share/mute.bigbrotherisstillwatching/*"])
 //                            settings.setValue("latestIndex", "")
                             settings.setValue("latestIndex", "0")
-                            cmpnnt2ldr.active = false
-                            cmpnnt3ldr.active = false
+//                            cmpnnt2ldr.active = false
+//                            cmpnnt3ldr.active = false
 //                            list.currentIndex = 0
                             list.currentIndex = -1
 //                            audioPlayer.source = ""
@@ -840,6 +852,12 @@ Rectangle {
                         id: txt3
 //                        text: list.currentIndex
                         text: audioPlayer.duration
+                    }
+
+                    Text {
+                        id: txt4
+                        text: list.currentIndex
+//                        text: audioPlayer.duration
                     }
 
                 }
