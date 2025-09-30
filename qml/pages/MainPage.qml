@@ -35,7 +35,7 @@ Rectangle {
     property bool repeatcurrent: false
     property bool repeatall: false
     property alias drkMd: settings.darkMode
-    property alias audioPlayer: cmpnnt2.audioPlayer
+    property alias audioPlayer: audioPlayer
 
     Component.onCompleted: {
         settings.setValue("shuffle", "")
